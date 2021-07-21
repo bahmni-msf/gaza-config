@@ -1,0 +1,202 @@
+{
+        "id": "bahmni.registration",
+        "instanceOf":"bahmni.template.registration",
+        "description": "Bahmni Patient Registration App",
+        "extensionPoints": [
+            {
+                "id": "org.bahmni.registration.patient.search.result.action",
+                "description": "Bahmni Patient Search Result Action"
+            },
+            {
+                "id": "org.bahmni.registration.patient.next",
+                "description": "After Bahmni Patient Registration, forward url configuration"
+            },
+            {
+                "id": "org.bahmni.registration.navigation",
+                "description": "Navigation within regsitration first and second page"
+            },
+            {
+                "id": "org.bahmni.registration.conceptSetGroup.observations",
+                "description": "Registration Second Page Forms"
+            }
+        ],
+        "contextModel": [
+            "patientUuid",
+            "activeVisitUuid"
+        ],
+        "config" :
+        {
+            "showPatientIdentifier": false,
+            "forwardUrlsForVisitTypes": [
+                {
+                    "visitType": "OPD",
+                    "forwardUrl": "/bahmni/home/index.html#/dashboard",
+                    "translationKey": "Go to Home Page",
+                    "shortcutKey": "c"
+                }
+            ],
+            "mandatoryPersonAttributes" : [
+                "Patient Contact Type 1, Relationship",
+                "Patient Contact Type 1, Phone",
+                "Primary Emergency Contact, Phone 1",
+                "Primary Emergency Contact, Name",
+                "Primary Emergency Contact, Relationship"
+            ],
+            "patientInformation": {
+                "Additional Information": {
+                    "title": "Additional  Information",
+                    "tranlsationkey": "REGISTRATION_TITLE_ADDITIONAL_PATIENT",
+                    "attributes": [
+                        "nickName",
+                        "familyOrClanName",
+                        "Spoken Language English",
+                        "Spoken Language Chichewa",
+                        "Spoken Language Other"
+                    ],
+                    "expanded": true
+                },
+
+                "GPS": {
+                    "title": "GPS",
+                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_GPS",
+                    "attributes" : [
+                        "Latitude",
+                        "Longitude"
+                    ]
+                },
+                "Patient Contact Type 1": {
+                    "title" : "Patient Contact Type 1",
+                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE1",
+                    "attributes": [
+                        "Patient Contact Type 1, Relationship",
+                        "Patient Contact Type 1, Patient Contact, comments",
+                        "Patient Contact Type 1, Phone"
+                    ],
+                    "expanded": true
+                },
+                "Patient Contact Type 2": {
+                    "title" : "Patient Contact Type 2",
+                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE2",
+                    "attributes": [
+                        "Patient Contact Type 2, Relationship",
+                        "Patient Contact Type 2, Patient Contact, comments",
+                        "Patient Contact Type 2, Phone"
+                    ],
+                    "expanded": true
+                },
+                "Primary  Emergency Contact": {
+                    "title" : "Primary  Emergency Contact",
+                    "translationKey": "REGISTRATION_TITLE_PRIMARY_EMERGENCY_CONTACT",
+                    "attributes": [
+                        "Primary Emergency Contact, Name",
+                        "Primary Emergency Contact, Relationship",
+                        "PEC, Emergency Contact, comments",
+                        "Primary Emergency Contact, Phone 1"
+                    ],
+                    "expanded":true
+                },
+                "Secondary  Emergency Contact": {
+                    "title" : "Secondary  Emergency Contact",
+                    "translationKey": "REGISTRATION_TITLE_SECONDARY_EMERGENCY_CONTACT",
+                    "attributes": [
+                        "Secondary Emergency Contact, Name",
+                        "Secondary Emergency Contact, Relationship",
+                        "SEC, Emergency Contact, comments",
+                        "Secondary Emergency Contact, Phone 1"
+                    ],
+                    "expanded": true
+                },
+                "Community Volunteer/Healthcare Professional" : {
+                    "title" : "Community Volunteer/Healthcare Professional Contact",
+                    "translationKey": "REGISTRATION_TITLE_CVHPC",
+                    "attributes": [
+                        "CV/HP Name",
+                        "CV/HP Phone 1"
+                    ],
+                    "expanded": true
+                },
+                "hidden": {
+                    "attributes": [
+                    ]
+                },
+                "defaults":  {
+                }
+            },
+            "addressHierarchy": {
+                "showAddressFieldsTopDown": false,
+                "strictAutocompleteFromLevel": "stateProvince",
+                "freeTextAddressFields": ["address2", "address1"]
+            },
+            "relationshipTypeMap": {
+                "Doctor":"provider",
+                "Parent":"patient"
+            },
+            "defaultVisitType": "OPD",
+            "searchByIdForwardUrl": "/patient/{{patientUuid}}",
+            "showMiddleName": true,
+            "showLastName": true,
+            "isLastNameMandatory": true,
+            "showSaveConfirmDialog": false,
+            "showBirthTime": false,
+            "showEnterID":false,
+            "showCasteSameAsLastNameCheckbox": false,
+            "printOptions": [
+                {
+                    "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
+                    "shortcutKey": "l"
+                },
+                {
+                    "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print.html",
+                    "shortcutKey": "p"
+                }
+            ],
+            "conceptSetUI": {
+                "REGISTRATION FEES": {
+                    "required": true,
+                    "label": "Fee"
+                },
+                "FHS": {
+                    "buttonSelect": true
+                },
+                "defaults":{
+                    "FHS": "Present"
+                }
+            },
+            "fieldValidation" : {
+                "primaryContact" : {"pattern" : "[0-9]{8,10}", "errorMessage" : "Should be 12 characters starting with 91 (country code)"},
+                "landHolding" : {"pattern" : "[0-9]{0,3}", "errorMessage" : "Should be between 1 to 999 acres"},
+                "familyName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
+                "givenName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
+                "middleName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
+                "nickName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "familyOrClanName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "Primary Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "Secondary Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "CV/HP Name": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,8}", "errorMessage" : "Should not exceed more than 8 characters"},
+                "Patient Contact Type 1, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "Patient Contact Type 2, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "Primary Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed  15 characters and should contain only numbers"},
+                "Secondary Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "Latitude" : {"pattern":  "^[-+]?([1-8]?\\d\\.(\\d){1,4}|90\\.(0){1,4})$", "errorMessage":  "Should be 4 decimal value with in the range -90 to 90"},
+                "Longitude" : {"pattern":  "^[-+]?(180(\\.0{1,4})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,4})?)$", "errorMessage":  "Should be 4 decimal value with in the range -180 to 180"}
+            },
+                "patientSearchResults": {
+                    "address": {
+                        "fields": [
+                            "address3","address1"
+                        ]
+                    }
+                },
+            "patientSearch": {
+                "address": {
+                    "label": "Country",
+                    "placeholder": "Enter Country Name",
+                    "field": "address1"
+                }
+            }
+        }
+}

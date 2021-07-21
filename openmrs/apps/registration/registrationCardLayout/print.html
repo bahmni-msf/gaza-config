@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/bahmni_config/openmrs/apps/registration/registrationCardLayout/css/print.css"/>
+<div>
+    <div class="patient_id_card">
+        <h3>MSF REGISTRATION CARD</h3>
+        <div class="content-header">
+            <div class="MSF-ID">MSF ID : {{patient.primaryIdentifier.identifier}}</div>
+            <div class="Name">Name : {{(patient.givenName.split(" ")[0]).substring(0,49)}} &nbsp;{{(patient.familyName.split(" ")[0]).substring(0,49)}}</div>
+            <div class="DOB">DOB : {{patient.birthdate | date:'dd/MM/yyyy'}}</div>
+            <div class="Registered">Registered : {{patient.registrationDate | date:'dd/MM/yyyy' }}</div>
+        </div>
+        <div class="logos">
+            <div class="row">
+                <div class="column">
+                    <img class="msf-logo" ng-src='/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/logo1.png'>
+                </div>
+                <div class="column">
+                    <img class="logo-2" ng-src='/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/logo2.png'>
+                </div>
+                <div class="column">
+                    <img class="logo-3" ng-src='/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/logo_3.png'>
+                </div>
+                <div class="column">
+                    <img class="patient-image" ng-src="{{patient.image}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

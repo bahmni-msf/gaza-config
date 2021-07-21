@@ -1,0 +1,201 @@
+@page {
+  margin-left: 0.2cm;
+  margin-right: 0.2cm;
+  margin-top: 0.2cm;
+  margin-bottom: 0.2cm;
+}
+/* line 10, print.scss */
+p, h1, h2, h3, tr, div, span, li {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+}
+.patient_id_card h3 {
+  font-family: Arial;
+}
+h3 {
+  text-align: center;
+}
+/* line 17, print.scss */
+.print-center {
+  text-align: center;
+}
+/* line 20, print.scss */
+.registrationCard-print-table {
+  height: 3.70in;
+  overflow: scroll;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+.subpage {
+  height: 100%;
+  font-size: 13px;
+  line-height: 1.5;
+}
+@page{
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.subpage ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  clear: both;
+}
+.subpage ul li{
+  width:6cm;
+  height: 3.65cm;
+  display: block;
+  border: 0px solid;
+  padding-top: 1%;
+  padding-left : 8%;
+  float:left;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+.subpage ul li:not(:last-child){
+  margin-right: 0.3cm;
+}
+.subpage ul li span.localname{
+  display: block;
+  line-height: 1.5;
+  font-size: 13px;
+}
+.subpage ul li span.patient-name {
+  /*display: inline-flex;*/
+  line-height: 1.5;
+  display: contents;
+  word-break: break-all;
+}
+/* line 24, print.scss */
+.registrationCard-print-table td.registrationCard-photo {
+  padding-top: 2px;
+  padding-left:100px;
+}
+/* line 27, print.scss */
+.print-table-left {
+  width: 2.13in;
+}
+/* line 30, print.scss */
+.print-table-header {
+  text-align: center;
+  margin-top: 10px;
+  text-align: center;
+}
+/* line 35, print.scss */
+.print-table-left-body {
+  font-size: 4mm;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 15px;
+}
+/* line 41, print.scss */
+.print-table-left-body li {
+  margin: 0px;
+  padding: 0px 0px 5px 0px;
+  line-height: 18px;
+}
+/* line 46, print.scss */
+.caution {
+  text-align: center;
+  line-height: 20px;
+}
+/* line 50, print.scss */
+.caution h3 {
+  line-height: 25px;
+  margin-bottom: 6px;
+  margin-top: 12px;
+}
+/* line 55, print.scss */
+.print-table-right {
+  width : 4in;
+}
+/* line 58, print.scss */
+.print-table-right .logo {
+  text-align: center;
+  width: 120mm;
+  padding: 5px;
+  margin: 0px;
+  height: 12mm;
+}
+.patient_id_card {
+  height: 67.7mm;
+  max-height: 67.7mm;
+  width: 99.1mm;
+  max-width: 99.1mm;
+  position: relative;
+  padding-top: 10px;
+}
+.column {
+  float: left;
+  padding: 2px;
+}
+.content-header {
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+.content-header div :last-child {
+  padding-bottom: 0;
+}
+/* line 65, print.scss */
+.print-table-right-header {
+  text-align: center;
+  width: 22mm;
+  text-align: left;
+}
+/* line 77, print.scss */
+.registrationCard-details-name {
+  text-align:left;
+  text-size:5px;
+}
+/* line 80, print.scss */
+.registrationCard-details-seperator {
+  width: 2px;
+}
+/* Clearfix (clear floats) */
+.row::after {
+  clear: both;
+  display: table;
+}
+.msf-logo {
+  padding-top: 12mm;
+  padding-left: 2mm;
+  width: 31mm;
+  height: 11mm
+}
+.logo-3{
+  padding-top: 4mm;
+  padding-left: 2mm;
+  width: 20mm;
+  height: 23mm;
+}
+.patient-image{
+  padding-top: 4mm;
+  padding-left: 2mm;
+  width: 19mm;
+  height: 21mm;
+}
+.logo-2 {
+  padding-top: 7mm;
+  padding-left: 2mm;
+  width: 14mm;
+  height: 19mm;
+}
+.MSF-ID{
+  padding-top: 2mm;
+}
+.MSF-ID, .Name, .DOB, .Registered{
+  padding-bottom: 2mm;
+  font-family: Arial;
+  word-break: break-all;
+}
+.arabic {
+  text-align: right;
+}
+.logos {
+  bottom: 0;
+  position: absolute;
+}

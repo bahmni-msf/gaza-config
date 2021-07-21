@@ -1,0 +1,56 @@
+{
+  "general": {
+    "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "patientInformation": {
+        "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+        "type": "patientInformation",
+        "displayOrder": 1,
+        "ageLimit": 100,
+        "patientAttributes": [
+        ],
+        "addressFields": [
+          "address1",
+          "address2",
+          "cityVillage",
+          "countyDistrict"
+        ]
+      },
+      "programs": {
+        "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
+        "type": "programs",
+        "displayOrder": 1
+      },
+      "visits": {
+        "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
+        "type": "visits",
+        "displayOrder": 3,
+        "dashboardConfig": {
+          "title": null,
+          "maximumNoOfVisits": 8,
+          "groupByVisits": true
+        }
+      },
+      "validationForms-2.0": {
+        "type": "formsV2",
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "title": null,
+          "maximumNoOfVisits": 5
+        },
+        "formGroup": [
+          "Operative Report",
+          "Surgeon PreOperative Assessment",
+          "Initial Anaesthesia Assessment",
+          "Post Operative Anaesthesia Note",
+          "Complications",
+          "Vital Signs"
+        ],
+        "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
+      }
+    }
+  },
+  "trends": {}
+}

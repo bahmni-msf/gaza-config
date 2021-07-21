@@ -1,0 +1,103 @@
+{
+    "id": "bahmni.clinical",
+    "extensionPoints": [
+        {
+            "id": "org.bahmni.clinical.consultation.board",
+            "description": "Bahmni Clinical Consultation Page"
+        },
+        {
+            "id": "org.bahmni.clinical.conceptSetGroup.*",
+            "description": "Define conceptsets part of a conceptset group"
+        },
+        {
+            "id": "org.bahmni.clinical.orders",
+            "description": "Bahmni Orders Page"
+        },
+        {
+            "id": "org.bahmni.patient.search",
+            "description": "Bahmni Patient search, lookups Page"
+        }
+    ],
+    "contextModel": [
+        "patientUuid",
+        "visitUuid"
+    ],
+    "config": {
+        "hideConditions": false,
+        "enableRadiologyOrderOptions": [
+            "Urgent",
+            "NeedsPrint"
+        ],
+        "enableLabOrderOptions": [
+            "Urgent",
+            "NeedsPrint"
+        ],
+        "quickPrints": false,
+        "networkConnectivity": {
+            "showNetworkStatusMessage": false,
+            "networkStatusCheckInterval": 20000,
+            "locales": [
+                {
+                    "locale": "fr",
+                    "css": "offline-language-french"
+                },
+                {
+                    "locale": "es",
+                    "css": "offline-language-spanish"
+                },
+                {
+                    "locale": "pt",
+                    "css": "offline-language-portuguese-brazil"
+                }
+            ]
+        },
+        "diagnosisStatus": "Inactive",
+            "program": {
+                "patientInformation": {
+                    "ageLimit": 100
+                },
+                "ID_Number": {
+                    "required" : true
+                },
+                "Co-morbidites": {
+                    "excludeFrom": ["HIV Program"]
+                },
+                "Doctor": {
+                    "excludeFrom": ["TB Program"]
+                }
+            },
+            "patientContext": {
+        		"programAttributes": [
+            		"Id_Number",
+            		"Doctor",
+            		"Stage"
+        		],
+        		"personAttributes": [
+            		"class",
+            		"caste"
+        		],
+        		"additionalPatientIdentifiers": [
+           			"National ID"
+       		],
+        		"preferredIdentifier": "Id_Number"
+    	},
+        "obsIgnoreList": [
+            "REGISTRATION FEES",
+            "COMMENTS",
+            "Patient file"
+        ],
+        "otherInvestigationsMap": {
+            "Radiology": "Radiology Order",
+            "Endoscopy": "Endoscopy Order"
+        },
+        "allowConsultationWhenNoOpenVisit": false,
+        "maxConceptSetLevels": 3,
+        "allowOnlyCodedDiagnosis": false,
+        "conceptSetUI": {},
+        "visitPage": {
+            "observationDisplay": {
+                "conceptNames": []
+            }
+        }
+    }
+}
