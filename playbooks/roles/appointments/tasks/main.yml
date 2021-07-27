@@ -1,0 +1,19 @@
+- name: Find existing appointment omod
+  find:
+    paths: /opt/openmrs/modules
+    patterns: appointment*.omod
+  register: result
+
+- name: Delete appointment omod
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ result.files }}"
+
+- name: Get appointments omod from s3 bucket and place it in /opt/openmrs/modules
+  get_url:
+      url: "{{ appointments }}"
+      dest: /opt/openmrs/modules/
+      mode: 0644
+      owner: bahmni
+      group: bahmni

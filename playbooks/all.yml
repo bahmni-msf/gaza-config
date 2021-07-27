@@ -1,0 +1,13 @@
+- hosts: bahmni-emr
+  sudo: yes
+  roles:
+    - { role: bahmni-custom-properties, tags: bahmni-custom-properties }
+    - { role: appointments, tags: appointments }
+    - { role: bahmni-core, tags: bahmni-core }
+    - { role: bahmni-ie-apps, tags: bahmni-ie-apps }
+    - { role: bahmni-apps, tags: bahmni-apps }
+    - { role: implementer-interface, tags: implementer-interface }
+    - { role: appointment-frontend, tags: appointment-frontend }
+    - { role: emr-api-omod, tags: emr-api-omod }
+    - { role: event-omod, tags: event-omod }
+    - { role: openmrs-ui-framework, tags: openmrs_ui_framework }
