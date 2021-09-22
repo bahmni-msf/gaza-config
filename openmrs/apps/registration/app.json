@@ -36,82 +36,38 @@
                 }
             ],
             "mandatoryPersonAttributes" : [
-                "Patient Contact Type 1, Relationship",
-                "Patient Contact Type 1, Phone",
-                "Primary Emergency Contact, Phone 1",
-                "Primary Emergency Contact, Name",
-                "Primary Emergency Contact, Relationship"
+                "phoneNumber1",
+                "phone1Owner",
+                "treatedByMSFOCPInThePast"
             ],
             "patientInformation": {
-                "Additional Information": {
-                    "title": "Additional  Information",
-                    "tranlsationkey": "REGISTRATION_TITLE_ADDITIONAL_PATIENT",
+                "Contact Information": {
+                    "title" : "Contact Information",
+                    "translationKey": "REGISTRATION_TITLE_CONTACT_INFORMATION_KEY",
                     "attributes": [
-                        "nickName",
-                        "familyOrClanName",
-                        "Spoken Language English",
-                        "Spoken Language Chichewa",
-                        "Spoken Language Other"
+                        "phoneNumber1",
+                        "phone1Owner",
+                        "phoneNumber2",
+                        "phone2Owner"
                     ],
                     "expanded": true
                 },
-
-                "GPS": {
-                    "title": "GPS",
-                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_GPS",
-                    "attributes" : [
-                        "Latitude",
-                        "Longitude"
-                    ]
-                },
-                "Patient Contact Type 1": {
-                    "title" : "Patient Contact Type 1",
-                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE1",
+                "Emergency Contact Person": {
+                    "title" : "Emergency Contact Person",
+                    "translationKey": "REGISTRATION_TITLE_EMERGENCY_CONTACT_PERSON_KEY",
                     "attributes": [
-                        "Patient Contact Type 1, Relationship",
-                        "Patient Contact Type 1, Patient Contact, comments",
-                        "Patient Contact Type 1, Phone"
-                    ],
-                    "expanded": true
-                },
-                "Patient Contact Type 2": {
-                    "title" : "Patient Contact Type 2",
-                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE2",
-                    "attributes": [
-                        "Patient Contact Type 2, Relationship",
-                        "Patient Contact Type 2, Patient Contact, comments",
-                        "Patient Contact Type 2, Phone"
-                    ],
-                    "expanded": true
-                },
-                "Primary  Emergency Contact": {
-                    "title" : "Primary  Emergency Contact",
-                    "translationKey": "REGISTRATION_TITLE_PRIMARY_EMERGENCY_CONTACT",
-                    "attributes": [
-                        "Primary Emergency Contact, Name",
-                        "Primary Emergency Contact, Relationship",
-                        "PEC, Emergency Contact, comments",
-                        "Primary Emergency Contact, Phone 1"
+                        "nameOfContactPerson",
+                        "nameOfContactPersonInArabic",
+                        "contactPhoneNumber",
+                        "relationshipToPatient"
                     ],
                     "expanded":true
                 },
-                "Secondary  Emergency Contact": {
-                    "title" : "Secondary  Emergency Contact",
-                    "translationKey": "REGISTRATION_TITLE_SECONDARY_EMERGENCY_CONTACT",
+                "Patient History": {
+                    "title" : "Patient History",
+                    "translationKey": "REGISTRATION_TITLE_PATIENT_HISTORY_KEY",
                     "attributes": [
-                        "Secondary Emergency Contact, Name",
-                        "Secondary Emergency Contact, Relationship",
-                        "SEC, Emergency Contact, comments",
-                        "Secondary Emergency Contact, Phone 1"
-                    ],
-                    "expanded": true
-                },
-                "Community Volunteer/Healthcare Professional" : {
-                    "title" : "Community Volunteer/Healthcare Professional Contact",
-                    "translationKey": "REGISTRATION_TITLE_CVHPC",
-                    "attributes": [
-                        "CV/HP Name",
-                        "CV/HP Phone 1"
+                        "treatedByMSFOCPInThePast"
                     ],
                     "expanded": true
                 },
@@ -165,24 +121,13 @@
                 }
             },
             "fieldValidation" : {
-                "primaryContact" : {"pattern" : "[0-9]{8,10}", "errorMessage" : "Should be 12 characters starting with 91 (country code)"},
-                "landHolding" : {"pattern" : "[0-9]{0,3}", "errorMessage" : "Should be between 1 to 999 acres"},
                 "familyName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
                 "givenName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
                 "middleName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
-                "nickName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "familyOrClanName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "Primary Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "Secondary Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "CV/HP Name": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,8}", "errorMessage" : "Should not exceed more than 8 characters"},
-                "Patient Contact Type 1, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
-                "Patient Contact Type 2, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
-                "Primary Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed  15 characters and should contain only numbers"},
-                "Secondary Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
-                "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
-                "Latitude" : {"pattern":  "^[-+]?([1-8]?\\d\\.(\\d){1,4}|90\\.(0){1,4})$", "errorMessage":  "Should be 4 decimal value with in the range -90 to 90"},
-                "Longitude" : {"pattern":  "^[-+]?(180(\\.0{1,4})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,4})?)$", "errorMessage":  "Should be 4 decimal value with in the range -180 to 180"}
+                "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,9}", "errorMessage" : "Should not exceed more than 9 characters"},
+                "phoneNumber1": {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
+                "phoneNumber2":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
+                "contactPhoneNumber":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"}
             },
                 "patientSearchResults": {
                     "address": {
