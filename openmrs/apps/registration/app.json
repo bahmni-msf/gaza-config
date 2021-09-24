@@ -30,13 +30,12 @@
             "forwardUrlsForVisitTypes": [
                 {
                     "visitType": "OPD",
-                    "forwardUrl": "/bahmni/home/index.html#/dashboard",
-                    "translationKey": "Go to Home Page",
-                    "shortcutKey": "c"
+                    "forwardUrl": "/appointments-v2/#/home/manage/appointments/calendar",
+                    "translationKey": "REGISTRATION_REDIRECTION_TEXT"
                 }
             ],
             "mandatoryPersonAttributes" : [
-                "phoneNumber1",
+                "phoneNumber 1",
                 "phone1Owner",
                 "treatedByMSFOCPInThePast"
             ],
@@ -45,9 +44,9 @@
                     "title" : "Contact Information",
                     "translationKey": "REGISTRATION_TITLE_CONTACT_INFORMATION_KEY",
                     "attributes": [
-                        "phoneNumber1",
+                        "phoneNumber 1",
                         "phone1Owner",
-                        "phoneNumber2",
+                        "phoneNumber 2",
                         "phone2Owner"
                     ],
                     "expanded": true
@@ -125,8 +124,8 @@
                 "givenName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
                 "middleName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
                 "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,9}", "errorMessage" : "Should not exceed more than 9 characters"},
-                "phoneNumber1": {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
-                "phoneNumber2":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
+                "phoneNumber 1": {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
+                "phoneNumber 2":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
                 "contactPhoneNumber":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"}
             },
                 "patientSearchResults": {
