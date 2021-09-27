@@ -129,17 +129,16 @@
                 "contactPhoneNumber":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"}
             },
                 "patientSearchResults": {
-                    "address": {
-                        "fields": [
-                            "address3","address1"
-                        ]
+                    "personAttributes": {
+                        "fields": ["givenNameLocal","familyNameLocal","middleNameLocal","phoneNumber 1"],
+                        "localLanguageFullNameFields": ["givenNameLocal","middleNameLocal","familyNameLocal"]
                     }
                 },
             "patientSearch": {
-                "address": {
-                    "label": "Country",
-                    "placeholder": "Enter Country Name",
-                    "field": "address1"
+                "customAttributes": {
+                    "label": "REGISTRATION_SEARCH_NAME_IN_ARABIC",
+                    "placeholder": "REGISTRATION_SEARCH_PLACEHOLDER_NAME_IN_ARABIC",
+                    "fields": ["givenNameLocal", "middleNameLocal", "familyNameLocal"]
                 }
             }
         }
