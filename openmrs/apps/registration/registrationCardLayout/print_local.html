@@ -2,125 +2,292 @@
 <div class="subpage">
     <ul>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
         <li>
-            <span class="patient-name">Patient Name : {{patient.givenName}} &nbsp;{{patient.familyName}}<br></span>
-            <span class="localname">Patient ID : {{patient.primaryIdentifier.identifier}}<br></span>
-            <span class="localname">Date Of Birth : {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
+        </li>
+        <li>
+            <span class="patient_id">Patient ID: {{patient.primaryIdentifier.identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name === 'National ID'">National ID: {{patient.extraIdentifiers[0].identifier}}</span>
+            <span class="patient_details_item" ng-if="patient.extraIdentifiers[0].identifierType.name != 'National ID'">National ID:</span>
+            <span class="patient_details_item">E. Name: {{patient.givenName}} {{patient.familyName}}<br></span>
+            <span class="patient_details_item">A. Name: {{patient.givenNameLocal}} {{patient.middleNameLocal}} {{patient.familyNameLocal}}<br></span>
+            <span class="patient_details_item">Date Of Birth: {{patient.birthdate | date:'dd/MM/yyyy' }}</span>
+            <hr class="dotted-line"/>
         </li>
     </ul>
 </div>
-

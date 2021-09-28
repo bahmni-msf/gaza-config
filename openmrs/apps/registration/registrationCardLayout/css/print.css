@@ -1,9 +1,3 @@
-@page {
-  margin-left: 0.2cm;
-  margin-right: 0.2cm;
-  margin-top: 0.2cm;
-  margin-bottom: 0.2cm;
-}
 /* line 10, print.scss */
 p, h1, h2, h3, tr, div, span, li {
   margin: 0px;
@@ -15,6 +9,13 @@ p, h1, h2, h3, tr, div, span, li {
 }
 h3 {
   text-align: center;
+}
+hr.dotted-line {
+  padding-top: 3px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px dotted;
 }
 /* line 17, print.scss */
 .print-center {
@@ -28,8 +29,10 @@ h3 {
   table-layout: fixed;
 }
 .subpage {
+  margin-top: 0.8cm;
+  margin-bottom: 0.8cm;
   height: 100%;
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1.5;
 }
 @page{
@@ -46,29 +49,28 @@ h3 {
   clear: both;
 }
 .subpage ul li{
-  width:6cm;
-  height: 3.65cm;
+  width: 5.1cm;
+  height: 3.5cm;
   display: block;
   border: 0px solid;
   padding-top: 1%;
-  padding-left : 8%;
+  padding-bottom: 0.5%;
+  padding-left: 1.5%;
+  padding-right: 0.5%;
   float:left;
   word-wrap: break-word;
   box-sizing: border-box;
 }
-.subpage ul li:not(:last-child){
-  margin-right: 0.3cm;
-}
-.subpage ul li span.localname{
+.subpage ul li span.patient_id{
   display: block;
   line-height: 1.5;
   font-size: 13px;
+  font-weight: bold;
 }
-.subpage ul li span.patient-name {
-  /*display: inline-flex;*/
+.subpage ul li span.patient_details_item{
+  display: block;
   line-height: 1.5;
-  display: contents;
-  word-break: break-all;
+  font-size: 11px;
 }
 /* line 24, print.scss */
 .registrationCard-print-table td.registrationCard-photo {
