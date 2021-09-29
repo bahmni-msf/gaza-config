@@ -27,6 +27,7 @@
         "config" :
         {
             "showPatientIdentifier": false,
+            "disablePhotoCapture": true,
             "forwardUrlsForVisitTypes": [
                 {
                     "visitType": "OPD",
