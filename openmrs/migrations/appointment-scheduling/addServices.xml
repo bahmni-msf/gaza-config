@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="GAZA_CONFIG_20211007153334" author="Supriya">
+        <comment>Create add services Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_service_and_service_type;
+        </sql>
+        <sqlFile splitStatements="false" path="appointment-scheduling/addServiceAndServiceType.sql"/>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_20211007163334" author="Supriya" context="Adding services to Appointment Scheduling">
+        <comment>Adding new services to Appointment Scheduling</comment>
+        <sql>
+           call add_new_service_and_service_type("Physiotherapy",NULL,"8:00:00","blue",NULL,NULL,"Treatment session",30);
+           call add_new_service_and_service_type("Physiotherapy",NULL,"8:00:00","blue",NULL,NULL,"Follow up session",15);
+           call add_new_service_and_service_type("Physiotherapy",NULL,"8:00:00","blue",NULL,NULL,"Group session",90);
+           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Treatment session",0);
+           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Splint session",0);
+           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Garment session",0);
+           call add_new_service_and_service_type("3D",NULL,"8:00:00","blue",30,"Gaza Clinic",NULL,0);
+           call add_new_service_and_service_type("Dressing",NULL,"8:00:00","green",20,NULL,"Trauma dressing",20);
+           call add_new_service_and_service_type("Dressing",NULL,"8:00:00","green",20,NULL,"Burn dressing",20);
+           call add_new_service_and_service_type("Dressing",NULL,"8:00:00","green",20,NULL,"Session under sedation",60);
+           call add_new_service_and_service_type("Counselling",NULL,"8:00:00","yellow",60,NULL,NULL,0);
+           call add_new_service_and_service_type("Social Work",NULL,"8:00:00","yellow",30,NULL,NULL,0);
+           call add_new_service_and_service_type("HP",NULL,"8:00:00","orange",30,NULL,NULL,0);
+           call add_new_service_and_service_type("Psychology",NULL,"8:00:00","yellow",60,NULL,NULL,0);
+           call add_new_service_and_service_type("Medical",NULL,"8:00:00","red",NULL,NULL,"First consultation",30);
+           call add_new_service_and_service_type("Medical",NULL,"8:00:00","red",NULL,NULL,"Post-op consultation",15);
+           call add_new_service_and_service_type("Medical",NULL,"8:00:00","red",NULL,NULL,"Follow up consultation",15);
+           call add_new_service_and_service_type("Medical",NULL,"8:00:00","red",NULL,NULL,"Controlled drugs appointment",15);
+           call add_new_service_and_service_type("Physio + Dressing",NULL,"8:00:00","brown",30,NULL,NULL,0);
+           call add_new_service_and_service_type("Ortho consultation",NULL,"8:00:00","purple",20,NULL,NULL,0);
+           call add_new_service_and_service_type("ATB",NULL,"8:00:00","pink",20,"Gaza Clinic",NULL,0);
+           call add_new_service_and_service_type("OM consultation",NULL,"8:00:00","gray",30,NULL,NULL,0);
+           call add_new_service_and_service_type("Pain management",NULL,"8:00:00","black",NULL,NULL,"First consultation",75);
+           call add_new_service_and_service_type("Pain management",NULL,"8:00:00","black",NULL,NULL,"Follow up consultation",45);
+           call add_new_service_and_service_type("Plastic consultation",NULL,"8:00:00","white",20,"Gaza Clinic",NULL,0);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_20211007173334" author="Supriya">
+        <comment>Create add services Availability</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_service_availability;
+        </sql>
+        <sqlFile splitStatements="false" path="appointment-scheduling/addServiceAvailability.sql"/>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_20211007213334" author="Supriya">
+        <comment>Adding services Availability to services in Appointment Scheduling</comment>
+        <sql>
+            call add_new_service_availability("Physiotherapy","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physiotherapy","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physiotherapy","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physiotherapy","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physiotherapy","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("OCT","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("OCT","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("OCT","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("OCT","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("OCT","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("3D","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("3D","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("3D","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("3D","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("3D","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("Dressing","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Dressing","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Dressing","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Dressing","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Dressing","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("Counselling","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Counselling","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Counselling","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Counselling","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Counselling","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("Social Work","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Social Work","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Social Work","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Social Work","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Social Work","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("HP","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("HP","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("HP","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("HP","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("HP","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("Psychology","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Psychology","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Psychology","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Psychology","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Psychology","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("Medical","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Medical","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Medical","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Medical","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Medical","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("Physio + Dressing","SUNDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physio + Dressing","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physio + Dressing","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physio + Dressing","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Physio + Dressing","THURSDAY","8:00:00","15:30:00",NULL);
+            call add_new_service_availability("Ortho consultation","TUESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Ortho consultation","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("ATB","MONDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("OM consultation","WEDNESDAY","8:00:00","16:30:00",NULL);
+            call add_new_service_availability("Pain management","MONDAY","8:00:00","16:30:00",NULL);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
