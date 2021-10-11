@@ -1,6 +1,6 @@
 {
   "LOCATION_KEY": "Location",
   "BED_NUMBER_KEY": "Bed Number",
-  "APPOINTMENT_ADDITIONAL_INFO": "Bed Details",
+  "APPOINTMENT_ADDITIONAL_INFO": "Additional Info.",
   "APPOINTMENT_COMMENTS": "Notes"
 }
