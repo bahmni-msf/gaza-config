@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="GAZA_CONFIG_20211008133334" author="Supriya">
+        <comment>Add Create Provider Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS create_provider;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/CreateProvider.sql"/>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_20211008133634" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username IN
+                ("Physio A - Gaza","Physio B - Gaza","Physio C - Gaza","Physio D - Gaza","Physio E - Gaza","Physio F - Gaza","Physio OCT 1 - Gaza",
+                "Physio OCT 2 - Gaza","Physio 3D 1 - Gaza","Physio 3D 2 - Gaza","Physio 3D 3 - Gaza","Physio A - BL","Physio B - BL","Physio C - BL",
+                "Physio OCT - BL","Physio A - MA","Physio B - MA","Physio C - MA","Physio OCT - MA","Physio A - KY","Physio B - KY","Physio C - KY",
+                "Physio OCT - KY","GP A - Gaza","GP B - Gaza","GP - BL","GP - MA","GP - KY","Ortho surgeon: Ortho","Ortho surgeon: OM","Anaesthetist",
+                "Antibiotic Doctor: ATB","Antibiotic Doctor: OM","Plastic surgeon","SW - Gaza","SW - BL","SW - MA","SW - KY","HP - Gaza","HP - BL","HP - MA",
+                "HP - KY","Counselor A - Gaza","Counselor B - Gaza","Counselor - BL","Counselor - MA","Counselor - KY","Nurse A - Gaza","Nurse B - Gaza",
+                "Nurse C - Gaza","Nurse D - Gaza","Nurse E - Gaza","Nurse F - Gaza","Nurse G - Gaza","Nurse A - BL","Nurse B - BL","Nurse C - BL","Nurse A - MA",
+                "Nurse B - MA","Nurse C - MA","Nurse D - MA","Nurse A - KY","Nurse B - KY","Nurse C - KY","Nurse D - KY","Nurse E - KY") ;
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Providers in Appointment Scheduling</comment>
+        <sql>
+            call create_provider('M','Physio A','Gaza','physioA_gaza');
+            call create_provider('M','Physio B','Gaza','physioB_gaza');
+            call create_provider('M','Physio C','Gaza','physioC_gaza');
+            call create_provider('M','Physio D','Gaza','physioD_gaza');
+            call create_provider('M','Physio E','Gaza','physioE_gaza');
+            call create_provider('M','Physio F','Gaza','physioF_gaza');
+            call create_provider('M','Physio OCT 1','Gaza','physioOCT1_gaza');
+            call create_provider('M','Physio OCT 2','Gaza','physioOCT2_gaza');
+            call create_provider('M','Physio 3D 1','Gaza','physio3D1_gaza');
+            call create_provider('M','Physio 3D 2','Gaza','physio3D2_gaza');
+            call create_provider('M','Physio 3D 3','Gaza','physio3D3_gaza');
+            call create_provider('M','Physio A','BL','physioA_bl');
+            call create_provider('M','Physio B','BL','physioB_bl');
+            call create_provider('M','Physio C','BL','physioC_bl');
+            call create_provider('M','Physio OCT','BL','physioOCT_bl');
+            call create_provider('M','Physio A','MA','physioA_ma');
+            call create_provider('M','Physio B','MA','physioB_ma');
+            call create_provider('M','Physio C','MA','physioC_ma');
+            call create_provider('M','Physio OCT','MA','physioOCT_ma');
+            call create_provider('M','Physio A','KY','physioA_ky');
+            call create_provider('M','Physio B','KY','physioB_ky');
+            call create_provider('M','Physio C','KY','physioC_ky');
+            call create_provider('M','Physio OCT','KY','physioOCT_ky');
+            call create_provider('M','GP A','Gaza','gpA_gaza');
+            call create_provider('M','GP B','Gaza','gpB_gaza');
+            call create_provider('M','GP','BL','gp_bl');
+            call create_provider('M','GP','MA','gp_ma');
+            call create_provider('M','GP','KY','gp_ky');
+            call create_provider('M','Ortho surgeon','Ortho','orthoSurgeon_ortho');
+            call create_provider('M','Ortho surgeon','OM','orthoSurgeon_om');
+            call create_provider('M','Anaesthetist',NULL,'anaesthetist');
+            call create_provider('M','Antibiotic Doctor','ATB','antibioticDoctor_atb');
+            call create_provider('M','Antibiotic Doctor','OM','antibioticDoctor_om');
+            call create_provider('M','Plastic surgeon',NULL,'plastic_surgeon');
+            call create_provider('M','SW','Gaza','sw_gaza');
+            call create_provider('M','SW','BL','sw_bl');
+            call create_provider('M','SW','MA','sw_ma');
+            call create_provider('M','SW','KY','sw_ky');
+            call create_provider('M','HP','Gaza','hp_gaza');
+            call create_provider('M','HP','BL','hp_bl');
+            call create_provider('M','HP','MA','hp_ma');
+            call create_provider('M','HP','KY','hp_ky');
+            call create_provider('M','Counselor A','Gaza','counselorA_gaza');
+            call create_provider('M','Counselor B','Gaza','counselorB_gaza');
+            call create_provider('M','Counselor','BL','counselor_bl');
+            call create_provider('M','Counselor','MA','counselor_ma');
+            call create_provider('M','Counselor','KY','counselor_ky');
+            call create_provider('M','Nurse A','Gaza','nurseA_gaza');
+            call create_provider('M','Nurse B','Gaza','nurseB_gaza');
+            call create_provider('M','Nurse C','Gaza','nurseC_gaza');
+            call create_provider('M','Nurse D','Gaza','nurseD_gaza');
+            call create_provider('M','Nurse E','Gaza','nurseE_gaza');
+            call create_provider('M','Nurse F','Gaza','nurseF_gaza');
+            call create_provider('M','Nurse G','Gaza','nurseG_gaza');
+            call create_provider('M','Nurse A','BL','nurseA_bl');
+            call create_provider('M','Nurse B','BL','nurseB_bl');
+            call create_provider('M','Nurse C','BL','nurseC_bl');
+            call create_provider('M','Nurse A','MA','nurseA_ma');
+            call create_provider('M','Nurse B','MA','nurseB_ma');
+            call create_provider('M','Nurse C','MA','nurseC_ma');
+            call create_provider('M','Nurse D','MA','nurseD_ma');
+            call create_provider('M','Nurse A','KY','nurseA_ky');
+            call create_provider('M','Nurse B','KY','nurseB_ky');
+            call create_provider('M','Nurse C','KY','nurseC_ky');
+            call create_provider('M','Nurse D','KY','nurseD_ky');
+            call create_provider('M','Nurse E','KY','nurseE_ky');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
