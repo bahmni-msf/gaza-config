@@ -31,4 +31,5 @@
     </changeSet>
     <include file="appointment-scheduling/addServices.xml"/>
     <include file="appointment-scheduling/addProviders.xml"/>
+    <include file="programs/addTraumaProgram.xml"/>
 </databaseChangeLog>

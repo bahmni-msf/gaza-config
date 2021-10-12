@@ -1,0 +1,170 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="Gaza-202110110001" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Trauma","Trauma-workflow","Trauma-outcome","Identification", "Ambulatory care","Surgical care", "Post operative ambulatory care",
+                "External care","Long term follow-up care" "End of care/cured","DAMA","Defaulter","Death","Transfer","Rejected") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Trauma program concepts</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Trauma","Trauma","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Trauma-workflow","Trauma-workflow","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Trauma-outcome","Trauma-outcome","N/A","Misc",true);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Identification","Identification","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ambulatory care","Ambulatory care","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Surgical care","Surgical care","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Post operative ambulatory care","Post operative ambulatory car","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"External care","External care","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Long term follow-up care","Long term follow-up care","N/A","Misc",false);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"End of care/cured","End of care/cured","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DAMA","DAMA","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Defaulter","Defaulter","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Death","Death","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Transfer","Transfer","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rejected","Rejected","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza-202110110002" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name in ("End of care/cured","DAMA","Defaulter","Death","Transfer","Rejected")
+                AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Trauma-outcome') and
+                concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "Trauma-outcome" concept</comment>
+        <sql>
+            select concept_id into @Trauma_outcome_concept_id from concept_name where name = "Trauma-outcome" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="End of care/cured" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="DAMA" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Defaulter" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Death" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Transfer" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Rejected" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@Trauma_outcome_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@Trauma_outcome_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@Trauma_outcome_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@Trauma_outcome_concept_id, @child4_concept_id, 4);
+            call add_concept_set_members(@Trauma_outcome_concept_id, @child5_concept_id, 5);
+            call add_concept_set_members(@Trauma_outcome_concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza-202110110003" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program where name='Trauma';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding program Trauma</comment>
+        <sql>
+            select concept_id into @Trauma_Concept_id from concept_name where name = 'Trauma' and concept_name_type
+            = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Trauma_outcome_concept_id from concept_name where name = 'Trauma-outcome' and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program(concept_id,outcomes_concept_id,creator,date_created,name,description,uuid)
+            VALUES (@Trauma_Concept_id,@Trauma_outcome_concept_id,@Creator_Concept_id,now(),'Trauma','Trauma
+            Program',uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Gaza-202110110004" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow pw join concept_name cn on pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Trauma-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED') and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Trauma Program workflow</comment>
+        <sql>
+            select program_id into @Trauma_program_id from program where name='Trauma';
+            select concept_id into @Trauma_workflow_concept_id from concept_name where name ="Trauma-workflow" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program_workflow (program_id , concept_id , creator , date_created , retired , uuid)
+            VALUES (@Trauma_program_id,@Trauma_workflow_concept_id,@Creator_Concept_id, now(),0, uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Gaza-202110110005" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow_state where concept_id in (select concept_id from concept_name
+                where name in ('Identification','Ambulatory care','Surgical care','Post operative ambulatory care','External care','Long term follow-up care')
+                and program_workflow_id = (select program_workflow_id from program_workflow pw join concept_name cn on
+                pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Trauma-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED' ) and concept_name_type = 'FULLY_SPECIFIED')
+                and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program states for Trauma-workflow</comment>
+        <sql>
+            select concept_id into @Trauma_workflow_concept_id from concept_name where name = "Trauma-workflow" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select program_workflow_id into @program_workflow_id from program_workflow where concept_id =
+            @Trauma_workflow_concept_id;
+
+            select concept_id into @Identification_concept_id from concept_name where name = "Identification"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Ambulatory_care_concept_id from concept_name where name = "Ambulatory care"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Surgical_care_concept_id from concept_name where name = "Surgical care"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Post_operative_ambulatory_care_concept_id from concept_name where name = "Post operative ambulatory care"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @External_care_concept_id from concept_name where name = "External care"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Long_term_follow_up_care_concept_id from concept_name where name = "Long term follow-up care"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            insert into program_workflow_state
+            (program_workflow_id,concept_id,initial,terminal,creator,date_created,retired ,uuid) values
+            (@program_workflow_id,@Identification_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Ambulatory_care_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Surgical_care_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Post_operative_ambulatory_care_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@External_care_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Long_term_follow_up_care_concept_id,0,0,1,now(),0,uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>
