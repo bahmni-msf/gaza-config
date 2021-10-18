@@ -32,4 +32,5 @@
     <include file="appointment-scheduling/addServices.xml"/>
     <include file="appointment-scheduling/addProviders.xml"/>
     <include file="programs/addTraumaProgram.xml"/>
+    <include file="programs/addBurnProgram.xml"/>
 </databaseChangeLog>
