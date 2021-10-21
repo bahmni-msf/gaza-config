@@ -26,7 +26,17 @@
     "translationKey": "MODULE_LABEL_APPOINTMENT_SCHEDULING_V2_KEY",
     "url": "/appointments-v2",
     "icon": "fa fa-calendar",
-    "order": 2,
+    "order": 3,
     "requiredPrivilege": "app:appointments"
+  },
+  "admin": {
+    "id": "bahmni.admin",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_ADMIN_KEY",
+    "url": "../admin/#/dashboard/home",
+    "icon": "icon-bahmni-admin",
+    "order": 4,
+    "requiredPrivilege": "app:admin"
   }
 }
