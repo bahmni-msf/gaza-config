@@ -6,10 +6,11 @@ into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.activeTraumaProgram', "select
 identifier,
-concat(ifnull(given_name,''), ifnull(middle_name, ''), ifnull(family_name, '')) as 'Patient Name in English',
-concat(ifnull(GivenNameArabic,''), ifnull(MiddleNameArabic, ''), ifnull(FamilyNameArabic, '')) as 'Patient Name in Arabic',
-DATE_FORMAT(date_enrolled, '%d %b %Y') as 'Date of Admission',
-name as 'Program State'
+concat(ifnull(given_name,''), ' ', ifnull(middle_name, ''),' ', ifnull(family_name, '')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH,
+concat(ifnull(GivenNameArabic,''), ' ', ifnull(MiddleNameArabic, ''),' ',ifnull(FamilyNameArabic, '')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC,
+DATE_FORMAT(date_enrolled, '%d %b %Y') as PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT,
+name as PATIENT_LISTING_QUEUES_PROGRAM_STATE,
+uuid
 from
 (select
 identifier,
@@ -18,9 +19,11 @@ personName.family_name,
 personName.middle_name,
 date_enrolled,
 cn.name,
-pp.patient_id
+pp.patient_id,
+p.uuid
 from patient_program pp
- join program pg on pg.program_id =pp.program_id
+join person p on p.person_id = pp.patient_id
+join program pg on pg.program_id =pp.program_id
 join  patient_state programstate on programstate.patient_program_id = pp.patient_program_id and programstate.end_date IS NULL and pp.date_completed IS NULL
 join program_workflow_state programWorkFlowState on programstate.state = programWorkFlowState.program_workflow_state_id
 join concept_name cn on programWorkFlowState.concept_id = cn.concept_id
