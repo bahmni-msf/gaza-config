@@ -8,13 +8,13 @@
             "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
             "links": [
                 {
-                    "url": "/bahmni/bedmanagement/#/bedManagement/patient/{{patientUuid}}",
-                    "linkColumn": "Bed Management",
-                    "newTab": false
-                }],
-                "view": "tabular",
+                    "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+                    "linkColumn": "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH"
+                }
+            ],
+            "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-            "searchColumns": ["ID", "Name","DOB","Date of Registration","Oncogynae Program State","Palliative Program State","Bed Number"]
+            "searchColumns": ["Identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH" ]
         },
         "label": "Programs",
         "order": 1,
