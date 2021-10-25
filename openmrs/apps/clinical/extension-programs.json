@@ -20,6 +20,30 @@
         "order": 1,
         "requiredPrivilege": "app:clinical"
     },
+    "bahmniClinicalPatientsSearchActiveBurnProgram": {
+        "id": "bahmni.clinical.patients.search.activeBurnProgram",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.activeBurnProgram",
+            "translationKey": "BURN_PROGRAM_QUEUE_KEY",
+            "links": [
+                {
+                    "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+                    "linkColumn": "Patient Name in English"
+                },
+                {
+                    "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+                    "linkColumn": "Patient Name in Arabic"
+                }],
+            "view": "tabular",
+            "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+            "searchColumns": ["Identifier","Patient Name in English", "Patient Name in Arabic", "Date Of Admission", "Program State"]
+        },
+        "label": "BurnProgram",
+        "order": 2,
+        "requiredPrivilege": "app:clinical"
+    },
     "bahmniClinicalPatientsSearchAllPatients": {
         "id": "bahmni.clinical.patients.search.allPatients",
         "extensionPointId": "org.bahmni.patient.search",
