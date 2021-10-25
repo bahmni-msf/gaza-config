@@ -33,7 +33,7 @@
     <include file="appointment-scheduling/addProviders.xml"/>
     <include file="programs/addTraumaProgram.xml"/>
     <include file="programs/addBurnProgram.xml"/>
-    <changeSet id="GAZA-2021102100" author="Supriya">
+    <changeSet id="gaza-2021102112" author="Supriya">
     <preConditions onFail="CONTINUE">
         <sqlCheck expectedResult="0">
             SELECT count(*) FROM global_property WHERE property='emrapi.sqlSearch.activeBurnProgram';
@@ -42,7 +42,7 @@
     <comment/>
     <sqlFile path="programQueues/burnProgramQueue.sql"/>
   </changeSet>
-    <changeSet id="GAZA-2021102105" author="Supriya">
+    <changeSet id="gaza-2021102115" author="Supriya">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="0">
                 SELECT count(*) FROM global_property WHERE property='emrapi.sqlSearch.activeTraumaProgram';

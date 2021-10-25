@@ -30,15 +30,15 @@
             "links": [
                 {
                     "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
-                    "linkColumn": "Patient Name in English"
+                    "linkColumn": "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH"
                 },
                 {
                     "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
-                    "linkColumn": "Patient Name in Arabic"
+                    "linkColumn": "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC"
                 }],
             "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-            "searchColumns": ["Identifier","Patient Name in English", "Patient Name in Arabic", "Date Of Admission", "Program State"]
+            "searchColumns": ["Identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH", "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC", "PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT", "PATIENT_LISTING_QUEUES_PROGRAM_STATE"]
         },
         "label": "BurnProgram",
         "order": 2,
