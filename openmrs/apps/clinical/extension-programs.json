@@ -44,6 +44,31 @@
         "order": 2,
         "requiredPrivilege": "app:clinical"
     },
+    "bahmniClinicalPatientsSearchActiveTraumaProgram": {
+        "id": "bahmni.clinical.patients.search.activeTraumaProgram",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.activeTraumaProgram",
+            "translationKey": "TRAUMA_PROGRAM_QUEUE_KEY",
+            "links": [
+                {
+                    "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+                    "linkColumn": "Patient Name in English"
+                },
+                {
+                    "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+                    "linkColumn": "Patient Name in Arabic"
+                }
+            ],
+            "view": "tabular",
+            "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+            "searchColumns": ["Identifier","Patient Name in English", "Patient Name in Arabic", "Date Of Admission", "Program State"]
+        },
+        "label": "TraumaProgram",
+        "order": 3,
+        "requiredPrivilege": "app:clinical"
+    },
     "bahmniClinicalPatientsSearchAllPatients": {
         "id": "bahmni.clinical.patients.search.allPatients",
         "extensionPointId": "org.bahmni.patient.search",
@@ -53,7 +78,7 @@
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
         },
         "label": "All",
-        "order": 2,
+        "order": 3,
         "requiredPrivilege": "app:clinical"
     },
     "bahmniClinicalConceptSetGroupObservationsHistory": {

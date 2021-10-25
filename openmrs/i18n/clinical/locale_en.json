@@ -153,5 +153,6 @@
   "DASHBOARD_TITLE_EARLY_COMPLICATIONS": "Early Complications",
   "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS": "Psycho-Social Overview",
   "DASHBOARD_TITLE_ADDITIONAL_INFO": "Additional Info",
-  "BURN_PROGRAM_QUEUE_KEY": "Burn Program"
+  "BURN_PROGRAM_QUEUE_KEY": "Burn Program",
+  "TRAUMA_PROGRAM_QUEUE_KEY": "Trauma Program"
 }
