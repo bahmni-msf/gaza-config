@@ -37,8 +37,7 @@
             ],
             "mandatoryPersonAttributes" : [
                 "phoneNumber 1",
-                "phone1Owner",
-                "treatedByMSFOCPInThePast"
+                "phone1Owner"
             ],
             "patientInformation": {
                 "Contact Information": {
@@ -62,14 +61,6 @@
                         "relationshipToPatient"
                     ],
                     "expanded":true
-                },
-                "Patient History": {
-                    "title" : "Patient History",
-                    "translationKey": "REGISTRATION_TITLE_PATIENT_HISTORY_KEY",
-                    "attributes": [
-                        "treatedByMSFOCPInThePast"
-                    ],
-                    "expanded": true
                 },
                 "hidden": {
                     "attributes": [
@@ -96,18 +87,6 @@
             "showBirthTime": false,
             "showEnterID":false,
             "showCasteSameAsLastNameCheckbox": false,
-            "printOptions": [
-                {
-                    "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
-                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
-                    "shortcutKey": "l"
-                },
-                {
-                    "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",
-                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print.html",
-                    "shortcutKey": "p"
-                }
-            ],
             "conceptSetUI": {
                 "REGISTRATION FEES": {
                     "required": true,
@@ -125,9 +104,9 @@
                 "givenName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
                 "middleName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
                 "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,9}", "errorMessage" : "Should not exceed more than 9 characters"},
-                "phoneNumber 1": {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
-                "phoneNumber 2":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
-                "contactPhoneNumber":  {"pattern": "[0-9\\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"}
+                "phoneNumber 1": {"pattern": "[+]{0,1}[0-9 \\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
+                "phoneNumber 2":  {"pattern": "[+]{0,1}[0-9 \\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
+                "contactPhoneNumber":  {"pattern": "[+]{0,1}[0-9 \\s]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"}
             },
                 "patientSearchResults": {
                     "personAttributes": {
