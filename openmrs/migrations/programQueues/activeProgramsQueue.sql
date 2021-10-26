@@ -4,7 +4,7 @@ where property = 'emrapi.sqlSearch.activePrograms';
 select uuid()
 into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
-VALUES ('emrapi.sqlSearch.activePrograms', "select
+VALUES ('emrapi.sqlSearch.activePrograms', "select DISTINCT
 pi.identifier,
 concat(ifnull(pn.given_name,''), ' ', ifnull(pn.middle_name,''),' ', ifnull(pn.family_name,'')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH,
 p.uuid
