@@ -6,7 +6,8 @@ into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.activePrograms', "select
 pi.identifier,
-concat(ifnull(pn.given_name,''), ' ', ifnull(pn.middle_name,''),' ', ifnull(pn.family_name,'')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH
+concat(ifnull(pn.given_name,''), ' ', ifnull(pn.middle_name,''),' ', ifnull(pn.family_name,'')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH,
+p.uuid
 from patient_program pp
 join patient_identifier pi on pp.patient_id=pi.patient_id
 join person p on p.person_id = pp.patient_id
