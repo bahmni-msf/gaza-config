@@ -4,11 +4,11 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-    <changeSet id="Gaza-202110180001" author="Supriya">
+    <changeSet id="Gaza-202110280001" author="Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_name where name in
-                ("Burn","Burn-workflow","Burn-outcome") and
+                ("Burn Program","Burn-workflow","Burn-outcome") and
                 concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             </sqlCheck>
         </preConditions>
@@ -20,13 +20,13 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Burn","Burn","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Burn Program","Burn Program","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Burn-workflow","Burn-workflow","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Burn-outcome","Burn-outcome","N/A","Misc",true);
         </sql>
     </changeSet>
 
-    <changeSet id="Gaza-202110180002" author="Supriya">
+    <changeSet id="Gaza-202110280002" author="Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select COUNT(*) from concept_set cs
@@ -72,7 +72,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Gaza-202110180003" author="Supriya">
+    <changeSet id="Gaza-202110280003" author="Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from program where name='Burn';
@@ -80,7 +80,7 @@
         </preConditions>
         <comment>Adding program Burn</comment>
         <sql>
-            select concept_id into @Burn_Concept_id from concept_name where name = 'Burn' and concept_name_type
+            select concept_id into @Burn_Concept_id from concept_name where name = 'Burn Program' and concept_name_type
             = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @Burn_outcome_concept_id from concept_name where name = 'Burn-outcome' and
             concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
