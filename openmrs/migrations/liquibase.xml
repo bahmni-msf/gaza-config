@@ -55,4 +55,28 @@
         <comment>program active Programs listing queue</comment>
         <sqlFile path="programQueues/activeProgramsQueue.sql"/>
     </changeSet>
+    <changeSet id="gaza-202109011023" author="Tarun, Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name = "MSFOCP";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSFOCP concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("MSFOCP","MSFOCP",NULL,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="gaza-202109011024" author="Tarun, Venky">
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_MSFOCP;
+        </sql>
+        <sqlFile path="utils/createProcedureForMSFOCP.sql" endDelimiter="#"/>
+    </changeSet>
+    <changeSet id="gaza-20200201220" author="Santhosh">
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_CEIL;
+        </sql>
+        <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
+    </changeSet>
+    <include file="FirstConsultation/FirstConsultation.xml"/>
 </databaseChangeLog>
