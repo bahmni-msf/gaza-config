@@ -6,7 +6,7 @@ into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.activeBurnProgram', "select
 identifier,
-concat(ifnull(GivenNameArabic,' '), '', ifnull(MiddleNameArabic, ' '),'',ifnull(FamilyNameArabic, '')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC,
+concat(ifnull(GivenNameArabic,''), ' ', ifnull(MiddleNameArabic, ''),' ',ifnull(FamilyNameArabic, '')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC,
 concat(ifnull(given_name,''), ' ', ifnull(middle_name, ''),' ', ifnull(family_name, '')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH,
 DATE_FORMAT(date_enrolled, '%d %b %Y') as PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT,
 name as PATIENT_LISTING_QUEUES_PROGRAM_STATE,
@@ -22,16 +22,15 @@ cn.name,
 pp.patient_id,
 p.uuid
 from patient_program pp
-join person p on p.person_id = pp.patient_id and p.voided=0
-join program pg on pg.program_id =pp.program_id and pg.retired=0
-join  patient_state programstate on programstate.patient_program_id = pp.patient_program_id and programstate.end_date IS NULL and pp.date_completed IS NULL
-join program_workflow_state programWorkFlowState on programstate.state = programWorkFlowState.program_workflow_state_id and programWorkFlowState.retired=0
-join concept_name cn on programWorkFlowState.concept_id = cn.concept_id
-join patient_identifier patientIdentifier on pp.patient_id = patientIdentifier.patient_id and patientIdentifier.voided=0
-join person_name personName on personName.person_id = pp.patient_id and personName.voided=0
+join person p on p.person_id = pp.patient_id AND p.voided=0
+join program pg on pg.program_id =pp.program_id AND pg.retired=0
+join patient_identifier patientIdentifier on pp.patient_id = patientIdentifier.patient_id AND patientIdentifier.voided=0
+join person_name personName on personName.person_id = pp.patient_id AND personName.voided=0
+left join patient_state programstate on programstate.patient_program_id = pp.patient_program_id AND programstate.end_date IS NULL AND pp.date_completed IS NULL AND programstate.voided=0
+left join program_workflow_state programWorkFlowState on programstate.state = programWorkFlowState.program_workflow_state_id AND programWorkFlowState.retired=0
+left join concept_name cn on programWorkFlowState.concept_id = cn.concept_id AND cn.concept_name_type='FULLY_SPECIFIED' AND cn.voided=0 AND cn.locale='en'
 where (patientIdentifier.identifier_type IN (select patient_identifier_type_id from patient_identifier_type where name ='Patient Identifier'))
 AND pg.name = 'Burn' AND pp.outcome_concept_id IS NULL AND pp.voided is false AND pp.date_voided IS NULL
-AND cn.concept_name_type='FULLY_SPECIFIED' AND cn.voided=0 AND cn.locale='en' AND programstate.voided=0
 )pu
 
 LEFT JOIN
