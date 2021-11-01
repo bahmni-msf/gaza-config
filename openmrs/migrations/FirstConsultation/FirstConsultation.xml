@@ -23,12 +23,12 @@
                 ("Government-run health clinic/facility", "UNRWA", "NGO", "Private health care clinic/facility", "Other health facility", "self-referred")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Source of initial patient referral");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Source of initial patient referral");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Source of initial patient referral</comment>
+        <comment>Adding Answers to FC, Source of initial patient referral</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Source of initial patient referral" and
+            select concept_id into @concept_id from concept_name where name = "FC, Source of initial patient referral" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -62,12 +62,12 @@
                 ("Beit Hanoun", "Indonesian", "Shiffa", "Al Aqsa", "Naser", "European", "Najjar", "MOH Clinic", "Others")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, MoH facility");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, MoH facility");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, MoH facility</comment>
+        <comment>Adding Answers to FC, MoH facility</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, MoH facility" and
+            select concept_id into @concept_id from concept_name where name = "FC, MoH facility" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -110,12 +110,12 @@
                 ("Beit Hanoun", "Jabalia", "Fakhora", "Saftawi", "Gaza Medina", "Shatea", "Remal", "Sabra", "Sheikh Radwan", "Nuseirat West", "Nuseirat", "Bureij", "Maghazi", "Deir al Balah", "Khan Younis", "Ma'an", "Tal as Sultan", "Shabbourah", "Shokah", "Japanees", "Rafah", "Um Nasser")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, UNRWA facility");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, UNRWA facility");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, UNRWA facility</comment>
+        <comment>Adding Answers to FC, UNRWA facility</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, UNRWA facility" and
+            select concept_id into @concept_id from concept_name where name = "FC, UNRWA facility" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -197,12 +197,12 @@
                 ("Ahli Arabi", "MAP-UK", "MSFOCB", "Quds Hospital", "ALPC", "Others 5622")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, NGO facility");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, NGO facility");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, NGO facility</comment>
+        <comment>Adding Answers to FC, NGO facility</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, NGO facility" and
+            select concept_id into @concept_id from concept_name where name = "FC, NGO facility" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -236,12 +236,12 @@
                 ("Clinic", "Hospital")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Private facility type");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Private facility type");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Private facility type</comment>
+        <comment>Adding Answers to FC, Private facility type</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Private facility type" and
+            select concept_id into @concept_id from concept_name where name = "FC, Private facility type" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -263,12 +263,12 @@
                 ("Traumatic injury", "Burn", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Type of injury");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Type of injury");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Type of injury</comment>
+        <comment>Adding Answers to FC, Type of injury</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Type of injury" and
+            select concept_id into @concept_id from concept_name where name = "FC, Type of injury" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -293,12 +293,12 @@
                 ("Admission", "Readmission", "Rejection")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Admission status");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Admission status");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Admission status</comment>
+        <comment>Adding Answers to FC, Admission status</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Admission status" and
+            select concept_id into @concept_id from concept_name where name = "FC, Admission status" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -323,12 +323,12 @@
                 ("Out of criteria", "Patient refuses the plan", "No documentation", "Followed by another actor")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Reason of rejection");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Reason of rejection");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Reason of rejection</comment>
+        <comment>Adding Answers to FC, Reason of rejection</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Reason of rejection" and
+            select concept_id into @concept_id from concept_name where name = "FC, Reason of rejection" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -356,12 +356,12 @@
                 ("Simple wound", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Out of criteria");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Out of criteria");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Out of criteria</comment>
+        <comment>Adding Answers to FC, Out of criteria</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Out of criteria" and
+            select concept_id into @concept_id from concept_name where name = "FC, Out of criteria" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -383,12 +383,12 @@
                 ("True", "False")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Patient sent to another actor?");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Patient sent to another actor?");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Patient sent to another actor?</comment>
+        <comment>Adding Answers to FC, Patient sent to another actor?</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Patient sent to another actor?" and
+            select concept_id into @concept_id from concept_name where name = "FC, Patient sent to another actor?" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -410,12 +410,12 @@
                 ("MOH", "UNRWA", "NGO", "MSFOCB", "WHO", "Others")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Referral location:");
+                cn.concept_id IN (select concept_id from concept_name where name = "FC, Referral location:");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Referral location:</comment>
+        <comment>Adding Answers to FC, Referral location:</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Referral location:" and
+            select concept_id into @concept_id from concept_name where name = "FC, Referral location:" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -458,11 +458,11 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161011",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162477",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1549",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Source of initial patient referral","164408");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Date","162869");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Free text comment","161011");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Type of injury","1549");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Admission status","162477");
+            call CREATE_REFERENCE_MAPPING_CEIL("FC, Source of initial patient referral","164408");
+            call CREATE_REFERENCE_MAPPING_CEIL("FC, Date","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("FC, Free text comment","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("FC, Type of injury","1549");
+            call CREATE_REFERENCE_MAPPING_CEIL("FC, Admission status","162477");
         </sql>
     </changeSet>
 
@@ -492,16 +492,16 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF71",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF70",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF75",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Out of criteria","MSFF80");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Reason of rejection","MSFF79");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Patient sent to another actor?","MSFF85");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, MoH facility","MSFF28");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Other injury, specify","MSFF75");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Referral location:","MSFF91");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Private facility type","GZ93");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, UNRWA facility","MSFF70");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, NGO facility","MSFF71");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Other referral location, specify","MSFF92");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Out of criteria","MSFF80");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Reason of rejection","MSFF79");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Patient sent to another actor?","MSFF85");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, MoH facility","MSFF28");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Other injury, specify","MSFF75");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Referral location:","MSFF91");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Private facility type","GZ93");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, UNRWA facility","MSFF70");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, NGO facility","MSFF71");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Other referral location, specify","MSFF92");
         </sql>
     </changeSet>
 
