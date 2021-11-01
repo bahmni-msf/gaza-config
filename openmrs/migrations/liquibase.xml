@@ -79,4 +79,5 @@
         <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
     </changeSet>
     <include file="FirstConsultation/FirstConsultation.xml"/>
+    <include file="InitialMedicalAssessment/InitialMedicalAssessment.xml"/>
 </databaseChangeLog>
