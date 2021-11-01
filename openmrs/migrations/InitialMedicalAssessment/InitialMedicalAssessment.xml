@@ -1162,7 +1162,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Lower leg","166342");
             call CREATE_REFERENCE_MAPPING_CEIL("Anterior","540");
             call CREATE_REFERENCE_MAPPING_CEIL("Never smoker","163198");
-            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Trauma,injury history comment","160686");
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Trauma/injury history comment","160686");
             call CREATE_REFERENCE_MAPPING_CEIL("Buttock","166243");
             call CREATE_REFERENCE_MAPPING_CEIL("Third degree burn","124899");
             call CREATE_REFERENCE_MAPPING_CEIL("Burn","116543");

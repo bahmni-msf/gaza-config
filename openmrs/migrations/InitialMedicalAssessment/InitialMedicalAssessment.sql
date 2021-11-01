@@ -12,7 +12,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Estimated 
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other injury, specify","Other injury, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Trauma,injury history comment","Trauma,injury history comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Trauma/injury history comment","Trauma/injury history comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of injury, specify","Other cause of injury, specify","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of burn, specify","Other cause of burn, specify","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Detailed location information","Detailed location information","Text","Misc",false);
@@ -179,7 +179,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Third degree bu
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
-VALUES ((select concept_id from concept_name where name = "IMA, Trauma,injury history comment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+VALUES ((select concept_id from concept_name where name = "IMA, Trauma/injury history comment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Describe history and symptoms (e.g. itching, pain, etc)","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "IMA, Currently taking medication" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
