@@ -6,25 +6,25 @@ set @uuid = NULL;
 
 #Add Parent Concepts
 #Add Date Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Date","Date","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Date","Date","Date","Question",false);
 
 #Add Text Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Other injury, specify","Other injury, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Other referral location, specify","Other referral location, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Free text comment","Free text comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Other injury, specify","Other injury, specify","Text","Finding",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Other referral location, specify","Other referral location, specify","Text","Finding",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Free text comment","Free text comment","Text","Finding",false);
 
 #Add Coded Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Source of initial patient referral","Source of initial patient referral","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, MoH facility","MoH facility","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, UNRWA facility","UNRWA facility","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, NGO facility","NGO facility","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Private facility type","Private facility type","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Type of injury","Type of injury","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Admission status","Admission status","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Reason of rejection","Reason of rejection","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Out of criteria","Out of criteria","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Patient sent to another actor?","Patient sent to another actor?","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Referral location:","Referral location:","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Source of initial patient referral","Source of initial patient referral","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, MoH facility","MoH facility","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, UNRWA facility","UNRWA facility","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, NGO facility","NGO facility","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Private facility type","Private facility type","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Type of injury","Type of injury","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Admission status","Admission status","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Reason of rejection","Reason of rejection","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Out of criteria","Out of criteria","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Patient sent to another actor?","Patient sent to another actor?","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FC, Referral location:","Referral location:","Coded","Question",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Deir al Balah","Deir al Balah","N/A","Misc",false);

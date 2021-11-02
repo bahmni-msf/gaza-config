@@ -1011,12 +1011,120 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Gaza_CONFIG_20211102061303649" author="Venky, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Urgent", "Non urgent")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IMA, Orthopaedic consultation timing");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IMA, Orthopaedic consultation timing</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IMA, Orthopaedic consultation timing" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Non urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20211102061304161" author="Venky, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Urgent", "Non urgent")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IMA, Osteomyelitis consultation timing");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IMA, Osteomyelitis consultation timing</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IMA, Osteomyelitis consultation timing" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Non urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20211102061304742" author="Venky, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Urgent", "Non urgent")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IMA, Pain management consultation timing");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IMA, Pain management consultation timing</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IMA, Pain management consultation timing" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Non urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20211102061305163" author="Venky, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Urgent", "Non urgent")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IMA, Plastic consultation timing");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IMA, Plastic consultation timing</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IMA, Plastic consultation timing" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Non urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
     <changeSet id="Gaza_CONFIG_20211101110951498" author="Venky, Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("114262","160686","134337","5622","542","540","541","145727","1377","166309","119964","160480","126542","5141","156199","160479","5596","1065","1066","153608","166649","166648","166646","1628","116543","117399","139899","1710","1107","166243","166241","166329","166578 ","1651","1392","166327","160753","1935","124193","1647","166330","1843","164385","164387","1844","163201","166587","166588","115297","164009","166299","5139","152807 ","166342","166610","166611","166612","166653","166595","166594","166593","166592","166282","162869","118443","140116","121387","119270","1434","166604","166609","166608","152722","1745","163198","159942","155","166573","124899","166576","150431","121375","166243 ","1295","163403","132338","137062","166589","162926","160715","114797","141760","5632","119481","139994")
+                ("114262","160686","134337","5622","542","540","541","145727","1377","166309","119964","160480","126542","5141","156199","160479","5596","1065","1066","153608","166649","166648","166646","1628","116543","117399","139899","1710","1107","166243","166241","166329","166578 ","1651","1392","166327","160753","1935","124193","1647","166330","1843","164385","164387","1844","163201","166587","166588","115297","164009","166299","5139","152807 ","166342","166610","166611","166612","166653","166595","166594","166593","166592","166282","162869","118443","140116","121387","119270","1434","166604","166609","166608","152722","1745","163198","159942","155","166573","124899","166576","150431","121375","166243 ","1295","163403","132338","137062","166589","162926","160715","114797","141760","5632","119481","139994","1883")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -1122,6 +1230,7 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5632",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"119481",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"139994",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1883",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Chemical","145727");
             call CREATE_REFERENCE_MAPPING_CEIL("Smoker","152722");
             call CREATE_REFERENCE_MAPPING_CEIL("True","1066");
@@ -1220,6 +1329,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Visual analog scale","166589");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, DN4","166587");
             call CREATE_REFERENCE_MAPPING_CEIL("None","1107");
+            call CREATE_REFERENCE_MAPPING_CEIL("Urgent","1883");
         </sql>
     </changeSet>
 
@@ -1228,7 +1338,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF314","MSFF319","MSFF282","MSFF36","MSFF322","MSFF309","MSFF94","MSFF360","MSFF361","MSFF252","MSFF346","MSFF93","MSFF239","MSFF321","MSFF304","MSFF349","MSFF307","MSFF328","MSFF303","MSFF340","MSFF327","MSFF324","MSFF343","MSFF344","MSFF323","MSFF320","MSFF347","MSFF283","MSFF285","MSFF310","MSFF316","MSFF348","MSFF333","MSFF317","MSFF332","MSFF341","MSFF284","MSFF331","MSFF330","MSFF359","MSFF358","MSFF335","MSFF334","MSFF337","MSFF336","MSFF339","MSFF352","MSFF351","MSFF350","MSFF357","MSFF356","MSFF355","MSFF318","MSFF50","MSFF353","MSFF32","MSFF354","MSFF338","MSFF329","MSFF315","MSFF342")
+                ("MSFF314","MSFF319","MSFF282","MSFF36","MSFF322","MSFF309","MSFF94","MSFF360","MSFF361","MSFF252","MSFF346","MSFF93","MSFF239","MSFF321","MSFF304","MSFF349","MSFF307","MSFF328","MSFF303","MSFF340","MSFF327","MSFF324","MSFF343","MSFF344","MSFF323","MSFF320","MSFF347","MSFF283","MSFF285","MSFF310","MSFF316","MSFF348","MSFF333","MSFF317","MSFF332","MSFF341","MSFF284","MSFF331","MSFF330","MSFF359","MSFF358","MSFF335","MSFF334","MSFF337","MSFF336","MSFF339","MSFF352","MSFF351","MSFF350","MSFF357","MSFF356","MSFF355","MSFF318","MSFF50","MSFF353","MSFF32","MSFF354","MSFF338","MSFF329","MSFF315","MSFF342","MSFF326","MSFF362","MSFF366","MSFF367","MSFF365","MSFF368")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -1300,6 +1410,12 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF329",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF315",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF342",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF326",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF362",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF366",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF367",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF365",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF368",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_MSFOCP("Radius","MSFF333");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Currently taking medication","MSFF314");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Indonesian","MSFF283");
@@ -1365,6 +1481,12 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("Plastic consultation","MSFF359");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Femur","MSFF335");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Patient sent to IPD","MSFF361");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Non urgent","MSFF326");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Pain management consultation timing","MSFF368");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Counselling frequency","MSFF365");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Plastic consultation timing","MSFF362");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Orthopaedic consultation timing","MSFF366");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Osteomyelitis consultation timing","MSFF367");
         </sql>
     </changeSet>
 

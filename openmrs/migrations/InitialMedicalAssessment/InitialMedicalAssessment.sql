@@ -6,78 +6,83 @@ set @uuid = NULL;
 
 #Add Parent Concepts
 #Add Date Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Date","Date","Date","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Date of Injury","Date of Injury","Date","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Estimated date of delivery","Estimated date of delivery","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Date","Date","Date","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Date of Injury","Date of Injury","Date","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Estimated date of delivery","Estimated date of delivery","Date","Question",false);
 
 #Add Text Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other injury, specify","Other injury, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Trauma/injury history comment","Trauma/injury history comment","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of injury, specify","Other cause of injury, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of burn, specify","Other cause of burn, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Detailed location information","Detailed location information","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Length of stay","Length of stay","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Procedure performed","Procedure performed","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Procedure date","Procedure date","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Details of medical treatment provided","Details of medical treatment provided","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Past medical history, comment","Past medical history, comment","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of surgery, comment","History of surgery, comment","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Date of event","Date of event","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Currently taking medication","Currently taking medication","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Dose and frequency","Dose and frequency","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Type of drug","Type of drug","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Reaction to drug","Reaction to drug","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Allergy details","Allergy details","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Additional patient history","Additional patient history","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Joint description","Joint description","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of burn","Description of burn","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Injury site, Other","Injury site, Other","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other trauma","Other trauma","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Fracture site, Other","Fracture site, Other","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of injury","Description of injury","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other associated injury, specify","Other associated injury, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of associated injury","Description of associated injury","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Radiology results","Radiology results","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Provisional diagnosis","Provisional diagnosis","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Physiotherapy frequency","Physiotherapy frequency","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Free text comment","Free text comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other injury, specify","Other injury, specify","Text","Finding",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Trauma/injury history comment","Trauma/injury history comment","Text","Finding",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of injury, specify","Other cause of injury, specify","Text","Finding",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of burn, specify","Other cause of burn, specify","Text","Finding",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Detailed location information","Detailed location information","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Length of stay","Length of stay","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Procedure performed","Procedure performed","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Procedure date","Procedure date","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Details of medical treatment provided","Details of medical treatment provided","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Past medical history, comment","Past medical history, comment","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of surgery, comment","History of surgery, comment","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Date of event","Date of event","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Currently taking medication","Currently taking medication","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Dose and frequency","Dose and frequency","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Type of drug","Type of drug","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Reaction to drug","Reaction to drug","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Allergy details","Allergy details","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Additional patient history","Additional patient history","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Joint description","Joint description","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of burn","Description of burn","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Injury site, Other","Injury site, Other","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other trauma","Other trauma","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Fracture site, Other","Fracture site, Other","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of injury","Description of injury","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other associated injury, specify","Other associated injury, specify","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of associated injury","Description of associated injury","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Radiology results","Radiology results","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Provisional diagnosis","Provisional diagnosis","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Physiotherapy frequency","Physiotherapy frequency","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Free text comment","Free text comment","Text","Finding",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Counselling frequency","Counselling frequency","Text","Question",false);
 
 #Add Coded Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Type of injury","Type of injury","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Cause of injury","Cause of injury","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Cause of burn","Cause of burn","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Location of first treatment","Location of first treatment","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of hospitalisation","History of hospitalisation","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of surgery","History of surgery","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Medical treatment provided","Medical treatment provided","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Past medical history diagnosis","Past medical history diagnosis","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Currently pregnant","Currently pregnant","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Currently breast-feeding","Currently breast-feeding","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of allergy","History of allergy","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Smoking status","Smoking status","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Burn site","Burn site","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Burn position","Burn position","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Burn side","Burn side","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Circumferential burn","Circumferential burn","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Degree of burn","Degree of burn","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Injury site","Injury site","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Type of trauma","Type of trauma","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Fracture site","Fracture site","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Fracture management","Fracture management","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Associated injury","Associated injury","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Radiology results available","Radiology results available","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Transportation need","Transportation need","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Prescription","Prescription","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Specialised consultation","Specialised consultation","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Patient sent to IPD","Patient sent to IPD","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Informed consent","Informed consent","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Type of injury","Type of injury","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Cause of injury","Cause of injury","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Cause of burn","Cause of burn","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Location of first treatment","Location of first treatment","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of hospitalisation","History of hospitalisation","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of surgery","History of surgery","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Medical treatment provided","Medical treatment provided","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Past medical history diagnosis","Past medical history diagnosis","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Currently pregnant","Currently pregnant","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Currently breast-feeding","Currently breast-feeding","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, History of allergy","History of allergy","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Smoking status","Smoking status","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Burn site","Burn site","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Burn position","Burn position","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Burn side","Burn side","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Circumferential burn","Circumferential burn","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Degree of burn","Degree of burn","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Injury site","Injury site","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Type of trauma","Type of trauma","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Fracture site","Fracture site","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Fracture management","Fracture management","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Associated injury","Associated injury","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Radiology results available","Radiology results available","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Transportation need","Transportation need","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Prescription","Prescription","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Specialised consultation","Specialised consultation","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Patient sent to IPD","Patient sent to IPD","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Informed consent","Informed consent","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Orthopaedic consultation timing","Orthopaedic consultation timing","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Osteomyelitis consultation timing","Osteomyelitis consultation timing","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Pain management consultation timing","Pain management consultation timing","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Plastic consultation timing","Plastic consultation timing","Coded","Question",false);
 
 #Add Numeric Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Weight at admission","Weight at admission","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, TBSA (Percentage)","TBSA (%)","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, FLACC Scale","FLACC Scale","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Visual analog scale","Visual analog scale","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, DN4","DN4","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Weight at admission","Weight at admission","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, TBSA (Percentage)","TBSA (%)","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, FLACC Scale","FLACC Scale","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Visual analog scale","Visual analog scale","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, DN4","DN4","Numeric","Question",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -176,6 +181,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Burn caused by 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Scalp","Scalp","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Application of cast","Application of cast","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Third degree burn","Third degree burn","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Non urgent","Non urgent","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Urgent","Urgent","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
