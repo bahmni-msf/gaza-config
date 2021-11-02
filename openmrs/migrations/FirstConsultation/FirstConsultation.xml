@@ -438,12 +438,12 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Gaza_CONFIG_20211028133429978" author="Tarun, Venky">
+    <changeSet id="Gaza_CONFIG_20211102132041472" author="Venky, Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("164408","161011","162477","1549")
+                ("165650","164408","116543","162477","5622","162869","1549","160479","1589","16440","124193","161011","160480")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -454,24 +454,42 @@
         <sql>
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
 
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165650",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164408",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161011",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116543",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162477",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5622",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162869",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1549",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("FC, Source of initial patient referral","164408");
-            call CREATE_REFERENCE_MAPPING_CEIL("FC, Date","162869");
-            call CREATE_REFERENCE_MAPPING_CEIL("FC, Free text comment","161011");
-            call CREATE_REFERENCE_MAPPING_CEIL("FC, Type of injury","1549");
-            call CREATE_REFERENCE_MAPPING_CEIL("FC, Admission status","162477");
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160479",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1589",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"16440",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"124193",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161011",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160480",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Free text comment","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("Burn","116543");
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Admission status","162477");
+            call CREATE_REFERENCE_MAPPING_CEIL("Government-run health clinic/facility","160480");
+            call CREATE_REFERENCE_MAPPING_CEIL("Private health care clinic/facility","160479");
+            call CREATE_REFERENCE_MAPPING_CEIL("Others","5622");
+            call CREATE_REFERENCE_MAPPING_CEIL("Other","5622");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hospital","1589");
+            call CREATE_REFERENCE_MAPPING_CEIL("Other health facility","16440");
+            call CREATE_REFERENCE_MAPPING_CEIL("self-referred","165650");
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Type of injury","1549");
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Date","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("Traumatic injury","124193");
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Source of initial patient referral","164408");
         </sql>
     </changeSet>
 
-    <changeSet id="Gaza_CONFIG_20211028133429989" author="Tarun, Venky">
+    <changeSet id="Gaza_CONFIG_20211102132041485" author="Venky, Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF28","GZ93","MSFF79","MSFF85","MSFF91","MSFF80","MSFF92","MSFF71","MSFF70","MSFF75")
+                ("MSFF289","GZ93","MSFF288","MSFF232","MSFF252","MSFF236","MSFF92","MSFF239","MSFF211","MSF72","MSF73","MSFF214","MSFF292","MSFF293","MSFF290","MSFF291","MSFF296","MSFF297","MSFF294","MSFF295","MSFF298","MSFF277","MSFF272","MSFFF285","MSFF28","MSFF86","MSFF87","MSFF234","MSFF85","MSFF82","MSFF83","MSFF80","MSFF81","MSFF204","MSFF201","MSFF202","MSFF248","MSFF286","MSFF283","MSFF282","MSFF241","MSFFF284","MSFF91","MSFF245","MSFF262","MSFF246","MSFF267","MSFF79","MSFF78","MSFF73","MSFF72","MSFF71","MSFF70","MSFF77","MSFF76","MSFF75","MSFF74")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -482,26 +500,123 @@
         <sql>
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
 
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF28",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF289",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"GZ93",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF79",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF85",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF91",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF80",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF288",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF232",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF252",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF236",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF92",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF239",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF211",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSF72",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSF73",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF214",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF292",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF293",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF290",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF291",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF296",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF297",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF294",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF295",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF298",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF277",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF272",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF285",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF28",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF86",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF87",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF234",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF85",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF82",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF83",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF80",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF81",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF204",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF201",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF202",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF248",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF286",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF283",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF282",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF241",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF284",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF91",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF245",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF262",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF246",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF267",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF79",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF78",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF73",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF72",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF71",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF70",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF77",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF76",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF75",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Out of criteria","MSFF80");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Reason of rejection","MSFF79");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Patient sent to another actor?","MSFF85");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, MoH facility","MSFF28");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Other injury, specify","MSFF75");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Referral location:","MSFF91");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Private facility type","GZ93");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, UNRWA facility","MSFF70");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, NGO facility","MSFF71");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("FC, Other referral location, specify","MSFF92");
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF74",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Other referral location, specify","MSFF92");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Indonesian","MSFF283");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, NGO facility","MSFF71");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Shokah","MSFF272");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Jabalia","MSFF288");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Patient sent to another actor?","MSFF85");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Followed by another actor","MSFF83");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, MoH facility","MSFF28");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Patient refuses the plan","MSFF81");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Najjar","MSFF282");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("MAP-UK","MSFF295");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("NGO","MSFF73");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("UNRWA","MSFF72");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Saftawi","MSFF204");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Private facility type","GZ93");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Readmission","MSFF77");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("MSFOCB","MSFF87");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Tal as Sultan","MSFF267");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Fakhora","MSFF211");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("MOH Clinic","MSFF286");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Khan Younis","MSFF201");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("MOH","MSFF85");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Um Nasser","MSFF293");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Nuseirat West","MSFF291");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Naser","MSFF239");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Out of criteria","MSFF80");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("ALPC","MSFF298");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Rejection","MSFF78");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Remal","MSFF290");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Maghazi","MSFF245");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Quds Hospital","MSFF297");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Shabbourah","MSFF277");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Ahli Arabi","MSFF294");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Nuseirat","MSFF246");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("WHO","MSFF86");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Other injury, specify","MSFF75");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("UNRWA","MSF72");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Clinic","MSFF74");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Ma'an","MSFF262");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Bureij","MSFF241");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Rafah","MSFF202");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Japanees","MSFF292");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Reason of rejection","MSFF79");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Admission","MSFF76");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Out of criteria","MSFF80");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Simple wound","MSFF298");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("NGO","MSF73");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Shiffa","MSFFF284");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("No documentation","MSFF82");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, UNRWA facility","MSFF70");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Beit Hanoun","MSFF214");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Deir al Balah","MSFF248");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Sabra","MSFF236");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Gaza Medina","MSFF289");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("MSFOCB","MSFF296");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("European","MSFF252");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Referral location:","MSFF91");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Sheikh Radwan","MSFF234");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Shatea","MSFF232");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Al Aqsa","MSFFF285");
         </sql>
     </changeSet>
 

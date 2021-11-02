@@ -1124,7 +1124,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("114262","160686","134337","5622","542","540","541","145727","1377","166309","119964","160480","126542","5141","156199","160479","5596","1065","1066","153608","166649","166648","166646","1628","116543","117399","139899","1710","1107","166243","166241","166329","166578 ","1651","1392","166327","160753","1935","124193","1647","166330","1843","164385","164387","1844","163201","166587","166588","115297","164009","166299","5139","152807 ","166342","166610","166611","166612","166653","166595","166594","166593","166592","166282","162869","118443","140116","121387","119270","1434","166604","166609","166608","152722","1745","163198","159942","155","166573","124899","166576","150431","121375","166243 ","1295","163403","132338","137062","166589","162926","160715","114797","141760","5632","119481","139994","1883")
+                ("114262","160686","134337","542","540","541","145727","1377","166309","126542","5141","156199","5596","153608","166649","166648","166646","1628","117399","139899","1710","1107","166243","166241","166329","166578 ","1651","1392","166327","160753","1935","1647","166330","1843","164385","164387","1844","163201","166587","166588","115297","164009","166299","5139","152807 ","166342","166610","166611","166612","166653","166595","166594","166593","166592","166282","118443","140116","121387","119270","1434","166604","166609","166608","152722","1745","163198","159942","155","166573","124899","166576","150431","121375","166243 ","1295","163403","132338","137062","166589","162926","160715","114797","141760","5632","119481","139994","1883")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -1138,28 +1138,22 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"114262",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160686",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"134337",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5622",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"542",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"540",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"541",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"145727",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1377",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166309",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"119964",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160480",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"126542",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5141",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"156199",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160479",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5596",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1065",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1066",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"153608",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166649",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166648",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166646",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1628",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116543",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"117399",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"139899",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1710",@source_id,uuid(),now());
@@ -1173,7 +1167,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166327",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160753",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1935",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"124193",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1647",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166330",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1843",@source_id,uuid(),now());
@@ -1198,7 +1191,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166593",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166592",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166282",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162869",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"118443",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"140116",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"121387",@source_id,uuid(),now());
@@ -1233,7 +1225,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1883",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Chemical","145727");
             call CREATE_REFERENCE_MAPPING_CEIL("Smoker","152722");
-            call CREATE_REFERENCE_MAPPING_CEIL("Yes","1066");
             call CREATE_REFERENCE_MAPPING_CEIL("Assault","121387");
             call CREATE_REFERENCE_MAPPING_CEIL("Ambulance","1377");
             call CREATE_REFERENCE_MAPPING_CEIL("First degree burn","140116");
@@ -1261,7 +1252,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Left","5139");
             call CREATE_REFERENCE_MAPPING_CEIL("Epilepsy","155");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Circumferential burn","166592");
-            call CREATE_REFERENCE_MAPPING_CEIL("Other","5622");
             call CREATE_REFERENCE_MAPPING_CEIL("Gun shot","126542");
             call CREATE_REFERENCE_MAPPING_CEIL("Soft tissue injury","153608");
             call CREATE_REFERENCE_MAPPING_CEIL("Mental health disorder","134337");
@@ -1274,7 +1264,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Trauma/injury history comment","160686");
             call CREATE_REFERENCE_MAPPING_CEIL("Buttock","166243");
             call CREATE_REFERENCE_MAPPING_CEIL("Third degree burn","124899");
-            call CREATE_REFERENCE_MAPPING_CEIL("Burn","116543");
             call CREATE_REFERENCE_MAPPING_CEIL("Foot","164387");
             call CREATE_REFERENCE_MAPPING_CEIL("Peptic Ulcer","114262");
             call CREATE_REFERENCE_MAPPING_CEIL("Hand","164385");
@@ -1291,7 +1280,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Vascular injury","137062");
             call CREATE_REFERENCE_MAPPING_CEIL("Metatarsal bone","166329");
             call CREATE_REFERENCE_MAPPING_CEIL("Neck","166327");
-            call CREATE_REFERENCE_MAPPING_CEIL("No","1065");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Length of stay","1647");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Weight at admission","166604");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Currently pregnant","1434");
@@ -1312,7 +1300,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Medial","166573");
             call CREATE_REFERENCE_MAPPING_CEIL("Open fracture","132338");
             call CREATE_REFERENCE_MAPPING_CEIL("NGO facility","166576");
-            call CREATE_REFERENCE_MAPPING_CEIL("Traumatic injury","124193");
             call CREATE_REFERENCE_MAPPING_CEIL("Soft tissue injury","");
             call CREATE_REFERENCE_MAPPING_CEIL("Forearm","166241");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Date","162869");
@@ -1338,7 +1325,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF314","MSFF319","MSFF282","MSFF36","MSFF322","MSFF309","MSFF94","MSFF360","MSFF361","MSFF252","MSFF346","MSFF93","MSFF239","MSFF321","MSFF304","MSFF349","MSFF307","MSFF328","MSFF303","MSFF340","MSFF327","MSFF324","MSFF343","MSFF344","MSFF323","MSFF320","MSFF347","MSFF283","MSFF285","MSFF310","MSFF316","MSFF348","MSFF333","MSFF317","MSFF332","MSFF341","MSFF284","MSFF331","MSFF330","MSFF359","MSFF358","MSFF335","MSFF334","MSFF337","MSFF336","MSFF339","MSFF352","MSFF351","MSFF350","MSFF357","MSFF356","MSFF355","MSFF318","MSFF50","MSFF353","MSFF32","MSFF354","MSFF338","MSFF329","MSFF315","MSFF342","MSFF326","MSFF362","MSFF366","MSFF367","MSFF365","MSFF368")
+                ("MSFF314","MSFF319","MSFF36","MSFF322","MSFF309","MSFF94","MSFF360","MSFF361","MSFF346","MSFF93","MSFF321","MSFF304","MSFF349","MSFF307","MSFF328","MSFF303","MSFF340","MSFF327","MSFF324","MSFF343","MSFF344","MSFF323","MSFF320","MSFF347","MSFF285","MSFF310","MSFF316","MSFF348","MSFF333","MSFF317","MSFF332","MSFF341","MSFF284","MSFF331","MSFF330","MSFF359","MSFF358","MSFF335","MSFF334","MSFF337","MSFF336","MSFF339","MSFF352","MSFF351","MSFF350","MSFF357","MSFF356","MSFF355","MSFF318","MSFF50","MSFF353","MSFF32","MSFF354","MSFF338","MSFF329","MSFF315","MSFF342","MSFF326","MSFF362","MSFF366","MSFF367","MSFF365","MSFF368")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -1351,17 +1338,14 @@
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF314",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF319",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF282",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF36",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF322",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF309",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF94",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF360",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF361",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF252",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF346",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF93",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF239",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF321",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF304",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF349",@source_id,uuid(),now());
@@ -1376,7 +1360,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF323",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF320",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF347",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF283",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF285",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF310",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF316",@source_id,uuid(),now());
@@ -1418,7 +1401,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF368",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_MSFOCP("Radius","MSFF333");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Currently taking medication","MSFF314");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("Indonesian","MSFF283");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Genital region","MSFF320");
             call CREATE_REFERENCE_MAPPING_MSFOCP("External fixation","MSFF340");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Burn unit Naser","MSFF304");
@@ -1426,7 +1408,6 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Other associated injury, specify","MSFF75");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Description of burn","MSFF328");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Description of associated injury","MSFF346");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("Najjar","MSFF282");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Additional patient history","MSFF319");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Pain management consultation","MSFF358");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Other trauma","MSFF331");
@@ -1440,7 +1421,6 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Burn position","MSFF323");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Dose and frequency","MSFF315");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Tendon injury","MSFF343");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("Naser","MSFF239");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Fibula","MSFF337");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Allergy details","MSFF318");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Description of injury","MSFF338");
@@ -1476,7 +1456,6 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Transportation need","MSFF350");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Physiotherapy frequency","MSFF354");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Burn unit Shiffa","MSFF303");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("European","MSFF252");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Orthopaedic consultation","MSFF356");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Plastic consultation","MSFF359");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Femur","MSFF335");
