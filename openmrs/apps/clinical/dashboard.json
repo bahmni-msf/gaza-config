@@ -46,7 +46,9 @@
           "Initial Anaesthesia Assessment",
           "Post Operative Anaesthesia Note",
           "Complications",
-          "Vital Signs"
+          "Vital Signs",
+          "First Consultation",
+          "Initial Medical Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       }
