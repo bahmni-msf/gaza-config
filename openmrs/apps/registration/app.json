@@ -37,7 +37,10 @@
             ],
             "mandatoryPersonAttributes" : [
                 "phoneNumber 1",
-                "phone1Owner"
+                "phone1Owner",
+                "givenNameLocal",
+                "middleNameLocal",
+                "familyNameLocal"
             ],
             "patientInformation": {
                 "Contact Information": {
