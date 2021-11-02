@@ -65,7 +65,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Shatea","Shatea
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NGO","NGO","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Traumatic injury","Traumatic injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"ALPC","ALPC","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Others 5622","Others 5622","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nuseirat","Nuseirat","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Simple wound","Simple wound","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Sheikh Radwan","Sheikh Radwan","N/A","Misc",false);
