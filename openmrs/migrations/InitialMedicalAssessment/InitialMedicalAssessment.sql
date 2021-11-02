@@ -42,6 +42,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Provisiona
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Physiotherapy frequency","Physiotherapy frequency","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Free text comment","Free text comment","Text","Finding",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Counselling frequency","Counselling frequency","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Wound Dressing frequency","Wound Dressing frequency","Text","Question",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Type of injury","Type of injury","Coded","Question",false);

@@ -1484,6 +1484,7 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("Non urgent","MSFF326");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Pain management consultation timing","MSFF368");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Counselling frequency","MSFF365");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Wound Dressing frequency","MSFF364");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Plastic consultation timing","MSFF362");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Orthopaedic consultation timing","MSFF366");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Osteomyelitis consultation timing","MSFF367");
