@@ -1325,7 +1325,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF314","MSFF319","MSFF36","MSFF322","MSFF309","MSFF94","MSFF360","MSFF361","MSFF346","MSFF93","MSFF321","MSFF304","MSFF349","MSFF307","MSFF328","MSFF303","MSFF340","MSFF327","MSFF324","MSFF343","MSFF344","MSFF323","MSFF320","MSFF347","MSFF285","MSFF310","MSFF316","MSFF348","MSFF333","MSFF317","MSFF332","MSFF341","MSFF284","MSFF331","MSFF330","MSFF359","MSFF358","MSFF335","MSFF334","MSFF337","MSFF336","MSFF339","MSFF352","MSFF351","MSFF350","MSFF357","MSFF356","MSFF355","MSFF318","MSFF50","MSFF353","MSFF32","MSFF354","MSFF338","MSFF329","MSFF315","MSFF342","MSFF326","MSFF362","MSFF366","MSFF367","MSFF365","MSFF368")
+                ("MSFF314","MSFF319","MSFF36","MSFF322","MSFF309","MSFF94","MSFF360","MSFF361","MSFF346","MSFF93","MSFF321","MSFF304","MSFF349","MSFF307","MSFF328","MSFF303","MSFF340","MSFF327","MSFF324","MSFF343","MSFF344","MSFF323","MSFF320","MSFF347","MSFF285","MSFF310","MSFF316","MSFF348","MSFF333","MSFF317","MSFF332","MSFF341","MSFF284","MSFF331","MSFF330","MSFF359","MSFF358","MSFF335","MSFF334","MSFF337","MSFF336","MSFF339","MSFF352","MSFF351","MSFF350","MSFF357","MSFF356","MSFF355","MSFF318","MSFF50","MSFF353","MSFF32","MSFF354","MSFF338","MSFF329","MSFF315","MSFF342","MSFF326","MSFF362","MSFF366","MSFF367","MSFF365","MSFF368","MSFF364")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -1399,6 +1399,7 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF367",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF365",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF368",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF364",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_MSFOCP("Radius","MSFF333");
             call CREATE_REFERENCE_MAPPING_MSFOCP("IMA, Currently taking medication","MSFF314");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Genital region","MSFF320");

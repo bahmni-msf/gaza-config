@@ -197,7 +197,7 @@ VALUES ((select concept_id from concept_name where name = "IMA, Smoking status" 
 "If yes, specify pack-year history","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "IMA, Description of burn" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
-"e.g. colour, texture, presence of blisters, signs of infection","en",1,now(),NULL,NULL,uuid());
+"e.g. colour, texture, presence of blisters, signs of infection, ...","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "IMA, Description of associated injury" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "If gun shot injury, describe the entry and exit wound.","en",1,now(),NULL,NULL,uuid());
