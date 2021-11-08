@@ -108,7 +108,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Car","Car","N/A
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Diabetes","Diabetes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Foot","Foot","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Open wound","Open wound","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"facility","facility","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NGO facility","NGO facility","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Smoker","Smoker","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Food","Food","N/A","Misc",false);
@@ -147,7 +146,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chemical","Chem
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Humerus","Humerus","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Forearm","Forearm","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Thigh","Thigh","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Government-run health clinic","Government-run health clinic","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gun shot","Gun shot","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Soft tissue injury","Soft tissue injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Asthma","Asthma","N/A","Misc",false);
@@ -174,7 +172,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Deep second deg
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower leg","Lower leg","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Joint","Joint","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pain management consultation","Pain management consultation","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Private health care clinic","Private health care clinic","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peptic Ulcer","Peptic Ulcer","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mental health disorder","Mental health disorder","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Osteomyelitis consultation","Osteomyelitis consultation","N/A","Misc",false);

@@ -131,7 +131,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Burn unit Shiffa", "Burn unit Naser", "Indonesian", "Shiffa", "Al Aqsa", "Naser", "European", "Najjar", "UNRWA", "Private health care clinic", "facility", "Government-run health clinic", "facility", "NGO facility")
+                ("Burn unit Shiffa", "Burn unit Naser", "Indonesian", "Shiffa", "Al Aqsa", "Naser", "European", "Najjar", "UNRWA", "Private health care clinic/facility", "Government-run health clinic/facility", "NGO facility")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IMA, Location of first treatment");
@@ -153,8 +153,6 @@
             set @child10_concept_id = 0;
             set @child11_concept_id = 0;
             set @child12_concept_id = 0;
-            set @child13_concept_id = 0;
-            set @child14_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Burn unit Shiffa" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Burn unit Naser" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Indonesian" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
@@ -164,11 +162,9 @@
             select concept_id into @child7_concept_id from concept_name where name ="European" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child8_concept_id from concept_name where name ="Najjar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child9_concept_id from concept_name where name ="UNRWA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="Private health care clinic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child11_concept_id from concept_name where name ="facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child12_concept_id from concept_name where name ="Government-run health clinic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child13_concept_id from concept_name where name ="facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child14_concept_id from concept_name where name ="NGO facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Private health care clinic/facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Government-run health clinic/facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="NGO facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -181,8 +177,6 @@
             call add_concept_answer(@concept_id, @child10_concept_id, 10);
             call add_concept_answer(@concept_id, @child11_concept_id, 11);
             call add_concept_answer(@concept_id, @child12_concept_id, 12);
-            call add_concept_answer(@concept_id, @child13_concept_id, 13);
-            call add_concept_answer(@concept_id, @child14_concept_id, 14);
         </sql>
     </changeSet>
 
@@ -1147,7 +1141,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"126542",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5141",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"156199",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160479",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5596",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"153608",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166649",@source_id,uuid(),now());
@@ -1229,7 +1222,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Ambulance","1377");
             call CREATE_REFERENCE_MAPPING_CEIL("First degree burn","140116");
             call CREATE_REFERENCE_MAPPING_CEIL("Application of cast","162926");
-            call CREATE_REFERENCE_MAPPING_CEIL("facility","160479");
             call CREATE_REFERENCE_MAPPING_CEIL("Ex-smoker","152807 ");
             call CREATE_REFERENCE_MAPPING_CEIL("Closed fracture","139899");
             call CREATE_REFERENCE_MAPPING_CEIL("Scalp","166309");
@@ -1309,7 +1301,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Superficial second degree burn","166610");
             call CREATE_REFERENCE_MAPPING_CEIL("Trunk","1844");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Past medical history diagnosis","1628");
-            call CREATE_REFERENCE_MAPPING_CEIL("facility","160480");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Location of first treatment","1745");
             call CREATE_REFERENCE_MAPPING_CEIL("Wound dressing","1935");
             call CREATE_REFERENCE_MAPPING_CEIL("Traffic accident","119964");
