@@ -90,6 +90,13 @@
             "showBirthTime": false,
             "showEnterID":false,
             "showCasteSameAsLastNameCheckbox": false,
+            "printOptions": [
+                {
+                    "translationKey": "REGISTRATION_PRINT_STICKER_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_stickers.html",
+                    "shortcutKey": "t"
+                }
+            ],
             "conceptSetUI": {
                 "REGISTRATION FEES": {
                     "required": true,
