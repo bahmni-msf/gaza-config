@@ -80,16 +80,16 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Plastic co
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Weight at admission","Weight at admission","Numeric","Question",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, TBSA (Percentage)","TBSA (%)","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, TBSA","TBSA","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, FLACC Scale","FLACC Scale","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Visual analog scale","Visual analog scale","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, DN4","DN4","Numeric","Question",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, Weight at admission" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, Weight at admission" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"Kg",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, TBSA (Percentage)" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, TBSA" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"%",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "IMA, FLACC Scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)

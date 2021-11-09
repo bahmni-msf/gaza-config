@@ -1266,7 +1266,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Face","1843");
             call CREATE_REFERENCE_MAPPING_CEIL("Posterior","541");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, FLACC Scale","166588");
-            call CREATE_REFERENCE_MAPPING_CEIL("IMA, TBSA (Percentage)","166593");
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, TBSA","166593");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, History of hospitalisation","163403");
             call CREATE_REFERENCE_MAPPING_CEIL("Amputation","164009");
             call CREATE_REFERENCE_MAPPING_CEIL("Vascular injury","137062");
