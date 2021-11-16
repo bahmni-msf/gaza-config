@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: openmrs/apps/clinical/dashboard.json
+  checksum: 8270e16c0acc69e08ee347eb49a7ac950a521514894d0d16d3f05fac40ca05e2
+version: "1.0"

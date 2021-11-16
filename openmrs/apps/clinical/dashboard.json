@@ -35,7 +35,7 @@
       },
       "validationForms-2.0": {
         "type": "formsV2",
-        "displayOrder": 2,
+        "displayOrder": 6,
         "dashboardConfig": {
           "title": null,
           "maximumNoOfVisits": 5
@@ -51,6 +51,96 @@
           "Initial Medical Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
+      },
+      "navigationLinksControl": {
+        "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+        "type": "navigationLinksControl",
+        "displayOrder": 2,
+        "showLinks": [
+          "home",
+          "registration",
+          "enrolment"
+        ],
+        "customLinks": [
+          {
+            "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+            "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
+          }
+        ]
+      },
+      "patientHistory": {
+        "translationKey": "DASHBOARD_TITLE_PATIENT_HISTORY",
+        "isObservation": true,
+        "displayOrder": 7,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "IMA, Weight at admission",
+            "IMA, Currently pregnant",
+            "IMA, History of allergy",
+            "IMA, Type of drug"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "IMA, Weight at admission",
+            "IMA, Currently pregnant",
+            "IMA, History of allergy",
+            "IMA, Type of drug"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "detailsOfInjury": {
+        "translationKey": "DASHBOARD_TITLE_DETAILS_OF_INJURY",
+        "isObservation": true,
+        "displayOrder": 8,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "IMA, Type of injury",
+            "IMA, Other injury, specify",
+            "IMA, Date of Injury",
+            "IMA, Trauma/injury history comment",
+            "IMA, Cause of injury",
+            "IMA, Other cause of injury, specify",
+            "IMA, Cause of burn",
+            "IMA, Other cause of burn, specify"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "IMA, Type of injury",
+            "IMA, Other injury, specify",
+            "IMA, Date of Injury",
+            "IMA, Trauma/injury history comment",
+            "IMA, Cause of injury",
+            "IMA, Other cause of injury, specify",
+            "IMA, Cause of burn",
+            "IMA, Other cause of burn, specify"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "patientAppointments": {
+        "type": "custom",
+        "displayOrder": 4,
+        "config": {
+          "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
+          "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
+        }
       }
     }
   },
