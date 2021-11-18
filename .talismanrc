@@ -1,4 +1,8 @@
 fileignoreconfig:
 - filename: openmrs/apps/clinical/dashboard.json
   checksum: 8270e16c0acc69e08ee347eb49a7ac950a521514894d0d16d3f05fac40ca05e2
+- filename: openmrs/migrations/appointment-scheduling/patientPastAppointments.sql
+  checksum: 30a53e173b60b7a89775a5a59026cad5687be26b783d9dca392f192af624bfaa
+- filename: openmrs/migrations/appointment-scheduling/patientUpcomingAppointments.sql
+  checksum: 9c41d68a8cace948848af2c58d0aaa1f0533158722000a1a6843b8b45696d4f1
 version: "1.0"

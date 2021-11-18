@@ -21,12 +21,12 @@
       "programs": {
         "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
         "type": "programs",
-        "displayOrder": 1
+        "displayOrder": 8
       },
       "visits": {
         "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
         "type": "visits",
-        "displayOrder": 3,
+        "displayOrder": 6,
         "dashboardConfig": {
           "title": null,
           "maximumNoOfVisits": 8,
@@ -35,7 +35,7 @@
       },
       "validationForms-2.0": {
         "type": "formsV2",
-        "displayOrder": 6,
+        "displayOrder": 7,
         "dashboardConfig": {
           "title": null,
           "maximumNoOfVisits": 5
@@ -60,18 +60,12 @@
           "home",
           "registration",
           "enrolment"
-        ],
-        "customLinks": [
-          {
-            "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
-            "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
-          }
         ]
       },
       "patientHistory": {
         "translationKey": "DASHBOARD_TITLE_PATIENT_HISTORY",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -100,7 +94,7 @@
       "detailsOfInjury": {
         "translationKey": "DASHBOARD_TITLE_DETAILS_OF_INJURY",
         "isObservation": true,
-        "displayOrder": 8,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,

@@ -80,4 +80,9 @@
     </changeSet>
     <include file="FirstConsultation/FirstConsultation.xml"/>
     <include file="InitialMedicalAssessment/InitialMedicalAssessment.xml"/>
+    <changeSet id="gaza-202111162009" author="Supriya">
+        <comment>Adding upcoming and past appointments for patient</comment>
+        <sqlFile path="appointment-scheduling/patientPastAppointments.sql"/>
+        <sqlFile path="appointment-scheduling/patientUpcomingAppointments.sql"/>
+    </changeSet>
 </databaseChangeLog>
