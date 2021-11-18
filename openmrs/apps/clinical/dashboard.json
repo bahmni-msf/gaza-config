@@ -4,20 +4,6 @@
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 10,
     "sections": {
-      "patientInformation": {
-        "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
-        "type": "patientInformation",
-        "displayOrder": 1,
-        "ageLimit": 100,
-        "patientAttributes": [
-        ],
-        "addressFields": [
-          "address1",
-          "address2",
-          "cityVillage",
-          "countyDistrict"
-        ]
-      },
       "programs": {
         "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
         "type": "programs",
