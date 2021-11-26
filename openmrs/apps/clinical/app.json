@@ -59,27 +59,15 @@
                 "ID_Number": {
                     "required" : true
                 },
-                "Co-morbidites": {
-                    "excludeFrom": ["HIV Program"]
-                },
-                "Doctor": {
-                    "excludeFrom": ["TB Program"]
-                }
+                "debouncePatientSearchApi": true,
+                "debouncePatientSearchApiInterval": 2000,
+                "runPatientSearchInSerial": true
             },
             "patientContext": {
-        		"programAttributes": [
-            		"Id_Number",
-            		"Doctor",
-            		"Stage"
-        		],
         		"personAttributes": [
-            		"class",
-            		"caste"
-        		],
-        		"additionalPatientIdentifiers": [
-           			"National ID"
-       		],
-        		"preferredIdentifier": "Id_Number"
+            		"phoneNumber 1",
+                    "phoneNumber 2"
+        		]
     	},
         "obsIgnoreList": [
             "REGISTRATION FEES",
