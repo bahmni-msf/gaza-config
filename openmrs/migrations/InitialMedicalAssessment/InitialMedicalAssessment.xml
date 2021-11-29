@@ -89,7 +89,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Hot liquid burn", "Burn caused by open flame", "Electrocuted", "Burn due to contact with hot surface", "Chemical", "Radiation", "Other")
+                ("Hot liquid burn", "Open flame", "Electrocuted", "Contact with hot surface", "Chemical", "Radiation", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IMA, Cause of burn");
@@ -107,9 +107,9 @@
             set @child6_concept_id = 0;
             set @child7_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Hot liquid burn" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Burn caused by open flame" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Open flame" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Electrocuted" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Burn due to contact with hot surface" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Contact with hot surface" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name ="Chemical" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child6_concept_id from concept_name where name ="Radiation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child7_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
@@ -1262,7 +1262,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Hot liquid burn","166608");
             call CREATE_REFERENCE_MAPPING_CEIL("Cardiovascular disease","119270");
             call CREATE_REFERENCE_MAPPING_CEIL("Open wound","114797");
-            call CREATE_REFERENCE_MAPPING_CEIL("Burn caused by open flame","166611");
+            call CREATE_REFERENCE_MAPPING_CEIL("Open flame","166611");
             call CREATE_REFERENCE_MAPPING_CEIL("Face","1843");
             call CREATE_REFERENCE_MAPPING_CEIL("Posterior","541");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, FLACC Scale","166588");
@@ -1286,7 +1286,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Nerve injury","115297");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Burn site","166594");
             call CREATE_REFERENCE_MAPPING_CEIL("Radiation","118443");
-            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Radiology results","1392");
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Radiology findings","1392");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Cause of burn","166648");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Procedure performed","1651");
             call CREATE_REFERENCE_MAPPING_CEIL("Medial","166573");
@@ -1296,7 +1296,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Forearm","166241");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Date","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Informed consent","1710");
-            call CREATE_REFERENCE_MAPPING_CEIL("Burn due to contact with hot surface","166612");
+            call CREATE_REFERENCE_MAPPING_CEIL("Contact with hot surface","166612");
             call CREATE_REFERENCE_MAPPING_CEIL("IMA, Free text comment","161011");
             call CREATE_REFERENCE_MAPPING_CEIL("Superficial second degree burn","166610");
             call CREATE_REFERENCE_MAPPING_CEIL("Trunk","1844");

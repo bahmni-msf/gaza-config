@@ -16,7 +16,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Trauma/inj
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of injury, specify","Other cause of injury, specify","Text","Finding",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other cause of burn, specify","Other cause of burn, specify","Text","Finding",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Detailed location information","Detailed location information","Text","Question",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Length of stay","Length of stay","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Procedure performed","Procedure performed","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Procedure date","Procedure date","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Details of medical treatment provided","Details of medical treatment provided","Text","Question",false);
@@ -37,7 +36,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Fracture s
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of injury","Description of injury","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Other associated injury, specify","Other associated injury, specify","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Description of associated injury","Description of associated injury","Text","Question",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Radiology results","Radiology results","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Radiology findings","Radiology findings","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Provisional diagnosis","Provisional diagnosis","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Physiotherapy frequency","Physiotherapy frequency","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Free text comment","Free text comment","Text","Finding",false);
@@ -81,21 +80,27 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Plastic co
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Weight at admission","Weight at admission","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, TBSA","TBSA","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Total TBSA","Total TBSA","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, FLACC Scale","FLACC Scale","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Visual analog scale","Visual analog scale","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, DN4","DN4","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Length of stay","Length of stay","Numeric","Question",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, Weight at admission" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"Kg",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, Weight at admission" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),1000,NULL,NULL,1,NULL,NULL,"Kg",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, TBSA" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"%",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, TBSA" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),100,NULL,100,0,NULL,0,"%",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, FLACC Scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, Total TBSA" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"%",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, Visual analog scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, FLACC Scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,10,0,NULL,0,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, DN4" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, Visual analog scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,10,0,NULL,0,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+VALUES ((select concept_id from concept_name where name = "IMA, DN4" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,10,0,NULL,0,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+VALUES ((select concept_id from concept_name where name = "IMA, Length of stay" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"days",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drugs","Drugs","N/A","Misc",false);
@@ -161,7 +166,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left","Left","N
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Orthopaedic consultation","Orthopaedic consultation","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Internal fixation","Internal fixation","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vascular injury","Vascular injury","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Burn due to contact with hot surface","Burn due to contact with hot surface","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Contact with hot surface","Contact with hot surface","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nerve injury","Nerve injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"First degree burn","First degree burn","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Open fracture","Open fracture","N/A","Misc",false);
@@ -175,7 +180,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pain management
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peptic Ulcer","Peptic Ulcer","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mental health disorder","Mental health disorder","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Osteomyelitis consultation","Osteomyelitis consultation","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Burn caused by open flame","Burn caused by open flame","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Open flame","Open flame","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Scalp","Scalp","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Application of cast","Application of cast","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Third degree burn","Third degree burn","N/A","Misc",false);
