@@ -80,7 +80,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Plastic co
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Weight at admission","Weight at admission","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, TBSA","TBSA","Numeric","Question",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Total TBSA","Total TBSA","Numeric","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Total TBSA","Total TBSA","Numeric","Computed",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, FLACC Scale","FLACC Scale","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Visual analog scale","Visual analog scale","Numeric","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, DN4","DN4","Numeric","Question",false);
