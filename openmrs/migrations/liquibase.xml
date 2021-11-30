@@ -86,4 +86,17 @@
         <sqlFile path="appointment-scheduling/patientUpcomingAppointments.sql"/>
     </changeSet>
     <include file ="addObsPathSplitterProperty.xml"/>
+    <changeSet id="gaza-20211130122009" author="Supriya, Bindu">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from global_property
+                where property = 'atomfeed.publish.eventsForPatientProgramStateChange';
+            </sqlCheck>
+        </preConditions>
+        <comment>Enable publishing events for patient program state change</comment>
+        <update tableName="global_property">
+            <column name="property_value" value="true" />
+            <where>property = 'atomfeed.publish.eventsForPatientProgramStateChange'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
