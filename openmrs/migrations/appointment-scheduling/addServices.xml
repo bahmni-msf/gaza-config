@@ -21,9 +21,9 @@
            call add_new_service_and_service_type("Physiotherapy",NULL,"8:00:00","blue",NULL,NULL,"Treatment session",30);
            call add_new_service_and_service_type("Physiotherapy",NULL,"8:00:00","blue",NULL,NULL,"Follow up session",15);
            call add_new_service_and_service_type("Physiotherapy",NULL,"8:00:00","blue",NULL,NULL,"Group session",90);
-           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Treatment session",0);
-           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Splint session",0);
-           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Garment session",0);
+           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Treatment session",30);
+           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Splint session",30);
+           call add_new_service_and_service_type("OCT",NULL,"8:00:00","blue",30,NULL,"Garment session",30);
            call add_new_service_and_service_type("3D",NULL,"8:00:00","blue",30,"Gaza Clinic",NULL,0);
            call add_new_service_and_service_type("Dressing",NULL,"8:00:00","green",20,NULL,"Trauma dressing",20);
            call add_new_service_and_service_type("Dressing",NULL,"8:00:00","green",20,NULL,"Burn dressing",20);

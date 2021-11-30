@@ -50,6 +50,7 @@
     "colorsForListView": {
       "Missed": "#fceab6",
       "Cancelled": "#fcb6b6"
-    }
+    },
+    "maxAppointmentProviders": 100
   }
 }
