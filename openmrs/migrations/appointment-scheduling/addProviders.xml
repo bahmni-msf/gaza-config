@@ -59,11 +59,11 @@
             call create_provider('M','BL','GP','bl_gp');
             call create_provider('M','MA','GP','ma_gp');
             call create_provider('M','KY','GP','ky_gp');
-            call create_provider('M','Ortho surgeon','Ortho','orthoSurgeon_ortho');
-            call create_provider('M','Ortho surgeon','OM','orthoSurgeon_om');
+            call create_provider('M','Ortho surgeon:','Ortho','orthoSurgeon_ortho');
+            call create_provider('M','Ortho surgeon:','OM','orthoSurgeon_om');
             call create_provider('M','Anaesthetist',NULL,'anaesthetist');
-            call create_provider('M','Antibiotic Doctor','ATB','antibioticDoctor_atb');
-            call create_provider('M','Antibiotic Doctor','OM','antibioticDoctor_om');
+            call create_provider('M','Antibiotic Doctor:','ATB','antibioticDoctor_atb');
+            call create_provider('M','Antibiotic Doctor:','OM','antibioticDoctor_om');
             call create_provider('M','Plastic surgeon',NULL,'plastic_surgeon');
             call create_provider('M','Gaza','SW','gaza_sw');
             call create_provider('M','BL','SW','bl_sw');
