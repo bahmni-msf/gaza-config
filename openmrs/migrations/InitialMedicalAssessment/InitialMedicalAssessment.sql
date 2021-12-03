@@ -88,19 +88,19 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Length of 
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, Weight at admission" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),1000,NULL,NULL,1,NULL,NULL,"Kg",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, Weight at admission" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),999,NULL,NULL,1,NULL,NULL,"Kg",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, TBSA" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),100,NULL,100,0,NULL,0,"%",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, TBSA" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),100,NULL,NULL,0,NULL,NULL,"%",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "IMA, Total TBSA" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"%",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, FLACC Scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,10,0,NULL,0,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, FLACC Scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,NULL,0,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, Visual analog scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,10,0,NULL,0,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, Visual analog scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,NULL,0,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, DN4" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,10,0,NULL,0,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, DN4" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,NULL,0,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IMA, Length of stay" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"days",1,1);
+VALUES ((select concept_id from concept_name where name = "IMA, Length of stay" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,0,NULL,NULL,"days",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drugs","Drugs","N/A","Misc",false);
