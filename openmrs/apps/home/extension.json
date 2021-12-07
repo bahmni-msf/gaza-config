@@ -13,7 +13,7 @@
     "id": "bahmni.programs",
     "extensionPointId": "org.bahmni.home.dashboard",
     "type": "link",
-    "label": "Programs",
+    "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
     "url": "../clinical/#/programs/patient/search",
     "icon": "icon-bahmni-program",
     "order": 2,
