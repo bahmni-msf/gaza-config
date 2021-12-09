@@ -7,3 +7,4 @@ appointment_frontend: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6
 emr_api_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.0/emrapi-omod-1.24.7-2.1.0-SNAPSHOT.omod
 event_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.0/event-2.8.0-2.1.0.omod
 uiframework: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.0/uiframework-3.19-2.1.0.omod
+patient_identifier_generator: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.0/patientidentifiergenerator-0.1.0-2.0.0.omod
