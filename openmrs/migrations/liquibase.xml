@@ -99,4 +99,28 @@
             <where>property = 'atomfeed.publish.eventsForPatientProgramStateChange'</where>
         </update>
     </changeSet>
+    <changeSet id="gaza-202112141158" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "webservices.rest.maxResultsDefault";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating the global property for webservices maxResultsDefault</comment>
+        <sql>
+            UPDATE global_property
+            SET property_value = 300
+            WHERE property = "webservices.rest.maxResultsDefault";
+        </sql>
+    </changeSet>
+    <changeSet id="gaza-202112141159" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from global_property gp where property = 'patient.nameValidationRegex';
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating global property to accept apostophie in Names field in registartion page</comment>
+        <sql>
+            update global_property set property_value  = "^[a-zA-Z'_ ]{1,50}$.*$" where property = 'patient.nameValidationRegex';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
