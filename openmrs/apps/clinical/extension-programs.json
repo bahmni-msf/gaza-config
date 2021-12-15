@@ -14,7 +14,7 @@
             ],
             "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-            "searchColumns": ["Identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH" ]
+            "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH" ]
         },
         "label": "Programs",
         "order": 1,
@@ -38,7 +38,7 @@
                 }],
             "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-            "searchColumns": ["Identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH", "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC", "PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT", "PATIENT_LISTING_QUEUES_PROGRAM_STATE"]
+            "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH", "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC", "PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT", "PATIENT_LISTING_QUEUES_PROGRAM_STATE"]
         },
         "label": "BurnProgram",
         "order": 2,
@@ -63,7 +63,7 @@
             ],
             "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-            "searchColumns": ["Identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH", "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC", "PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT", "PATIENT_LISTING_QUEUES_PROGRAM_STATE"]
+            "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH", "PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC", "PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT", "PATIENT_LISTING_QUEUES_PROGRAM_STATE"]
         },
         "label": "TraumaProgram",
         "order": 3,
