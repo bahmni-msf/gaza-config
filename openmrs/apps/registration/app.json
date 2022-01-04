@@ -109,11 +109,14 @@
                 }
             },
             "fieldValidation" : {
-                "familyName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
-                "givenName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
-                "middleName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
+                "familyName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "givenName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "middleName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "givenNameLocal": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "familyNameLocal": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "middleNameLocal": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "nameOfContactPersonInArabic": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
                 "nameOfContactPerson": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
-                "nameOfContactPersonInArabic": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
                 "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,9}", "errorMessage" : "Should not exceed more than 9 characters"},
                 "Amman ID": {"pattern" : "[a-zA-Z0-9\\s]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
                 "Previous MSF ID": {"pattern" : "[a-zA-Z0-9\\s]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
