@@ -1462,4 +1462,23 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Gaza_CONFIG_20220120110951498" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_reference_term
+                where code in
+                ("166593")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+            call CREATE_REFERENCE_MAPPING_CEIL("IMA, Total TBSA","166593");
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
