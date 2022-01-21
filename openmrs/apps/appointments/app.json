@@ -12,7 +12,7 @@
     "enableSpecialities": false,
     "startOfWeek": "Sunday",
     "calendarSlotDuration": "00:30",
-    "calendarSlotLabelInterval": "01:00",
+    "calendarSlotLabelInterval": "00:30",
     "startOfDay":"08:00",
     "endOfDay":"16:30",
     "printListViewTemplateUrl": "/bahmni_config/openmrs/apps/appointments/printListView.html",
