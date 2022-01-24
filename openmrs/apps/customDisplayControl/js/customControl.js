@@ -29,9 +29,9 @@ angular.module('bahmni.common.displaycontrol.custom')
                 });
             };
             $q.all([getUpcomingAppointments(), getPastAppointments()]).then(function (response) {
-                $scope.upcomingAppointments = response[0].data;
+                $scope.upcomingAppointments = response[0].data.slice(0,5);
                 $scope.upcomingAppointmentsHeadings = _.keys($scope.upcomingAppointments[0]);
-                $scope.pastAppointments = response[1].data;
+                $scope.pastAppointments = response[1].data.slice(0,5);
                 $scope.pastAppointmentsHeadings = _.keys($scope.pastAppointments[0]);
             });
 
