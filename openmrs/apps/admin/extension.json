@@ -20,7 +20,19 @@
     "label": "CSV Export",
     "url": "#/csvExport",
     "icon": "fa-download",
-    "order": 1,
+    "order": 2,
+    "requiredPrivilege": "app:admin"
+  },
+  "auditLog":{
+    "id": "bahmni.admin.auditLog",
+    "extensionPointId": "org.bahmni.admin.dashboard",
+    "type": "link",
+    "extensionParams": {
+    },
+    "label": "Audit Log",
+    "url": "#/auditLog",
+    "icon": "fa-eye",
+    "order": 3,
     "requiredPrivilege": "app:admin"
   }
 }
