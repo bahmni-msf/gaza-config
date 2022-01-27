@@ -50,8 +50,8 @@
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 1,
     "sections": {
-      "detailsOfInjury": {
-        "translationKey": "DASHBOARD_TITLE_DETAILS_OF_INJURY",
+      "pastMedicalHistory": {
+        "translationKey": "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY",
         "isObservation": true,
         "displayOrder": 0,
         "dashboardConfig": {
@@ -59,27 +59,23 @@
           "isEditable": true,
           "scope":"latest",
           "conceptNames": [
-            "IMA, Type of injury",
-            "IMA, Date of Injury",
-            "IMA, Cause of injury",
-            "IMA, Type of trauma",
-            "IMA, Associated injury",
-            "IMA, Cause of burn",
-            "IMA, Degree of burn",
-            "IMA, Total TBSA"
+            "IMA, Currently pregnant",
+            "IMA, Currently breast-feeding",
+            "IMA, History of surgery",
+            "IMA, History of allergy",
+            "IMA, Type of drug",
+            "IMA, Allergy details"
           ]
         },
         "expandedViewConfig": {
           "scope":"latest",
           "conceptNames": [
-            "IMA, Type of injury",
-            "IMA, Date of Injury",
-            "IMA, Cause of injury",
-            "IMA, Type of trauma",
-            "IMA, Associated injury",
-            "IMA, Cause of burn",
-            "IMA, Degree of burn",
-            "IMA, Total TBSA"
+            "IMA, Currently pregnant",
+            "IMA, Currently breast-feeding",
+            "IMA, History of surgery",
+            "IMA, History of allergy",
+            "IMA, Type of drug",
+            "IMA, Allergy details"
           ],
           "isEditable": true,
           "showDetailsButton": true,
@@ -87,8 +83,8 @@
           }
         }
       },
-      "pastMedicalHistory": {
-        "translationKey": "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY",
+      "detailsOfInjury": {
+        "translationKey": "DASHBOARD_TITLE_DETAILS_OF_INJURY",
         "isObservation": true,
         "displayOrder": 1,
         "dashboardConfig": {
@@ -96,23 +92,27 @@
           "isEditable": true,
           "scope":"latest",
           "conceptNames": [
-            "IMA, Currently pregnant",
-            "IMA, Currently breast-feeding",
-            "IMA, History of surgery",
-            "IMA, History of allergy",
-            "IMA, Type of drug",
-            "IMA, Allergy details"
+            "IMA, Type of injury",
+            "IMA, Date of Injury",
+            "IMA, Cause of injury",
+            "IMA, Type of trauma",
+            "IMA, Associated injury",
+            "IMA, Cause of burn",
+            "IMA, Degree of burn",
+            "IMA, Total TBSA"
           ]
         },
         "expandedViewConfig": {
           "scope":"latest",
           "conceptNames": [
-            "IMA, Currently pregnant",
-            "IMA, Currently breast-feeding",
-            "IMA, History of surgery",
-            "IMA, History of allergy",
-            "IMA, Type of drug",
-            "IMA, Allergy details"
+            "IMA, Type of injury",
+            "IMA, Date of Injury",
+            "IMA, Cause of injury",
+            "IMA, Type of trauma",
+            "IMA, Associated injury",
+            "IMA, Cause of burn",
+            "IMA, Degree of burn",
+            "IMA, Total TBSA"
           ],
           "isEditable": true,
           "showDetailsButton": true,
