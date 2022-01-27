@@ -123,5 +123,29 @@
             update global_property set property_value  = "^[a-zA-Z'_ ]{1,50}$.*$" where property = 'patient.nameValidationRegex';
         </sql>
     </changeSet>
+    <changeSet id="add-privileges-to-role-ManageAppointments" author="Bindu">
+        <comment>Add Reset Appointment Status privilege to role Appointments:ManageAppointments </comment>
+        <sql>
+            INSERT IGNORE INTO role_privilege (role, privilege) SELECT * FROM (SELECT 'Clinical-App-Common', 'Get Order Sets') AS tmp WHERE EXISTS ( SELECT role FROM role WHERE role = 'Clinical-App-Common' );
+            INSERT IGNORE INTO role_privilege (role, privilege) SELECT * FROM (SELECT 'Registration-App', 'Delete Visits') AS tmp WHERE EXISTS ( SELECT role FROM role WHERE role = 'Registration-App' );
+        </sql>
+    </changeSet>
+    <changeSet id="gaza-202201271633" author="Bindu">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Reset Appointment Status";
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM role WHERE role = "Appointments:ManageAppointments";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Appointments:ManageAppointments" AND privilege="Reset Appointment Status";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Reset Appointment Status to Appointments:ManageAppointments role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Appointments:ManageAppointments", "Reset Appointment Status");
+        </sql>
+    </changeSet>
     <include file="radiologyUpload.xml"/>
 </databaseChangeLog>
