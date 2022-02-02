@@ -6,7 +6,7 @@ into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.activeTraumaProgram', "select
 identifier,
-concat_ws(' ',coalesce(pn.given_name), coalesce(pn.middle_name), coalesce(pn.family_name)) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC,
+concat(ifnull(GivenNameArabic,''), ' ', ifnull(MiddleNameArabic, ''),' ',ifnull(FamilyNameArabic, '')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ARABIC,
 concat(ifnull(given_name,''), ' ', ifnull(middle_name, ''),' ', ifnull(family_name, '')) as PATIENT_LISTING_QUEUES_PATIENT_NAME_IN_ENGLISH,
 DATE_FORMAT(date_enrolled, '%d %b %Y') as PATIENT_LISTING_QUEUES_DATE_OF_ENROLLMENT,
 name as PATIENT_LISTING_QUEUES_PROGRAM_STATE,
