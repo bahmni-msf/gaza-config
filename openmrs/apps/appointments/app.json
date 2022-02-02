@@ -20,6 +20,9 @@
     "enableCalendarView": true,
     "isServiceOnAppointmentEditable": true,
     "enableResetAppointmentStatuses": ["CheckedIn","Missed","Cancelled","Completed"],
+    "mandatoryAttributes" : [
+      "location"
+    ],
     "colorsForAppointmentService": [
       "#006400",
       "#DC143C",
