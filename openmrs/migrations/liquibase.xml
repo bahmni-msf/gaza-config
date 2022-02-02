@@ -147,5 +147,41 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("Appointments:ManageAppointments", "Reset Appointment Status");
         </sql>
     </changeSet>
+    <changeSet id="gaza-202202021123" author="Bindu">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property='emrapi.sqlSearch.activeTraumaProgram';
+            </sqlCheck>
+        </preConditions>
+        <comment>updating activeTraumaProgram queue</comment>
+        <sql>
+            delete from global_property WHERE property='emrapi.sqlSearch.activeTraumaProgram';
+        </sql>
+        <sqlFile path="programQueues/traumaProgramQueue_v2.sql"/>
+    </changeSet>
+    <changeSet id="gaza-202202021125" author="Bindu">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property='emrapi.sqlSearch.activeBurnProgram';
+            </sqlCheck>
+        </preConditions>
+        <comment>updating activeBurnProgram queue</comment>
+        <sql>
+            delete from global_property WHERE property='emrapi.sqlSearch.activeBurnProgram';
+        </sql>
+        <sqlFile path="programQueues/burnProgramQueue_v2.sql"/>
+    </changeSet>
+    <changeSet id="gaza-202202021127" author="Bindu" >
+        <preConditions onFail="CONTINUE">
+        <sqlCheck expectedResult="1">
+            SELECT count(*) FROM global_property WHERE property='emrapi.sqlSearch.activeProgramQueue';
+        </sqlCheck>
+    </preConditions>
+        <comment>updating program active Programs listing queue</comment>
+        <sql>
+            delete from global_property WHERE property='emrapi.sqlSearch.activeProgramQueue';
+        </sql>
+        <sqlFile path="programQueues/activeProgramsQueue_v2.sql"/>
+    </changeSet>
     <include file="radiologyUpload.xml"/>
 </databaseChangeLog>
