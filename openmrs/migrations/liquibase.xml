@@ -29,6 +29,24 @@
             update global_property set property_value = 'complex_obs' where property = 'obs.complex_obs_dir';
         </sql>
     </changeSet>
+    <changeSet id="Gaza-202202031719" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name="Dismissal" and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dismissal concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dismissal","Dismissal","N/A","Misc",false);
+        </sql>
+    </changeSet>
     <include file="appointment-scheduling/addServices.xml"/>
     <include file="appointment-scheduling/addProviders.xml"/>
     <include file="programs/addTraumaProgram.xml"/>
@@ -128,23 +146,6 @@
         <sql>
             INSERT IGNORE INTO role_privilege (role, privilege) SELECT * FROM (SELECT 'Clinical-App-Common', 'Get Order Sets') AS tmp WHERE EXISTS ( SELECT role FROM role WHERE role = 'Clinical-App-Common' );
             INSERT IGNORE INTO role_privilege (role, privilege) SELECT * FROM (SELECT 'Registration-App', 'Delete Visits') AS tmp WHERE EXISTS ( SELECT role FROM role WHERE role = 'Registration-App' );
-        </sql>
-    </changeSet>
-    <changeSet id="gaza-202201271633" author="Bindu">
-        <preConditions onFail="CONTINUE">
-            <sqlCheck expectedResult="1">
-                SELECT count(*) FROM privilege WHERE privilege = "Reset Appointment Status";
-            </sqlCheck>
-            <sqlCheck expectedResult="1">
-                SELECT count(*) FROM role WHERE role = "Appointments:ManageAppointments";
-            </sqlCheck>
-            <sqlCheck expectedResult="0">
-                SELECT count(*) FROM role_privilege WHERE role = "Appointments:ManageAppointments" AND privilege="Reset Appointment Status";
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Reset Appointment Status to Appointments:ManageAppointments role</comment>
-        <sql>
-            INSERT INTO role_privilege(role, privilege) VALUES ("Appointments:ManageAppointments", "Reset Appointment Status");
         </sql>
     </changeSet>
     <changeSet id="gaza-202202021123" author="Bindu">

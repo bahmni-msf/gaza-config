@@ -152,4 +152,29 @@
             (@program_workflow_id,@Long_term_follow_up_care_concept_id,0,0,1,now(),0,uuid());
         </sql>
     </changeSet>
+    <changeSet id="Gaza-202202031721" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name="Dismissal"
+                AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Burn-outcome') and
+                concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set member for "Burn-outcome" concept</comment>
+        <sql>
+            select concept_id into @Burn_outcome_concept_id from concept_name where name = "Burn-outcome" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Dismissal" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@Burn_outcome_concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
 </databaseChangeLog>

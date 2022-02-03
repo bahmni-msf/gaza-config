@@ -64,7 +64,8 @@
             "IMA, History of surgery",
             "IMA, History of allergy",
             "IMA, Type of drug",
-            "IMA, Allergy details"
+            "IMA, Allergy details",
+            "IMA, Past medical history diagnosis"
           ]
         },
         "expandedViewConfig": {
@@ -75,7 +76,8 @@
             "IMA, History of surgery",
             "IMA, History of allergy",
             "IMA, Type of drug",
-            "IMA, Allergy details"
+            "IMA, Allergy details",
+            "IMA, Past medical history diagnosis"
           ],
           "isEditable": true,
           "showDetailsButton": true,
