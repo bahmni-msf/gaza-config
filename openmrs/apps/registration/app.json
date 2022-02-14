@@ -120,7 +120,7 @@
                 "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,9}", "errorMessage" : "Should not exceed more than 9 characters"},
                 "Amman ID": {"pattern" : "[a-zA-Z0-9\\s]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
                 "Previous MSF ID": {"pattern" : "[a-zA-Z0-9\\s]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
-                "address1": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "address1": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ -]{1,50}$.*$","errorMessage" : "Should contain only 50 characters"},
                 "phoneNumber 1": {"pattern" : "[+]{0,1}[0-9]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
                 "phoneNumber 2":  {"pattern": "[+]{0,1}[0-9]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"},
                 "contactPhoneNumber":  {"pattern": "[+]{0,1}[0-9]{0,10}", "errorMessage" : "Should not exceed 10 characters and should contain only numbers"}
