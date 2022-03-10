@@ -185,4 +185,15 @@
         <sqlFile path="programQueues/activeProgramsQueue_v2.sql"/>
     </changeSet>
     <include file="radiologyUpload.xml"/>
+    <changeSet id="gaza-202210031607" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from global_property gp where property = 'patient.nameValidationRegex';
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating global property to accept hyphen in Names field in registartion page</comment>
+        <sql>
+            update global_property set property_value  = "^[-a-zA-Z'_ ]{1,50}$.*$" where property = 'patient.nameValidationRegex';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
