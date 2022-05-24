@@ -196,4 +196,5 @@
             update global_property set property_value  = "^[-a-zA-Z'_ ]{1,50}$.*$" where property = 'patient.nameValidationRegex';
         </sql>
     </changeSet>
+    <include file="freshdesk/freshdesk_1369.xml"/>
 </databaseChangeLog>

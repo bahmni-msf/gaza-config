@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="gaza-202205231807" author="Supriya,Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from patient_program where patient_id = "0" and patient_program_id = 23624;
+            </sqlCheck>
+        </preConditions>
+        <comment>Enroll the patient 27196 who has observations filled but not enrolled to any program</comment>
+        <sql>
+            SET @uuid = uuid();
+            SET @patient_id = 27196;
+            SET @patient_program_id = 23624;
+            SET @date_enrolled = "2022-04-05 00:00:00";
+            SET @creator_id = 0;
+            SET @program_id = 0;
+            SET @episode_id = 0;
+            SET @date_created = NULL ;
+
+            select user_id into @creator_id from users where username = "superman";
+            select program_id into @program_id from program where name = "Burn";
+            select episode_id into @episode_id from episode_patient_program where patient_program_id = @patient_program_id;
+            select date_created into @date_created from episode where episode_id = @episode_id;
+            update patient_program set patient_id = @patient_id, program_id = @program_id, uuid = @uuid, creator = @creator_id,
+            date_created = @date_created, date_enrolled = @date_enrolled where patient_program_id = @patient_program_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza-202205231820" author="Supriya,Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from patient_program where patient_program_id = 23623;
+            </sqlCheck>
+        </preConditions>
+        <comment>Enroll the patient 27200 who has observations filled but not enrolled to any program</comment>
+        <sql>
+            SET @uuid = uuid();
+            SET @patient_id = 27200;
+            SET @patient_program_id = 23623;
+            SET @date_enrolled = "2022-04-05 00:00:00";
+            SET @creator_id = 0;
+            SET @program_id = 0;
+            SET @episode_id = 0;
+            SET @date_created = NULL ;
+
+            select user_id into @creator_id from users where username = "superman";
+            select program_id into @program_id from program where name = "Burn";
+            select episode_id into @episode_id from episode_patient_program where patient_program_id = @patient_program_id;
+            select date_created into @date_created from episode where episode_id = @episode_id;
+            insert into patient_program(patient_program_id, patient_id, program_id, date_enrolled, creator, date_created, uuid)
+            values(@patient_program_id, @patient_id, @program_id, @date_enrolled, @creator_id, @date_created, @uuid);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
