@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="GAZA_CONFIG_20221114185819193" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name WHERE name = "IMA, Number of passengers"  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Numeric concept for Initial Medical Assessment form</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, Number of passengers","Number of passengers","Numeric","Question",false);
+
+            select concept_id into @concept_id1 from concept_name where name = "IMA, Number of passengers" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            call add_concept_numeric(@concept_id1,NULL,NULL,NULL);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_202211140555112" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM concept_name WHERE name = "IMA, Number of passengers" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Insert description for Number of passengers</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = "IMA, Number of passengers" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            call add_concept_description (@concept_id, "Including patient");
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_2022111418581124" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name WHERE name = "IMA, MH consultation timing"  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Coded concept for Initial Medical Assessment form</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, MH consultation timing","MH consultation timing","Coded","Question",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_202211141858119" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name WHERE name = "MH consultation"  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Child concept for Specialised consultation</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MH consultation","MH consultation","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_202211141110949375" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="8">
+                SELECT count(*) FROM concept_answer ca
+                JOIN
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                WHERE ca.answer_concept IN (SELECT concept_id FROM concept_name WHERE name IN
+                ("Orthopaedic consultation", "Osteomyelitis consultation", "Pain management consultation", "Plastic consultation")
+                and concept_name_type = "FULLY_SPECIFIED")
+                and cn.concept_id IN (SELECT concept_id FROM concept_name WHERE name = "IMA, Specialised consultation");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answer to IMA, Specialised consultation</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = "IMA, Specialised consultation" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child5_concept_id = 0;
+            SELECT concept_id INTO @child5_concept_id FROM concept_name WHERE name ="MH consultation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_20221114055507422" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                SELECT count(*) FROM concept_answer ca
+                JOIN
+                concept_name cn
+                ON ca.concept_id = cn.concept_id
+                WHERE ca.answer_concept IN (SELECT concept_id FROM concept_name WHERE name = "Counselling"
+                and concept_name_type = "FULLY_SPECIFIED")
+                and cn.concept_id IN (SELECT concept_id FROM concept_name WHERE name = "IMA, Prescription");
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete Answer for IMA, Prescription</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = "IMA, Prescription" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ="Counselling" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            DELETE FROM concept_answer WHERE answer_concept=@concept_id1 and concept_id=@concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_202211142061303649" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer ca
+                JOIN
+                concept_name cn
+                ON ca.concept_id = cn.concept_id
+                WHERE ca.answer_concept IN (SELECT concept_id FROM concept_name WHERE name IN
+                ("Urgent", "Non urgent")
+                and concept_name_type = "FULLY_SPECIFIED")
+                and cn.concept_id IN (SELECT concept_id FROM concept_name WHERE name = "IMA, MH consultation timing");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers to IMA, MH consultation timing</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = "IMA, MH consultation timing" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            SELECT concept_id INTO @child1_concept_id FROM concept_name WHERE name ="Urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child2_concept_id FROM concept_name WHERE name ="Non urgent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_2022111418581928" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name WHERE name IN ("IMA, The Physiotherapy frequency", "IMA, The Wound Dressing frequency")  and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Coded concept for Initial Medical Assessment form</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, The Physiotherapy frequency","Physiotherapy frequency","Coded","Question",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IMA, The Wound Dressing frequency","Wound Dressing frequency","Coded","Question",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_202211141858102" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name WHERE name IN ("Daily", "4 times a week", "3 times a week", "2 times a week", "once every 2 weeks", "once every 3 weeks", "once every 6 weeks", "once every 2 months")  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Child concepts for Initial Medical Assessment form</comment>
+            <sql>
+                set @concept_id = 0;
+                set @concept_short_id = 0;
+                set @concept_full_id = 0;
+
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Daily","Daily","N/A","Frequency",false);
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"4 times a week","4 times a week","N/A","Frequency",false);
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3 times a week","3 times a week","N/A","Frequency",false);
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2 times a week","2 times a week","N/A","Frequency",false);
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Once every 2 weeks","Once every 2 weeks","N/A","Frequency",false);
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Once every 3 weeks","Once every 3 weeks","N/A","Frequency",false);
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Once every 6 weeks","Once every 6 weeks","N/A","Frequency",false);
+                call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Once every 2 months","Once every 2 months","N/A","Frequency",false);
+            </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_202211151110951419" author="Shobana">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            SELECT count(*) FROM concept_reference_term
+            WHERE code IN
+            ("1099","160862","1098")
+            and retired = 0
+            and concept_source_id = (
+            SELECT concept_source_id FROM concept_reference_source WHERE name = "CEIL"  and retired =0
+            );
+        </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+            <sql>
+                SELECT concept_source_id INTO @source_id FROM concept_reference_source WHERE name = "CEIL";
+
+                INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1099",@source_id,uuid(),now());
+                INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160862",@source_id,uuid(),now());
+                INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1098",@source_id,uuid(),now());
+
+                call CREATE_REFERENCE_MAPPING_CEIL("Once a month","1098");
+                call CREATE_REFERENCE_MAPPING_CEIL("Once a week","1099");
+                call CREATE_REFERENCE_MAPPING_CEIL("Daily","160862");
+            </sql>
+    </changeSet>
+
+
+    <changeSet id="GAZA_CONFIG_202211142061303152" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer ca
+                JOIN
+                concept_name cn
+                ON ca.concept_id = cn.concept_id
+                WHERE ca.answer_concept IN (SELECT concept_id FROM concept_name WHERE name IN
+                ("Daily", "4 times a week", "3 times a week", "2 times a week", "Once a week", "Once every 2 weeks", "Once every 3 weeks", "Once a month", "Once every 6 weeks", "Once every 2 months")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (SELECT concept_id FROM concept_name WHERE name = "IMA, The Physiotherapy frequency");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers to IMA, The Physiotherapy frequency</comment>
+        <sql>
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "IMA, The Physiotherapy frequency" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            SELECT concept_id INTO @child1_concept_id FROM concept_name WHERE name ="Daily" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child2_concept_id FROM concept_name WHERE name ="4 times a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child3_concept_id FROM concept_name WHERE name ="3 times a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child4_concept_id FROM concept_name WHERE name ="2 times a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child5_concept_id FROM concept_name WHERE name ="Once a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child6_concept_id FROM concept_name WHERE name ="Once every 2 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child7_concept_id FROM concept_name WHERE name ="Once every 3 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child8_concept_id FROM concept_name WHERE name ="Once a month" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child9_concept_id FROM concept_name WHERE name ="Once every 6 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child10_concept_id FROM concept_name WHERE name ="Once every 2 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_202211142061301901" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer ca
+                JOIN
+                concept_name cn
+                ON ca.concept_id = cn.concept_id
+                WHERE ca.answer_concept IN (SELECT concept_id FROM concept_name WHERE name IN
+                ("Daily", "4 times a week", "3 times a week", "2 times a week", "Once a week", "Once every 2 weeks", "Once every 3 weeks", "Once a month", "Once every 6 weeks", "Once every 2 months")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (SELECT concept_id FROM concept_name WHERE name = "IMA, The Wound dressing frequency");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers to IMA, The Wound dressing frequency</comment>
+        <sql>
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "IMA, The Wound dressing frequency" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            SELECT concept_id INTO @child1_concept_id FROM concept_name WHERE name ="Daily" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child2_concept_id FROM concept_name WHERE name ="4 times a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child3_concept_id FROM concept_name WHERE name ="3 times a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child4_concept_id FROM concept_name WHERE name ="2 times a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child5_concept_id FROM concept_name WHERE name ="Once a week" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child6_concept_id FROM concept_name WHERE name ="Once every 2 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child7_concept_id FROM concept_name WHERE name ="Once every 3 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child8_concept_id FROM concept_name WHERE name ="Once a month" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child9_concept_id FROM concept_name WHERE name ="Once every 6 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            SELECT concept_id INTO @child10_concept_id FROM concept_name WHERE name ="Once every 2 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
