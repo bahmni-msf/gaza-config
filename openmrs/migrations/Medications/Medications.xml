@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<changeSet id="Gaza_CONFIG_20221115110901631" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="5">
+                SELECT count(*) from concept_name where name IN ("µg", "application(s)", "capsule(s)", "dose", "gram", "IU", "mg", "ml", "mmol", "puff(s)", "tablet(s)")  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Create dosing units</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"µg","µg","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"application(s)","application(s)","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"dose","dose","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"gram","gram","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"mmol","mmol","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"puff(s)","puff(s)","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20221115110901632" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="4">
+                SELECT count(*) FROM concept_set WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("tablet(s)", "capsule(s)")) 
+                AND concept_set = (SELECT concept_id FROM concept_name WHERE name = "Dosing Units" AND concept_name_type ="FULLY_SPECIFIED" );
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete dosing units capsule(s) and tablet(s)</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = "capsule(s)" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = "tablet(s)" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @parent_concept_id FROM concept_name WHERE name = "Dosing Units" AND concept_name_type ="FULLY_SPECIFIED";
+            delete from concept_set where concept_id=@concept_id1 and concept_set= @parent_concept_id;
+            delete from concept_set where concept_id=@concept_id2 and concept_set= @parent_concept_id;
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20221115110901633" author="Kiruthiga" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="3">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("g", "application(s)", "capsule(s)", "dose", "gram", "IU", "mg", "ml", "mmol", "puff(s)", "tablet(s)")  
+                AND concept_name_type ="FULLY_SPECIFIED") 
+                AND concept_set =(SELECT concept_id  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add to dosing units </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'µg' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'application(s)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'capsule(s)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'dose' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'gram' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'mmol' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id7 FROM concept_name WHERE name = 'puff(s)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id8 FROM concept_name WHERE name = 'tablet(s)' AND concept_name_type="FULLY_SPECIFIED";
+
+            call add_concept_set_members(@concept_set, @concept_id1, 1);
+            call add_concept_set_members(@concept_set, @concept_id2, 2);
+            call add_concept_set_members(@concept_set, @concept_id3, 3);
+            call add_concept_set_members(@concept_set, @concept_id4, 4);
+            call add_concept_set_members(@concept_set, @concept_id5, 5);
+            call add_concept_set_members(@concept_set, @concept_id6, 6);
+            call add_concept_set_members(@concept_set, @concept_id7, 7);
+            call add_concept_set_members(@concept_set, @concept_id8, 8);
+        </sql>
+    </changeSet>
+
+     <changeSet id="Gaza_CONFIG_20221115110901634" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM drug WHERE name IN ("ABC 600mg / 3TC 300mg, tab.", "ACETYLSALICYLIC acid (aspirin), 300 mg, tab.", "ALUMINIUM hydroxide 400mg/ MAGNESIUM hydrox. 400mg,chew.tab.", "AMIODARONE hydrochloride, 200mg, tab.", "AMITRIPTYLINE hydrochloride, 25 mg, tab.", "AMITRIPTYLINE, 10 MG, TAB", "AMOXICILLIN 200mg/ CLAVULANIC acid, 28.5mg, disp. tab.", "AMOXICILLIN 875mg / CLAVULANIC acid 125mg, tab. (antibiotic)", "AMOXICILLIN, 500 mg, caps. (antibiotic)", "AMOXICILLIN, 500mg, tab.", "ASCORBIC acid (vitamin C), 250mg, chewable tab.", "ASCORBIC acid (vitamin C), 500mg, tab.", "ATOVAQUONE 250mg / PROGUANIL HCl 100mg, tab., >40 kg", "AZITHROMYCIN, 500 mg, tab (antibiotic)", "AZT 300 mg / 3TC 150 mg, tab.", "BISACODYL, 5 mg, tab.", "CALCIUM carbonate, eq. 500mg Ca, chewable tab.", "CEFALEXIN, 500 mg, caps. (antibiotic)", "CHLORPHENIRAMINE maleate, 2mg/5ml, oral sol., 100 ml, bot.", "CIPROFLOXACIN hydrochloride, eq. 500 mg base, tab. (antibiotic)", "CIPROFLOXACIN HYDROCHLORIDE, eq. 750mg base, tab", "CIPROFLOXACIN, 250mg/5ml, gran.+ solvent oral susp", 
+                "CLINDAMYCIN hydrochloride, eq. 150mg base, caps. (antibiotic)", "CLINDAMYCIN hydrochloride, eq. 300mg base, caps. (antibiotic)", "CLOXACILLIN sodium, eq. 500 mg base, caps.", "COLECALCIFEROL (vit.D3) 10,000 IU/ml, sol., 10 ml, bot.", "COTRIMOXAZOLE, 400 mg / 80 mg, tab.", "COTRIMOXAZOLE, 800 mg / 160 mg, tab. (antibiotic)", "DIAZEPAM, 5 mg, tab.", "diclofenac sodium, 100mg, sustained release tab", "DOXYCYCLINE salt, eq. 100 mg base, tab. (antibiotic)", "FERROUS salt, eq. +/- 65 mg iron, tab.", "FERROUS salt, eq. iron 45mg/5ml, syrup, 300ml, bot.", "FLUCONAZOLE, 200mg, caps.", "FLUCONAZOLE, 50mg, caps.", "FLUOXETINE hydrochloride, eq. 20 mg base, caps.", "FOLIC acid, 5 mg, tab.", "FOSFOMYCIN trometamol, eq. 3g base, sachet", "GABAPENTIN, 300 mg, caps. (controlled)", "HYDROCHLOROTHIAZIDE, 25 mg, tab.", "HYOSCINE BUTYLBROMIDE (scopolamine butylbromide), 10 mg, tab", "IBUPROFEN, 100mg/5ml, oral susp., 150 ml, bot.", "IBUPROFEN, 100mg/5ml, oral susp., 200ml, bot.", "IBUPROFEN, 200 mg, tab.", "IBUPROFEN, 400 mg, tab.", "ISOFLURANE, liquid, 250 ml, bot.", 
+                "ISOSORBIDE DINITRATE, 5 mg, sublingual tab.", "LACTULOSE,  min. 3.1g/5ml, oral sol., bot.", "LEVONORGESTREL, 1.5 mg, tab.", "LINEZOLID, 600mg, breakable tab., blister", "LOPERAMIDE hydrochloride, 2 mg, caps.", "LOPERAMIDE hydrochloride, 2 mg, tab.", "LORATADINE, 10mg, tab.", "LORATADINE, 5mg/5ml, oral sol., 100ml, bot.", "LORAZEPAM, 1MG, TAB.", "LPV 200 mg / r 50 mg, tab.", "METOCLOPRAMIDE hydrochloride anhydrous, 10 mg, tab.", "METRONIDAZOLE benzoate,eq.200mg/5ml base,oral susp,100-120ml", "METRONIDAZOLE, 250 mg, tab. (antibiotic)", "METRONIDAZOLE, 500 mg, tab. (antibiotic)", "MINOCYCLINE, 100MG, CAPS.", "MISOPROSTOL, 200 µg, tab.", "MORPHINE sulfate, 10 mg, immediate release breakable tab.", "MORPHINE sulfate, 10mg, prolonged-release caps.", "MORPHINE sulfate, 10mg/5ml, oral sol., 100ml, bot.", "MORPHINE sulfate, 30 mg, prolonged-release caps.", "MULTIVITAMINS, tab.", "NYSTATIN, 100,000 IU/ml, oral susp. + graduated dropper", "OMEPRAZOLE, 20 mg, gastro-resistant caps.", "ONDANSETRON hydrochloride, eq. 8 mg base, tab.", 
+                "ORAL REHYDRATION SALTS (ORS) low osmol., sachet 20.5 g/1l", "OXYCODONE hydrochloride 5mg / PARACETAMOL 325mg, tab. (controlled)", "PARACETAMOL (acetaminophen), 100 mg, tab.", "PARACETAMOL (acetaminophen), 120mg/5ml,oral susp.,100ml bot.", "PARACETAMOL (acetaminophen), 500 mg, tab.", "PARACETAMOL 250 MG/5ML SUSP, 100 ML BOTTLE", "PREDNISOLONE 20 mg, orodisp. tablet", "PREDNISOLONE, 5 mg, tab.", "PROMETHAZINE hydrochloride, eq. 25mg base, tab.", "PROMETHAZINE, 5MG/5ML, ORAL SOLUTION, 100ML, BOT", "QUETIAPINE, 100MG, TAB.", "QUETIAPINE, 25MG, TAB.", "RACECADOTRIL, 100 mg, caps.", "RETINOL (vitamin A), stabil., 200,000 IU, soft gelat. caps.", "RIFAMPICIN (R), 300 mg, caps. blister (antibiotic)", "RISPERIDONE, 1 mg, tab.", "RISPERIDONE, 2mg, tab.", "SALBUTAMOL sulfate, eq.0.1mg base/puff, 200 puffs, aerosol", "SALBUTAMOL, SOL. FOR NEBULIZER, 5MG/ML, 20ML", "SALBUTAMOL, solution for nebulizer, 2mg/ml, 2.5ml monodose", "SERTRALINE hydrochloride, eq. 100mg base, tab.", "SERTRALINE hydrochloride, eq. 50mg base, tab.", "SEVOFLURANE, liquid for inhalation, 250 ml, bot.", 
+                "SPIRONOLACTONE, 25 mg, tab.", "TDF 300mg / 3TC 300mg / DTG 50mg, tab., for PEP", "THIAMINE hydrochloride (vitamin B1), 50mg, tab.", "TRAMADOL hydrochloride, 100mg/ml/40 drops, 10 ml, bot.", "TRAMADOL hydrochloride, 50 mg, caps.", "VALPROATE SODIUM, 500mg, gastro-resistant tab.", "VENLAFAXINE HYDROCHLORIDE, EQ. 150MG BASE, PROL.RELEASE TAB.", "VENLAFAXINE HYDROCHLORIDE, EQ. 75 MG BASE, PROL.RELEASE TAB.", "ZINC sulfate, eq. to 20 mg zinc mineral, dispersible tab.", "AMIKACIN sulfate, eq. 250 mg/ml base, 2ml, amp. (antibiotic)", "AMIODARONE hydrochloride, 50 mg/ml, 3 ml, amp.", "AMOXICILLIN 1g / CLAVULANIC acid 200 mg, powder (antibiotic)", "AMPICILLIN, 1g, powder, vial (antibiotic)", "ATRACURIUM besilate, 10 mg/ml, 2.5 ml, amp.", "ATROPINE sulfate, 1 mg/ml, 1 ml, amp.", "BUPIVACAINE HCl, hyperbaric/spinal, eq.5mg/ml base, 4ml, amp", "CALCIUM GLUCONATE, 100 mg/ml, 10 ml, amp.", "CEFAZOLIN, 1 g, (IV), powder, vial (antibiotic)", "CEFEPIME, 1g, powder, IV IM", "CEFEPIME, 2g, powder, iv im", "CEFTAZIDIME, 1 g, powder, vial (antibiotic)", "CEFTRIAXONE sodium, eq. 1 g base, powder, vial (antibiotic)", 
+                "CLINDAMYCIN phosphate, eq. 150mg base/ml, 2 ml, amp.", "CLONIDINE, 0.15 mg/ml, 1ml, amp.", "CLOXACILLIN sodium, eq. 500 mg base, powder, vial IV (antibiotic)", "COLISTIMETHATE sodium, 1 M IU, powder, vial (antibiotic)", "DEXAMETHASONE phosphate, 4 mg/ml, 1 ml, amp.", "DIAZEPAM, 5 mg/ml, 2 ml, amp. (controlled)", "DICLOFENAC 75mg/3ml + LIDOCAINE 8mg/3ml, 3ml, amp.", "DICLOFENAC sodium, 25mg/ml, 3ml, amp.", "ENOXAPARIN sodium, 2,000IU/0.2 ml, syringe", "ENOXAPARIN sodium, 4,000IU/0.4 ml, syringe", "EPHEDRINE hydrochloride, 30 mg/ml, 1 ml, amp.", "EPHEDRINE, 50 mg/ml, 1 ml, amp.", "EPINEPHRINE (adrenaline) tartrate,eq.1 mg/ml base,1ml amp IV", "FENTANYL citrate, eq. 0.05 mg/ml base, 2ml, amp. (controlled)", "FLUMAZENIL, 0.1mg/ml, 10 ml, amp.", "FUROSEMIDE, 10 mg/ml, 2 ml, amp.", "GENTAMICIN sulfate, eq. 40 mg/ml base, 2 ml, amp. (antibiotic)", "GLUCOSE hypertonic, 50%, 50 ml, vial", "GLYCOPYRRONIUM bromide, 0.2mg/ml, 1ml, amp.", "HEPARIN SODIUM, 5 000 IU/ml, 5 ml, vial", "HYDRALAZINE hydrochloride, 20 mg, powder, amp.", "HYDROCORTISONE sodium succinate, eq.100mg base, powder, vial", "HYOSCINE BUTYLBROMIDE, 10mg/ml, 2ml , amp.", 
+                "INSULIN HUMAN, ACTRAPID 100 IU/ml, 10 ml, vial (cold chain)", "KETAMINE HYDROCHLORIDE, EQ. 50MG/ML BASE, 10ML, VIAL", "KETAMINE HYDROCHLORIDE, EQ. 50MG/ML BASE, 5ML, AMP.", "LABETALOL hydrochloride, 5 mg/ml, 20 ml amp.", "LEVOBUPIVACAINE hydrochloride eq. 5 mg/ml base,10 ml, amp", "LIDOCAINE hydrochloride, 1%, preservative-free, 10 ml, plastic amp.", "LIPID emulsion, 20%, 250 ml, flex. bag, PVC free", "LIPID emulsion, 20%, 500ml, flex. bag/bottle, PVC free", "MAGNESIUM sulfate, 0.5 g/ml, 10 ml, amp.", "MEROPENEM, 1 g, powder, vial (antibiotic)", "METHYLPREDNISOLONE, 40MG/ML, 1ML, VIAL", "METOCLOPRAMIDE hydrochloride, 5 mg/ml, 2 ml, amp.", "METRONIDAZOLE, 5mg/ml, 100ml, bag/bottle PVC free", "MIDAZOLAM, 1 mg / ml, 5 ml, amp", "MORPHINE hydrochloride, 10 mg/ml, 1 ml, amp.", "NADROPARIN calcium, 3800 IU / 0.4ml, syringe", "NALOXONE hydrochloride, 0.4 mg/ml, 1 ml, amp.", "NEOSTIGMINE methylsulfate, 1mg/ml, 5ml, amp.", "NEOSTIGMINE methylsulfate, 2.5 mg/ml, 1 ml, amp.", "NICARDIPINE hydrochloride, 1mg / ml, 10 ml, amp.", "NOREPINEPHRINE (noradrenaline) tartrate, eq.1mg/ml base, 4ml", "OMEPRAZOLE sodium, eq. 40 mg base, powder, vial, fr infusion", 
+                "ONDANSETRON hydrochloride, eq. 2mg/ml base, 2 ml, amp.", "ONDANSETRON hydrochloride, eq. 2mg/ml base, 4ml, amp.", "PANTOPRAZOLE sodium, eq. 40 mg base, powder, vial, fr infusion", "PARACETAMOL (acetaminophen), 10 mg/ml, 100 ml, bot.", "PHENYLEPHRINE hydrochloride, 10mg/ml , 1ml, amp.", "PIPERACILLIN 4 g / TAZOBACTAM 500 mg, powder, vial for inf. (antibiotic)", "POTASSIUM chloride, 100 mg/ml, 10 ml, amp.", "POTASSIUM chloride, 2mmol/ml (15%), 10ml, amp.", "PROMETHAZINE hydrochloride, eq. 25 mg/ml base, 2 ml, amp.", "PROPOFOL, 10 mg/ml, 20 ml, emulsion, amp. (controlled)", "PROTAMINE sulfate, 10 mg/ml, 5 ml, amp.", "ROPIVACAINE hydrochloride, 10mg/ml, 10ml, amp.", "SODIUM BICARBONATE, 8.4%, 1mEq/ml, 10ml, amp.", "SUXAMETHONIUM chloride, 50 mg/ml, 2 ml, amp. (cold chain)", "TEICOPLANIN, 200 mg, powder, vial + solvent", "TEICOPLANIN, 200mg, powder, vial", "THIAMINE (vitamin B1), 50mg/ml, 2ml, amp.", "TIGECYCLINE, 50 mg, powder, vial (antibiotic)", "TRAMADOL hydrochloride, 50 mg/ml, 2 ml, amp. (controlled)", "TRANEXAMIC ACID, 100 mg/ml, 5 ml amp.", "TRIAMCINOLONE acetonide, 40mg/ml, 1ml, amp.", "VANCOMYCIN hydrochloride, eq. 1 g base, powder, vial (antibiotic)", 
+                "VANCOMYCIN hydrochloride, eq. 500 mg base, powder, vial (antibiotic)", "WATER for injection, 10 ml, plastic amp.", "DEXTROSE (GLUCOSE), 10%, 500 ml, flex. bag, PVC free", "DEXTROSE (GLUCOSE), 5%, 500 ml, flex. bag, PVC free", "RINGER lactate, 500 ml, flex. bag, PVC free", "RINGER lactate, 500 ml, semi-rigid bot., PVC free", "SODIUM chloride, 0.9%, 1 l, flex. bag, PVC free", "SODIUM chloride, 0.9%, 1 l, semi-rigid bot., PVC free", "SODIUM chloride, 0.9%, 100 ml, flex. bag, PVC free", "SODIUM chloride, 0.9%, 250ml, flex. bag, PVC free", "SODIUM chloride, 0.9%, 500 ml, semi-rigid bot., PVC free", "SODIUM chloride, 0.9%, 500ml, flex. bag, PVC free", "VACCINE HEPATITIS A, 1 dose, adult, monodose, syringe", "VACCINE INFLUENZA QUADRIVAL. NH 2022, 1 DOSE 0.5ML, SYRINGE", "CIPROFLOXACIN, 0.3%, ear/eye drops, sterile, bot.", "CLOTRIMAZOLE, 500 mg, vaginal tab. + applicator", "COLD CREAM , 100 ml tube cream", "DICLOFENAC 1% gel, 50 g, tube", "FUSIDIC ACID, 2% cream, 30 g, tube (antibiotic)", "FUSIDIC ACID, 2%, cream, 15g, tube", "HYDROCORTISONE (ACETATE OR BASE), 1%, cream, 15 g, tube", "HYDROCORTISONE (acetate or base), 1%, ointment, 15 g, tube", "HYDROGEN PEROXIDE, 3%, sol., 250 ml, bot.", 
+                "JOHNSON'S BABY OIL, 100 ml, oil bottle", "LIDOCAINE, 10% (10mg/dose), spray, 50 ml, bot.", "LIDOCAINE, 2%, jelly, sterile, 30 g, tube", "MAFENIDE acetate, cream, 453.6g, jar", "MICONAZOLE nitrate, 2%, cream, 30 g, tube", "POLYVIDONE IODINE, 10%, gel, 30 g, tube", "POVIDONE IODINE 10%, ointment, 50 g, tube", "SILVER NITRATE 75% / POTASSIUM NITRATE 25%, APPLICATOR STICKS", "SULFADIAZINE SILVER, 1%, cream, sterile, 50 g, tube", "SUN BLOCK SPF50, CREAM, 50ML, TUBE", "ZINC OXIDE, 10%, ointment, 100g, tube", "TETRACYCLINE hydrochloride, 1%, eye ointment, ster, 5g, tube" );
+            </sqlCheck>
+        </preConditions>
+        <comment>Add new drugs</comment>
+        <sql>
+            set @locale = "en";
+            # Add new drug (drug_name, drug_strength, dosage_form_name, locale)
+            CALL add_new_drug("ABC 600mg / 3TC 300mg, tab.", "600 mg + 300 mg", "Tablet", @locale);
+            CALL add_new_drug("ACETYLSALICYLIC acid (aspirin), 300 mg, tab.", "300 mg", "Tablet", @locale);
+            CALL add_new_drug("ALUMINIUM hydroxide 400mg/ MAGNESIUM hydrox. 400mg,chew.tab.", "400 mg + 400 mg", "Chewable tablet ", @locale);
+            CALL add_new_drug("AMIODARONE hydrochloride, 200mg, tab.", "200 mg", "Tablet", @locale);
+            CALL add_new_drug("AMITRIPTYLINE hydrochloride, 25 mg, tab.", "25 mg", "Tablet", @locale);
+            CALL add_new_drug("AMITRIPTYLINE, 10 MG, TAB", "10 mg", "Tablet", @locale);
+            CALL add_new_drug("AMOXICILLIN 200mg/ CLAVULANIC acid, 28.5mg, disp. tab.", "200 mg +  28.5 mg", "Tablet", @locale);
+            CALL add_new_drug("AMOXICILLIN 875mg / CLAVULANIC acid 125mg, tab. (antibiotic)", "875 mg + 125 mg", "Tablet", @locale);
+            CALL add_new_drug("AMOXICILLIN, 500 mg, caps. (antibiotic)", "500 mg", "Capsule", @locale);
+            CALL add_new_drug("AMOXICILLIN, 500mg, tab.", "500 mg", "Tablet", @locale);
+            CALL add_new_drug("ASCORBIC acid (vitamin C), 250mg, chewable tab.", "250 mg", "Chewable tablet ", @locale);
+            CALL add_new_drug("ASCORBIC acid (vitamin C), 500mg, tab.", "500 mg", "Tablet", @locale);
+            CALL add_new_drug("ATOVAQUONE 250mg / PROGUANIL HCl 100mg, tab., >40 kg", "250 mg + 100 mg", "Tablet", @locale);
+            CALL add_new_drug("AZITHROMYCIN, 500 mg, tab (antibiotic)", "500 mg", "Tablet", @locale);
+            CALL add_new_drug("AZT 300 mg / 3TC 150 mg, tab.", "300 mg + 150 mg", "Tablet", @locale);
+            CALL add_new_drug("BISACODYL, 5 mg, tab.", "5 mg", "Tablet", @locale);
+            CALL add_new_drug("CALCIUM carbonate, eq. 500mg Ca, chewable tab.", "eq. 500 mg ", "Chewable tablet ", @locale);
+            CALL add_new_drug("CEFALEXIN, 500 mg, caps. (antibiotic)", "500 mg", "Capsule", @locale);
+            CALL add_new_drug("CHLORPHENIRAMINE maleate, 2mg/5ml, oral sol., 100 ml, bot.", "2 mg/5ml", "Oral solution", @locale);
+            CALL add_new_drug("CIPROFLOXACIN hydrochloride, eq. 500 mg base, tab. (antibiotic)", "eq. 500 mg base", "Tablet", @locale);
+            CALL add_new_drug("CIPROFLOXACIN HYDROCHLORIDE, eq. 750mg base, tab", "eq. 750mg base", "Tablet", @locale);
+            CALL add_new_drug("CIPROFLOXACIN, 250mg/5ml, gran.+ solvent oral susp", "250 mg/5ml", "Oral suspension", @locale);
+            CALL add_new_drug("CLINDAMYCIN hydrochloride, eq. 150mg base, caps. (antibiotic)", "eq. 150mg base", "Capsule", @locale);
+            CALL add_new_drug("CLINDAMYCIN hydrochloride, eq. 300mg base, caps. (antibiotic)", "eq. 300mg base", "Capsule", @locale);
+            CALL add_new_drug("CLOXACILLIN sodium, eq. 500 mg base, caps.", "eq. 500 mg base", "Capsule", @locale);
+            CALL add_new_drug("COLECALCIFEROL (vit.D3) 10,000 IU/ml, sol., 10 ml, bot.", "10000 IU/ml, 10ml", "Oral solution", @locale);
+            CALL add_new_drug("COTRIMOXAZOLE, 400 mg / 80 mg, tab.", "400 mg / 80 mg", "Tablet", @locale);
+            CALL add_new_drug("COTRIMOXAZOLE, 800 mg / 160 mg, tab. (antibiotic)", "800 mg /160 mg", "Tablet", @locale);
+            CALL add_new_drug("DIAZEPAM, 5 mg, tab.", "5 mg", "Tablet", @locale);
+            CALL add_new_drug("diclofenac sodium, 100mg, sustained release tab", "100 mg", "Tablet", @locale);
+            CALL add_new_drug("DOXYCYCLINE salt, eq. 100 mg base, tab. (antibiotic)", "eq. 100 mg base", "Tablet", @locale);
+            CALL add_new_drug("FERROUS salt, eq. +/- 65 mg iron, tab.", "eq. +/- 65 mg ", "Tablet", @locale);
+            CALL add_new_drug("FERROUS salt, eq. iron 45mg/5ml, syrup, 300ml, bot.", "eq. 45mg/5ml", "Oral solution", @locale);
+            CALL add_new_drug("FLUCONAZOLE, 200mg, caps.", "200 mg", "Capsule", @locale);
+            CALL add_new_drug("FLUCONAZOLE, 50mg, caps.", "50 mg", "Capsule", @locale);
+            CALL add_new_drug("FLUOXETINE hydrochloride, eq. 20 mg base, caps.", "eq. 20 mg base", "Capsule", @locale);
+            CALL add_new_drug("FOLIC acid, 5 mg, tab.", "5 mg", "Tablet", @locale);
+            CALL add_new_drug("FOSFOMYCIN trometamol, eq. 3g base, sachet", "eq. 3g base", "Powder", @locale);
+            CALL add_new_drug("GABAPENTIN, 300 mg, caps. (controlled)", "300 mg", "Capsule", @locale);
+            CALL add_new_drug("HYDROCHLOROTHIAZIDE, 25 mg, tab.", "25 mg", "Tablet", @locale);
+            CALL add_new_drug("HYOSCINE BUTYLBROMIDE (scopolamine butylbromide), 10 mg, tab", "10 mg", "Tablet", @locale);
+            CALL add_new_drug("IBUPROFEN, 100mg/5ml, oral susp., 150 ml, bot.", "100 mg/5ml", "Oral suspension", @locale);
+            CALL add_new_drug("IBUPROFEN, 100mg/5ml, oral susp., 200ml, bot.", "100 mg/5ml", "Oral suspension", @locale);
+            CALL add_new_drug("IBUPROFEN, 200 mg, tab.", "200 mg", "Tablet", @locale);
+            CALL add_new_drug("IBUPROFEN, 400 mg, tab.", "400 mg", "Tablet", @locale);
+            CALL add_new_drug("ISOFLURANE, liquid, 250 ml, bot.", "", "Solution", @locale);
+            CALL add_new_drug("ISOSORBIDE DINITRATE, 5 mg, sublingual tab.", "5 mg", "Sublingual tab", @locale);
+            CALL add_new_drug("LACTULOSE,  min. 3.1g/5ml, oral sol., bot.", "min. 3.1 g/5ml", "Oral solution", @locale);
+            CALL add_new_drug("LEVONORGESTREL, 1.5 mg, tab.", "1.5 mg", "Tablet", @locale);
+            CALL add_new_drug("LINEZOLID, 600mg, breakable tab., blister", "600 mg", "Tablet", @locale);
+            CALL add_new_drug("LOPERAMIDE hydrochloride, 2 mg, caps.", "2 mg", "Capsule", @locale);
+            CALL add_new_drug("LOPERAMIDE hydrochloride, 2 mg, tab.", "2 mg", "Tablet", @locale);
+            CALL add_new_drug("LORATADINE, 10mg, tab.", "10 mg", "Tablet", @locale);
+            CALL add_new_drug("LORATADINE, 5mg/5ml, oral sol., 100ml, bot.", "5 mg/5ml", "Oral solution", @locale);
+            CALL add_new_drug("LORAZEPAM, 1MG, TAB.", "1 mg", "Tablet", @locale);
+            CALL add_new_drug("LPV 200 mg / r 50 mg, tab.", "200 mg + 50 mg", "Tablet", @locale);
+            CALL add_new_drug("METOCLOPRAMIDE hydrochloride anhydrous, 10 mg, tab.", "10 mg", "Tablet", @locale);
+            CALL add_new_drug("METRONIDAZOLE benzoate,eq.200mg/5ml base,oral susp,100-120ml", "eq. 200 mg/5ml base", "Oral suspension", @locale);
+            CALL add_new_drug("METRONIDAZOLE, 250 mg, tab. (antibiotic)", "250 mg", "Tablet", @locale);
+            CALL add_new_drug("METRONIDAZOLE, 500 mg, tab. (antibiotic)", "500 mg", "Tablet", @locale);
+            CALL add_new_drug("MINOCYCLINE, 100MG, CAPS.", "100 mg", "Capsule", @locale);
+            CALL add_new_drug("MISOPROSTOL, 200 µg, tab.", "200 µg", "Tablet", @locale);
+            CALL add_new_drug("MORPHINE sulfate, 10 mg, immediate release breakable tab.", "10 mg", "Tablet", @locale);
+            CALL add_new_drug("MORPHINE sulfate, 10mg, prolonged-release caps.", "10 mg", "Capsule", @locale);
+            CALL add_new_drug("MORPHINE sulfate, 10mg/5ml, oral sol., 100ml, bot.", "10 mg/5ml", "Oral solution", @locale);
+            CALL add_new_drug("MORPHINE sulfate, 30 mg, prolonged-release caps.", "30 mg", "Capsule", @locale);
+            CALL add_new_drug("MULTIVITAMINS, tab.", "", "Tablet", @locale);
+            CALL add_new_drug("NYSTATIN, 100,000 IU/ml, oral susp. + graduated dropper", "100000 IU/ml", "Oral suspension", @locale);
+            CALL add_new_drug("OMEPRAZOLE, 20 mg, gastro-resistant caps.", "20 mg", "Capsule", @locale);
+            CALL add_new_drug("ONDANSETRON hydrochloride, eq. 8 mg base, tab.", "eq. 8 mg base", "Tablet", @locale);
+            CALL add_new_drug("ORAL REHYDRATION SALTS (ORS) low osmol., sachet 20.5 g/1l", "20.5 g/1l", "Powder", @locale);
+            CALL add_new_drug("OXYCODONE hydrochloride 5mg / PARACETAMOL 325mg, tab. (controlled)", "5 mg + 325 mg", "Tablet", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen), 100 mg, tab.", "100 mg", "Tablet", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen), 120mg/5ml,oral susp.,100ml bot.", "20 mg/5ml", "Oral suspension", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen), 500 mg, tab.", "500 mg", "Tablet", @locale);
+            CALL add_new_drug("PARACETAMOL 250 MG/5ML SUSP, 100 ML BOTTLE", "25 mg/5ml", "Oral suspension", @locale);
+            CALL add_new_drug("PREDNISOLONE 20 mg, orodisp. tablet", "20 mg", "Tablet", @locale);
+            CALL add_new_drug("PREDNISOLONE, 5 mg, tab.", "5 mg", "Tablet", @locale);
+            CALL add_new_drug("PROMETHAZINE hydrochloride, eq. 25mg base, tab.", "eq. 25mg base", "Tablet", @locale);
+            CALL add_new_drug("PROMETHAZINE, 5MG/5ML, ORAL SOLUTION, 100ML, BOT", "5 mg/5ml", "Oral solution", @locale);
+            CALL add_new_drug("QUETIAPINE, 100MG, TAB.", "100 mg", "Tablet", @locale);
+            CALL add_new_drug("QUETIAPINE, 25MG, TAB.", "25 mg", "Tablet", @locale);
+            CALL add_new_drug("RACECADOTRIL, 100 mg, caps.", "100 mg", "Capsule", @locale);
+            CALL add_new_drug("RETINOL (vitamin A), stabil., 200,000 IU, soft gelat. caps.", "200000 IU", "Capsule", @locale);
+            CALL add_new_drug("RIFAMPICIN (R), 300 mg, caps. blister (antibiotic)", "300 mg", "Capsule", @locale);
+            CALL add_new_drug("RISPERIDONE, 1 mg, tab.", "1 mg", "Tablet", @locale);
+            CALL add_new_drug("RISPERIDONE, 2mg, tab.", "2 mg", "Tablet", @locale);
+            CALL add_new_drug("SALBUTAMOL sulfate, eq.0.1mg base/puff, 200 puffs, aerosol", "eq. 0.1 mg base/puff", "Aerosol", @locale);
+            CALL add_new_drug("SALBUTAMOL, SOL. FOR NEBULIZER, 5MG/ML, 20ML", "5 mg/ml", "Solution", @locale);
+            CALL add_new_drug("SALBUTAMOL, solution for nebulizer, 2mg/ml, 2.5ml monodose", "2 mg/ml, 2.5ml", "Solution", @locale);
+            CALL add_new_drug("SERTRALINE hydrochloride, eq. 100mg base, tab.", "eq. 100mg base", "Tablet", @locale);
+            CALL add_new_drug("SERTRALINE hydrochloride, eq. 50mg base, tab.", "eq. 50 mg base", "Tablet", @locale);
+            CALL add_new_drug("SEVOFLURANE, liquid for inhalation, 250 ml, bot.", "", "Solution", @locale);
+            CALL add_new_drug("SPIRONOLACTONE, 25 mg, tab.", "25 mg", "Tablet", @locale);
+            CALL add_new_drug("TDF 300mg / 3TC 300mg / DTG 50mg, tab., for PEP", "300 mg + 300mg + 50mg", "Tablet", @locale);
+            CALL add_new_drug("THIAMINE hydrochloride (vitamin B1), 50mg, tab.", "50 mg", "Tablet", @locale);
+            CALL add_new_drug("TRAMADOL hydrochloride, 100mg/ml/40 drops, 10 ml, bot.", "100 mg/ml/40 drops", "Oral drops", @locale);
+            CALL add_new_drug("TRAMADOL hydrochloride, 50 mg, caps.", "50 mg", "Capsule", @locale);
+            CALL add_new_drug("VALPROATE SODIUM, 500mg, gastro-resistant tab.", "500 mg", "Tablet", @locale);
+            CALL add_new_drug("VENLAFAXINE HYDROCHLORIDE, EQ. 150MG BASE, PROL.RELEASE TAB.", "eq. 150mg BASE", "Tablet", @locale);
+            CALL add_new_drug("VENLAFAXINE HYDROCHLORIDE, EQ. 75 MG BASE, PROL.RELEASE TAB.", "eq. 75 mg BASE", "Tablet", @locale);
+            CALL add_new_drug("ZINC sulfate, eq. to 20 mg zinc mineral, dispersible tab.", "eq. to 20 mg ", "Tablet", @locale);
+            CALL add_new_drug("AMIKACIN sulfate, eq. 250 mg/ml base, 2ml, amp. (antibiotic)", "eq. 250 mg/ml base, 2ml", "Injection", @locale);
+            CALL add_new_drug("AMIODARONE hydrochloride, 50 mg/ml, 3 ml, amp.", "50 mg/ml, 3ml", "Injection", @locale);
+            CALL add_new_drug("AMOXICILLIN 1g / CLAVULANIC acid 200 mg, powder (antibiotic)", "1 g + 200 mg", "Injection", @locale);
+            CALL add_new_drug("AMPICILLIN, 1g, powder, vial (antibiotic)", "1 g", "Injection", @locale);
+            CALL add_new_drug("ATRACURIUM besilate, 10 mg/ml, 2.5 ml, amp.", "10 mg/ml, 2.5ml", "Injection", @locale);
+            CALL add_new_drug("ATROPINE sulfate, 1 mg/ml, 1 ml, amp.", "1 mg/ml,1ml", "Injection", @locale);
+            CALL add_new_drug("BUPIVACAINE HCl, hyperbaric/spinal, eq.5mg/ml base, 4ml, amp", "eq. 5 mg/ml base, 4ml", "Injection", @locale);
+            CALL add_new_drug("CALCIUM GLUCONATE, 100 mg/ml, 10 ml, amp.", "100 mg/ml,10ml", "Injection", @locale);
+            CALL add_new_drug("CEFAZOLIN, 1 g, (IV), powder, vial (antibiotic)", "1 g", "Injection", @locale);
+            CALL add_new_drug("CEFEPIME, 1g, powder, IV IM", "1 g", "Injection", @locale);
+            CALL add_new_drug("CEFEPIME, 2g, powder, iv im", "2 g", "Injection", @locale);
+            CALL add_new_drug("CEFTAZIDIME, 1 g, powder, vial (antibiotic)", "1 g", "Injection", @locale);
+            CALL add_new_drug("CEFTRIAXONE sodium, eq. 1 g base, powder, vial (antibiotic)", "eq. 1 g base", "Injection", @locale);
+            CALL add_new_drug("CLINDAMYCIN phosphate, eq. 150mg base/ml, 2 ml, amp.", "eq. 150mg base/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("CLONIDINE, 0.15 mg/ml, 1ml, amp.", "0.15 mg/ml,1ml", "Injection", @locale);
+            CALL add_new_drug("CLOXACILLIN sodium, eq. 500 mg base, powder, vial IV (antibiotic)", "eq. 500 mg base", "Injection", @locale);
+            CALL add_new_drug("COLISTIMETHATE sodium, 1 M IU, powder, vial (antibiotic)", "1 m IU", "Injection", @locale);
+            CALL add_new_drug("DEXAMETHASONE phosphate, 4 mg/ml, 1 ml, amp.", "4 mg/ml, 1ml", "Injection", @locale);
+            CALL add_new_drug("DIAZEPAM, 5 mg/ml, 2 ml, amp. (controlled)", "5 mg/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("DICLOFENAC 75mg/3ml + LIDOCAINE 8mg/3ml, 3ml, amp.", "75 mg/3 ml + 8 mg/3 ml, 3ml", "Injection", @locale);
+            CALL add_new_drug("DICLOFENAC sodium, 25mg/ml, 3ml, amp.", "25 mg/ml, 3 ml", "Injection", @locale);
+            CALL add_new_drug("ENOXAPARIN sodium, 2,000IU/0.2 ml, syringe", "2000 IU/0.2 ml", "Injection", @locale);
+            CALL add_new_drug("ENOXAPARIN sodium, 4,000IU/0.4 ml, syringe", "4000 IU/0.4 ml", "Injection", @locale);
+            CALL add_new_drug("EPHEDRINE hydrochloride, 30 mg/ml, 1 ml, amp.", "30 mg/ml,1ml", "Injection", @locale);
+            CALL add_new_drug("EPHEDRINE, 50 mg/ml, 1 ml, amp.", "50 mg/ml, 1ml", "Injection", @locale);
+            CALL add_new_drug("EPINEPHRINE (adrenaline) tartrate,eq.1 mg/ml base,1ml amp IV", "eq. 1 mg/ml base, 1ml", "Injection", @locale);
+            CALL add_new_drug("FENTANYL citrate, eq. 0.05 mg/ml base, 2ml, amp. (controlled)", "eq. 0.05 mg/ml base, 2ml", "Injection", @locale);
+            CALL add_new_drug("FLUMAZENIL, 0.1mg/ml, 10 ml, amp.", "0.1 mg/ml, 10ml", "Injection", @locale);
+            CALL add_new_drug("FUROSEMIDE, 10 mg/ml, 2 ml, amp.", "10 mg/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("GENTAMICIN sulfate, eq. 40 mg/ml base, 2 ml, amp. (antibiotic)", "eq. 40 mg/ml base, 2ml", "Injection", @locale);
+            CALL add_new_drug("GLUCOSE hypertonic, 50%, 50 ml, vial", "50%, 50ml", "Injection", @locale);
+            CALL add_new_drug("GLYCOPYRRONIUM bromide, 0.2mg/ml, 1ml, amp.", "0.2 mg/ml, 1ml", "Injection", @locale);
+            CALL add_new_drug("HEPARIN SODIUM, 5 000 IU/ml, 5 ml, vial", "5 000 IU/ml,5ml", "Injection", @locale);
+            CALL add_new_drug("HYDRALAZINE hydrochloride, 20 mg, powder, amp.", "20 mg", "Injection", @locale);
+            CALL add_new_drug("HYDROCORTISONE sodium succinate, eq.100mg base, powder, vial", "eq. 100 mg base", "Injection", @locale);
+            CALL add_new_drug("HYOSCINE BUTYLBROMIDE, 10mg/ml, 2ml , amp.", "10 mg/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("INSULIN HUMAN, ACTRAPID 100 IU/ml, 10 ml, vial (cold chain)", "100 IU/ml,10ml", "Injection", @locale);
+            CALL add_new_drug("KETAMINE HYDROCHLORIDE, EQ. 50MG/ML BASE, 10ML, VIAL", "eq. 50mg/ml BASE, 10ml", "Injection", @locale);
+            CALL add_new_drug("KETAMINE HYDROCHLORIDE, EQ. 50MG/ML BASE, 5ML, AMP.", "eq. 50 mg/ml BASE,5ml", "Injection", @locale);
+            CALL add_new_drug("LABETALOL hydrochloride, 5 mg/ml, 20 ml amp.", "5 mg/ml, 20ml", "Injection", @locale);
+            CALL add_new_drug("LEVOBUPIVACAINE hydrochloride eq. 5 mg/ml base,10 ml, amp", "eq. 5 mg/ml base, 10ml", "Injection", @locale);
+            CALL add_new_drug("LIDOCAINE hydrochloride, 1%, preservative-free, 10 ml, plastic amp.", "1%, 10ml", "Injection", @locale);
+            CALL add_new_drug("LIPID emulsion, 20%, 250 ml, flex. bag, PVC free", "20%", "Infusion", @locale);
+            CALL add_new_drug("LIPID emulsion, 20%, 500ml, flex. bag/bottle, PVC free", "20%", "Infusion", @locale);
+            CALL add_new_drug("MAGNESIUM sulfate, 0.5 g/ml, 10 ml, amp.", "0.5 g/ml,10ml", "Injection", @locale);
+            CALL add_new_drug("MEROPENEM, 1 g, powder, vial (antibiotic)", "1 g", "Injection", @locale);
+            CALL add_new_drug("METHYLPREDNISOLONE, 40MG/ML, 1ML, VIAL", "40 mg/ml,1ml", "Injection", @locale);
+            CALL add_new_drug("METOCLOPRAMIDE hydrochloride, 5 mg/ml, 2 ml, amp.", "5 mg/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("METRONIDAZOLE, 5mg/ml, 100ml, bag/bottle PVC free", "5 mg/ml", "Solution", @locale);
+            CALL add_new_drug("MIDAZOLAM, 1 mg / ml, 5 ml, amp", "1 mg / ml, 5ml", "Injection", @locale);
+            CALL add_new_drug("MORPHINE hydrochloride, 10 mg/ml, 1 ml, amp.", "10 mg/ml,1ml", "Injection", @locale);
+            CALL add_new_drug("NADROPARIN calcium, 3800 IU / 0.4ml, syringe", "3800 IU / 0.4ml", "Injection", @locale);
+            CALL add_new_drug("NALOXONE hydrochloride, 0.4 mg/ml, 1 ml, amp.", "0.4 mg/ml,1ml", "Injection", @locale);
+            CALL add_new_drug("NEOSTIGMINE methylsulfate, 1mg/ml, 5ml, amp.", "1 mg/ml, 5ml", "Injection", @locale);
+            CALL add_new_drug("NEOSTIGMINE methylsulfate, 2.5 mg/ml, 1 ml, amp.", "2.5 mg/ml,1ml", "Injection", @locale);
+            CALL add_new_drug("NICARDIPINE hydrochloride, 1mg / ml, 10 ml, amp.", "1 mg/ml, 10ml", "Injection", @locale);
+            CALL add_new_drug("NOREPINEPHRINE (noradrenaline) tartrate, eq.1mg/ml base, 4ml", "eq. 1 mg/ml base, 4ml", "Injection", @locale);
+            CALL add_new_drug("OMEPRAZOLE sodium, eq. 40 mg base, powder, vial, fr infusion", "eq. 40 mg base", "Infusion", @locale);
+            CALL add_new_drug("ONDANSETRON hydrochloride, eq. 2mg/ml base, 2 ml, amp.", "eq. 2mg/ml base, 2ml", "Injection", @locale);
+            CALL add_new_drug("ONDANSETRON hydrochloride, eq. 2mg/ml base, 4ml, amp.", "eq. 2mg/ml base, 4ml", "Injection", @locale);
+            CALL add_new_drug("PANTOPRAZOLE sodium, eq. 40 mg base, powder, vial, fr infusion", "eq. 40 mg base", "Infusion", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen), 10 mg/ml, 100 ml, bot.", "10 mg/ml", "Injection", @locale);
+            CALL add_new_drug("PHENYLEPHRINE hydrochloride, 10mg/ml , 1ml, amp.", "10 mg/ml, 1ml", "Injection", @locale);
+            CALL add_new_drug("PIPERACILLIN 4 g / TAZOBACTAM 500 mg, powder, vial for inf. (antibiotic)", "4 g +500 mg", "Infusion", @locale);
+            CALL add_new_drug("POTASSIUM chloride, 100 mg/ml, 10 ml, amp.", "100 mg/ml,10ml", "Injection", @locale);
+            CALL add_new_drug("POTASSIUM chloride, 2mmol/ml (15%), 10ml, amp.", "2 mmol/ml (15%), 10ml", "Injection", @locale);
+            CALL add_new_drug("PROMETHAZINE hydrochloride, eq. 25 mg/ml base, 2 ml, amp.", "eq. 25 mg/ml base, 2ml", "Injection", @locale);
+            CALL add_new_drug("PROPOFOL, 10 mg/ml, 20 ml, emulsion, amp. (controlled)", "10 mg/ml, 20ml", "Injection", @locale);
+            CALL add_new_drug("PROTAMINE sulfate, 10 mg/ml, 5 ml, amp.", "10 mg/ml,5ml", "Injection", @locale);
+            CALL add_new_drug("ROPIVACAINE hydrochloride, 10mg/ml, 10ml, amp.", "10 mg/ml, 10ml", "Injection", @locale);
+            CALL add_new_drug("SODIUM BICARBONATE, 8.4%, 1mEq/ml, 10ml, amp.", "8.4%,1mEq/ml,10ml", "Injection", @locale);
+            CALL add_new_drug("SUXAMETHONIUM chloride, 50 mg/ml, 2 ml, amp. (cold chain)", "50 mg/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("TEICOPLANIN, 200 mg, powder, vial + solvent", "200 mg", "Injection", @locale);
+            CALL add_new_drug("TEICOPLANIN, 200mg, powder, vial", "200 mg", "Injection", @locale);
+            CALL add_new_drug("THIAMINE (vitamin B1), 50mg/ml, 2ml, amp.", "50 mg/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("TIGECYCLINE, 50 mg, powder, vial (antibiotic)", "50 mg", "Injection", @locale);
+            CALL add_new_drug("TRAMADOL hydrochloride, 50 mg/ml, 2 ml, amp. (controlled)", "50 mg/ml, 2ml", "Injection", @locale);
+            CALL add_new_drug("TRANEXAMIC ACID, 100 mg/ml, 5 ml amp.", "100 mg/ml,5ml", "Injection", @locale);
+            CALL add_new_drug("TRIAMCINOLONE acetonide, 40mg/ml, 1ml, amp.", "40 mg/ml, 1 ml", "Injection", @locale);
+            CALL add_new_drug("VANCOMYCIN hydrochloride, eq. 1 g base, powder, vial (antibiotic)", "eq. 1 g base", "Injection", @locale);
+            CALL add_new_drug("VANCOMYCIN hydrochloride, eq. 500 mg base, powder, vial (antibiotic)", "eq. 500 mg base", "Injection", @locale);
+            CALL add_new_drug("WATER for injection, 10 ml, plastic amp.", "", "Injection", @locale);
+            CALL add_new_drug("DEXTROSE (GLUCOSE), 10%, 500 ml, flex. bag, PVC free", "10%", "Infusion", @locale);
+            CALL add_new_drug("DEXTROSE (GLUCOSE), 5%, 500 ml, flex. bag, PVC free", "5%", "Infusion", @locale);
+            CALL add_new_drug("RINGER lactate, 500 ml, flex. bag, PVC free", "", "Infusion", @locale);
+            CALL add_new_drug("RINGER lactate, 500 ml, semi-rigid bot., PVC free", "", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride, 0.9%, 1 l, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride, 0.9%, 1 l, semi-rigid bot., PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride, 0.9%, 100 ml, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride, 0.9%, 250ml, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride, 0.9%, 500 ml, semi-rigid bot., PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride, 0.9%, 500ml, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("VACCINE HEPATITIS A, 1 dose, adult, monodose, syringe", "", "Injection", @locale);
+            CALL add_new_drug("VACCINE INFLUENZA QUADRIVAL. NH 2022, 1 DOSE 0.5ML, SYRINGE", "", "Injection", @locale);
+            CALL add_new_drug("CIPROFLOXACIN, 0.3%, ear/eye drops, sterile, bot.", "0.30%", "Eye drop", @locale);
+            CALL add_new_drug("CLOTRIMAZOLE, 500 mg, vaginal tab. + applicator", "500 mg", "Vaginal tablet", @locale);
+            CALL add_new_drug("COLD CREAM , 100 ml tube cream", "", "Cream", @locale);
+            CALL add_new_drug("DICLOFENAC 1% gel, 50 g, tube", "1%", "Gel", @locale);
+            CALL add_new_drug("FUSIDIC ACID, 2% cream, 30 g, tube (antibiotic)", "2%", "Cream", @locale);
+            CALL add_new_drug("FUSIDIC ACID, 2%, cream, 15g, tube", "2%", "Cream", @locale);
+            CALL add_new_drug("HYDROCORTISONE (ACETATE OR BASE), 1%, cream, 15 g, tube", "1%", "Cream", @locale);
+            CALL add_new_drug("HYDROCORTISONE (acetate or base), 1%, ointment, 15 g, tube", "1%", "Ointment", @locale);
+            CALL add_new_drug("HYDROGEN PEROXIDE, 3%, sol., 250 ml, bot.", "3%", "Solution", @locale);
+            CALL add_new_drug("JOHNSON'S BABY OIL, 100 ml, oil bottle", "", "", @locale);
+            CALL add_new_drug("LIDOCAINE, 10% (10mg/dose), spray, 50 ml, bot.", "10% (10mg/dose)", "Spray", @locale);
+            CALL add_new_drug("LIDOCAINE, 2%, jelly, sterile, 30 g, tube", "2%", "Gel", @locale);
+            CALL add_new_drug("MAFENIDE acetate, cream, 453.6g, jar", "", "Cream", @locale);
+            CALL add_new_drug("MICONAZOLE nitrate, 2%, cream, 30 g, tube", "2%", "Cream", @locale);
+            CALL add_new_drug("POLYVIDONE IODINE, 10%, gel, 30 g, tube", "10%", "Gel", @locale);
+            CALL add_new_drug("POVIDONE IODINE 10%, ointment, 50 g, tube", "10%", "Ointment", @locale);
+            CALL add_new_drug("SILVER NITRATE 75% / POTASSIUM NITRATE 25%, APPLICATOR STICKS", "75% + 25%", "Ointment", @locale);
+            CALL add_new_drug("SULFADIAZINE SILVER, 1%, cream, sterile, 50 g, tube", "1%", "Cream", @locale);
+            CALL add_new_drug("SUN BLOCK SPF50, CREAM, 50ML, TUBE", "", "Cream", @locale);
+            CALL add_new_drug("ZINC OXIDE, 10%, ointment, 100g, tube", "10%", "Ointment", @locale);
+            CALL add_new_drug("TETRACYCLINE hydrochloride, 1%, eye ointment, ster, 5g, tube", "1%", "Eye ointment", @locale);
+            </sql>
+    </changeSet>
+
+</databaseChangeLog>

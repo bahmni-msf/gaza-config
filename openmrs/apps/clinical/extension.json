@@ -88,5 +88,19 @@
     "label": "All",
     "order": 5,
     "requiredPrivilege": "app:clinical"
+  },
+  "bahmniClinicalBillingTreatment": {
+    "id": "bahmni.clinical.billing.treatment",
+    "extensionPointId": "org.bahmni.clinical.consultation.board",
+    "type": "link",
+    "label": "Medications",
+    "translationKey":"MEDICATIONS_BOARD_LABEL_KEY",
+    "extensionParams": {
+      "tabConfigName": "allMedicationTabConfig"
+    },
+    "url": "treatment",
+    "icon": "fa-user-md",
+    "order": 9,
+    "requiredPrivilege": "app:clinical:consultationTab"
   }
   }
