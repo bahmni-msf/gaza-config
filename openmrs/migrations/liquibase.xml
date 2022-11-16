@@ -197,4 +197,5 @@
         </sql>
     </changeSet>
     <include file="freshdesk/freshdesk_1369.xml"/>
+    <include file="InitialMedicalAssessment/InitialMedicalAssessment_2.xml"/>
 </databaseChangeLog>
