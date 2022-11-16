@@ -198,4 +198,22 @@
     </changeSet>
     <include file="freshdesk/freshdesk_1369.xml"/>
     <include file="InitialMedicalAssessment/InitialMedicalAssessment_2.xml"/>
+
+     <changeSet id="Gaza_CONFIG_20221115110901635" author="Kiruthiga">
+        <comment>procedure add_new_concept to allow shortname as null</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="drugs/AddNewConcept.sql"/>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20221115110901636" author="Kiruthiga">
+        <comment>Adding a new procedure to add new drugs</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_drug;
+        </sql>
+        <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
+    </changeSet>
+
+    <include file="Medications/Medications.xml"/>
 </databaseChangeLog>

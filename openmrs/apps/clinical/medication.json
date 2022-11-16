@@ -1,14 +1,15 @@
 {
-  "commonConfig": {
-  },
   "tabConfig": {
     "allMedicationTabConfig": {
-      "orderSet": {
-        "calculateDoseOnlyOnCurrentVisitValues": false
-      },
+     
       "inputOptionsConfig": {
+        "hiddenFields":[
+          "dosingInstructions",
+          "quantity",
+          "quantityUnits"
+        ],
         "defaultDurationUnit": "Day(s)",
-        "hideOrderSet" : false,
+        "hideOrderSet" : true,
         "defaultInstructions": "As directed",
         "frequencyDefaultDurationUnitsMap": [
           {
