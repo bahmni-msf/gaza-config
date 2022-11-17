@@ -137,7 +137,8 @@
         },
         "formGroup": [
           "First Consultation",
-          "Initial Medical Assessment"
+          "Initial Medical Assessment",
+          "Patient Progress Note"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       }

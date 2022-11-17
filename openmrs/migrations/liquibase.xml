@@ -216,4 +216,6 @@
     </changeSet>
 
     <include file="Medications/Medications.xml"/>
+    <include file="PatientProgressNote/PatientProgressNote.xml"/>
+
 </databaseChangeLog>
