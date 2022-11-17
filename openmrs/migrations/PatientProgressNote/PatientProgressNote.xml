@@ -12,6 +12,34 @@
         <sqlFile path="PatientProgressNote/PatientProgressNote.sql"/>
     </changeSet>
 
+    <changeSet id="GAZA_CONFIG_2022111712410312" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name  where name = "DISCHARGE" and concept_name_type = "FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete child concept DISCHARGE</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name ="DISCHARGE" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            delete from concept_name where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="GAZA_CONFIG_20221117124103840" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name  where name = "Discharge" and concept_name_type = "FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Add child concept Discharge for Patient progress Note</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharge","Discharge","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
     <changeSet id="GAZA_CONFIG_20221115124103840" author="Shobana">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
