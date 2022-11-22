@@ -58,5 +58,15 @@
     "icon": "icon-bahmni-radiology",
     "order": 6,
     "requiredPrivilege": "app:radiology-upload"
+  },
+  "reports": {
+    "id": "bahmni.reports",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_REPORTS_KEY",
+    "url": "../reports/#/dashboard",
+    "icon": "icon-bahmni-reports",
+    "order": 7,
+    "requiredPrivilege": "app:reports"
   }
 }
