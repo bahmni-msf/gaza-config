@@ -217,5 +217,15 @@
 
     <include file="Medications/Medications.xml"/>
     <include file="PatientProgressNote/PatientProgressNote.xml"/>
-
+    <changeSet id="gaza-202211241127" author="Venky" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM person_attribute_type WHERE name='email';
+            </sqlCheck>
+        </preConditions>
+        <comment>void email field</comment>
+        <sql>
+            update person_attribute_type set retired=1, retired_by=(select user_id from users where username='admin'), date_retired=now() where name='email';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
