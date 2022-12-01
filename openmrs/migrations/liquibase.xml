@@ -229,5 +229,4 @@
         </sql>
     </changeSet>
 
-    <include file="ObsToObs/PainAssessment.xml"/>
 </databaseChangeLog>
