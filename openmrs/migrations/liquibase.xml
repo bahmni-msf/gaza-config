@@ -228,4 +228,6 @@
             update person_attribute_type set retired=1, retired_by=(select user_id from users where username='admin'), date_retired=now() where name='email';
         </sql>
     </changeSet>
+
+    <include file="ObsToObs/PainAssessment.xml"/>
 </databaseChangeLog>

@@ -128,6 +128,25 @@
         "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_DOCUMENTS",
         "displayOrder": 2
       },
+      "painAssessment": {
+        "translationKey": "DASHBOARD_TITLE_PAIN_ASSESSMENT_TABLE",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayType": "Half-Page",
+        "displayOrder": 4,
+        "dashboardConfig": {
+          "groupByConcept": "PPN, Date",
+          "templateName": "Patient Progress Note Template",
+          "conceptNames": [
+            "PPN, Type of Pain",
+            "PPN, FLACC scale",
+            "PPN, Visual analog scale",
+            "PPN, DN4"
+          ],
+          "type": "PainAssessment"
+        }
+      },
       "validationForms-2.0": {
         "type": "formsV2",
         "displayOrder": 3,
