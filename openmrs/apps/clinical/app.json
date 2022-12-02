@@ -23,6 +23,7 @@
         "visitUuid"
     ],
     "config": {
+        "defaultVisitType": "OPD",
         "hideConditions": false,
         "enableRadiologyOrderOptions": [
             "Urgent",
