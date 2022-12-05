@@ -42,6 +42,35 @@
           "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
           "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
         }
+      },
+      "Transportation": {
+        "translationKey": "DASHBOARD_TITLE_TRANSPORTATION_KEY",
+        "displayOrder": 4,
+        "isObservation": true,
+        "dashboardConfig": {
+          "numberOfVisits": 6,
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "PPN, Transportation need",
+            "PPN, Number of passengers",
+            "IMA, Transportation need",
+            "IMA, Number of passengers"
+          ],
+          "pivotTable": {}
+        },
+        "expandedViewConfig": {
+          "numberOfVisits": 6,
+          "conceptNames": [
+            "PPN, Transportation need",
+            "PPN, Number of passengers",
+            "IMA, Transportation need",
+            "IMA, Number of passengers"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
       }
     }
   },
@@ -59,25 +88,25 @@
           "isEditable": true,
           "scope":"latest",
           "conceptNames": [
+            "IMA, Past medical history diagnosis",
             "IMA, Currently pregnant",
             "IMA, Currently breast-feeding",
             "IMA, History of surgery",
             "IMA, History of allergy",
             "IMA, Type of drug",
-            "IMA, Allergy details",
-            "IMA, Past medical history diagnosis"
+            "IMA, Allergy details"
           ]
         },
         "expandedViewConfig": {
           "scope":"latest",
           "conceptNames": [
+            "IMA, Past medical history diagnosis",
             "IMA, Currently pregnant",
             "IMA, Currently breast-feeding",
             "IMA, History of surgery",
             "IMA, History of allergy",
             "IMA, Type of drug",
-            "IMA, Allergy details",
-            "IMA, Past medical history diagnosis"
+            "IMA, Allergy details"
           ],
           "isEditable": true,
           "showDetailsButton": true,
@@ -126,11 +155,46 @@
         "type": "radiology",
         "groupByVisits": true,
         "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_DOCUMENTS",
-        "displayOrder": 2
+        "displayOrder": 4
+      },
+      "Pain Assessment": {
+        "translationKey": "DASHBOARD_TITLE_PAIN_ASSESSMENT_TABLE",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 5,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "groupByConcept": "PPN, Date",
+          "formNames": ["Patient Progress Note"],
+          "conceptNames": [
+            "PPN, Type of Pain",
+            "PPN, FLACC scale",
+            "PPN, Visual analog scale",
+            "PPN, DN4",
+            "PPN, Pain management"
+          ],
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "PPN, Date",
+          "formNames": ["Patient Progress Note"],
+          "conceptNames": [
+            "PPN, Type of Pain",
+            "PPN, FLACC scale",
+            "PPN, Visual analog scale",
+            "PPN, DN4",
+            "PPN, Pain management"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
       },
       "validationForms-2.0": {
         "type": "formsV2",
-        "displayOrder": 3,
+        "displayOrder": 7,
         "dashboardConfig": {
           "title": null,
           "maximumNoOfVisits": 5
@@ -141,6 +205,30 @@
           "Patient Progress Note"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
+      },
+      "Medications administered": {
+        "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
+        "type": "treatment",
+        "displayOrder": 8,
+        "dashboardConfig": {
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 6,
+          "showOtherActive": true,
+          "showDetailsButton": false
+        },
+        "expandedViewConfig": {
+          "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 6,
+          "showOtherActive": true,
+          "showDetailsButton": false
+        }
       }
     }
   }
