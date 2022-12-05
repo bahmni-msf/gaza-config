@@ -60,7 +60,6 @@
             "route": "Inhalation"
           },
           "Injection": {
-            "doseUnits": "mg",
             "route": "Intravenous"
           },
           "Jelly": {
@@ -81,11 +80,9 @@
             "route": "Per Vaginal"
           },
           "Powder": {
-            "doseUnits": "mg",
             "route": "Topical"
           },
           "Solution": {
-            "doseUnits": "ml",
             "route": "Topical"
           },
           "Spray": {
