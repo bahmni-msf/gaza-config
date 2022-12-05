@@ -167,5 +167,9 @@
   "DASHBOARD_TITLE_PATIENT_MEDICAL_DOCUMENTS": "Patient Medical Document",
   "DASHBOARD_TITLE_PAIN_ASSESSMENT_TABLE": "Pain Assessment",
   "DASHBOARD_TITLE_TRANSPORTATION_KEY": "Transportation",
-  "DASHBOARD_TITLE_MEDICATION_KEY": "Medications Administered"
+  "DASHBOARD_TITLE_MEDICATION_KEY": "Medications Administered",
+  "DASHBOARD_BURN_INJURY": "Burn Injury",
+  "DASHBOARD_TRAUMA_INJURY": "Trauma Injury",
+  "DASHBOARD_TITLE_SERVICE_FOLLOWUP_PLAN": "Service Follow-up Plan"
+
 }

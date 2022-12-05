@@ -151,6 +151,76 @@
           }
         }
       },
+      "Burn Injury": {
+        "translationKey": "DASHBOARD_BURN_INJURY",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "groupByConcept": "IMA, Date",
+          "formNames": ["Initial Medical Assessment"],
+          "conceptNames": [
+            "IMA, Burn site",
+            "IMA, Burn position",
+            "IMA, Burn side",
+            "IMA, Degree of burn",
+            "IMA, TBSA"
+          ],
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "IMA, Date",
+          "formNames": ["Initial Medical Assessment"],
+          "conceptNames": [
+            "IMA, Burn site",
+            "IMA, Burn position",
+            "IMA, Burn side",
+            "IMA, Degree of burn",
+            "IMA, TBSA"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Trauma Injury": {
+        "translationKey": "DASHBOARD_TRAUMA_INJURY",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 3,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "groupByConcept": "IMA, Date",
+          "formNames": ["Initial Medical Assessment"],
+          "conceptNames": [
+            "IMA, Injury site",
+            "IMA, Type of trauma",
+            "IMA, Fracture site",
+            "IMA, Fracture management",
+            "IMA, Associated injury"
+          ],
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "IMA, Date",
+          "formNames": ["Initial Medical Assessment"],
+          "conceptNames": [
+            "IMA, Injury site",
+            "IMA, Type of trauma",
+            "IMA, Fracture site",
+            "IMA, Fracture management",
+            "IMA, Associated injury"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
       "patientMedicalDocument": {
         "type": "radiology",
         "groupByVisits": true,
@@ -190,6 +260,61 @@
           ],
           "showDetailsButton": true,
           "pivotTable": {}
+        }
+      },
+      "Service follow-up Plan": {
+        "translationKey": "DASHBOARD_TITLE_SERVICE_FOLLOWUP_PLAN",
+        "isObservation": true,
+        "displayOrder": 6,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "numberOfVisits": "6",
+          "conceptNames": [
+            "IMA, The Physiotherapy frequency",
+            "IMA, The Wound Dressing frequency",
+            "IMA, Orthopaedic consultation timing",
+            "IMA, Osteomyelitis consultation timing",
+            "IMA, Pain management consultation timing",
+            "IMA, Plastic consultation timing",
+            "IMA, MH consultation timing",
+            "IMA, Patient sent to IPD",
+            "PPN, Physiotherapy frequency",
+            "PPN, Wound dressing frequency",
+            "PPN, Orthopaedic consultation timing",
+            "PPN, Osteomyelitis consultation timing",
+            "PPN, Pain management consultation timing",
+            "PPN, Plastic consultation timing",
+            "PPN, MH consultation timing",
+            "PPN, Patient sent to IPD",
+            "PPN, Treatment plan comment"
+          ]
+        },
+        "expandedViewConfig": {
+          "numberOfVisits": "6",
+          "conceptNames": [
+            "IMA, The Physiotherapy frequency",
+            "IMA, The Wound Dressing frequency",
+            "IMA, Orthopaedic consultation timing",
+            "IMA, Osteomyelitis consultation timing",
+            "IMA, Pain management consultation timing",
+            "IMA, Plastic consultation timing",
+            "IMA, MH consultation timing",
+            "IMA, Patient sent to IPD",
+            "PPN, Physiotherapy frequency",
+            "PPN, Wound dressing frequency",
+            "PPN, Orthopaedic consultation timing",
+            "PPN, Osteomyelitis consultation timing",
+            "PPN, Pain management consultation timing",
+            "PPN, Plastic consultation timing",
+            "PPN, MH consultation timing",
+            "PPN, Patient sent to IPD",
+            "PPN, Treatment plan comment"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
         }
       },
       "validationForms-2.0": {
