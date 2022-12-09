@@ -173,7 +173,7 @@
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
-          "groupByConcept":"IMA, Date of Injury",
+          "groupByConcept": "IMA, Date of Injury",
           "formNames": ["Initial Medical Assessment"],
           "conceptNames": [
             "IMA, Burn site",
