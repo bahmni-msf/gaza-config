@@ -234,6 +234,7 @@
         "dataConceptSource": "Abbreviation",
         "displayOrder": 5,
         "dashboardConfig": {
+          "numberOfVisits": 6,
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
           "isEditable": true,
@@ -249,6 +250,7 @@
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
+          "numberOfVisits": 6,
           "groupByConcept": "PPN, Date",
           "formNames": ["Patient Progress Note"],
           "conceptNames": [
