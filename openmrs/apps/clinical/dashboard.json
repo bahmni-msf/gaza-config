@@ -161,7 +161,7 @@
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
           "isEditable": true,
-          "groupByConcept": "IMA, Date",
+          "groupByConcept": "IMA, Date of Injury",
           "formNames": ["Initial Medical Assessment"],
           "conceptNames": [
             "IMA, Burn site",
@@ -173,7 +173,7 @@
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
-          "groupByConcept": "IMA, Date",
+          "groupByConcept":"IMA, Date of Injury",
           "formNames": ["Initial Medical Assessment"],
           "conceptNames": [
             "IMA, Burn site",
@@ -196,7 +196,7 @@
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
           "isEditable": true,
-          "groupByConcept": "IMA, Date",
+          "groupByConcept": "IMA, Date of Injury",
           "formNames": ["Initial Medical Assessment"],
           "conceptNames": [
             "IMA, Injury site",
@@ -208,7 +208,7 @@
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
-          "groupByConcept": "IMA, Date",
+          "groupByConcept": "IMA, Date of Injury",
           "formNames": ["Initial Medical Assessment"],
           "conceptNames": [
             "IMA, Injury site",
