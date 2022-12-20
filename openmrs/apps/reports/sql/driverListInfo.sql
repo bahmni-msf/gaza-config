@@ -108,8 +108,8 @@ FROM patient_identifier
                         AND (coded_concept.name = 'Ambulance' OR coded_concept.name = 'Car'))
                         AND pp.outcome_concept_id IS NULL)
                         OR ((obs_question.name = 'IMA, Transportation need' OR (obs_question.name = 'PPN, Transportation need' and obs_question.name = 'PPN, Type of visit'))
-                        and ((coded_concept.name = 'Ambulance' and (coded_concept.name != 'Discharge' OR pp.outcome_concept_id IS NULL))
-                        OR  (coded_concept.name = 'Car' and (coded_concept.name != 'Discharge' OR pp.outcome_concept_id IS NULL)))))
+                        and ((coded_concept.name = 'Ambulance' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL))
+                        OR  (coded_concept.name = 'Car' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL)))))
               ) as latest_encounter
                     ON latest_encounter.person_id = e.patient_id
             LEFT OUTER JOIN(
