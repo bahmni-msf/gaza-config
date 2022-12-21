@@ -18,24 +18,14 @@ SELECT DISTINCT
         WHERE appointment_service_id IN(SELECT DISTINCT appointment_service_id
         FROM appointment_service as1
         WHERE as1.name = 'Session under sedation')
-        AND appointment_service_type_id IN (CASE WHEN EXISTS (select appointment_service_type_id
+        AND appointment_service_type_id IN (CASE WHEN EXISTS (SELECT appointment_service_type_id
         FROM patient_appointment pa1
         WHERE ast.appointment_service_id=pa1.appointment_service_id
         AND ast.appointment_service_type_id=pa1.appointment_service_type_id
         AND pa1.patient_id = pa.patient_id
         AND date(pa1.start_date_time)=date(pa.start_date_time))
         THEN appointment_service_type_id ELSE NULL END))                                        as `Sedation`,
-    (SELECT name FROM appointment_service_type ast
-        WHERE appointment_service_id IN(SELECT DISTINCT appointment_service_id
-        from appointment_service as1
-        WHERE as1.name != 'Session under sedation' and as1.name !='3D')
-        AND appointment_service_type_id IN (CASE WHEN EXISTS (select appointment_service_type_id
-        from patient_appointment pa1
-        WHERE ast.appointment_service_id=pa1.appointment_service_id
-        AND ast.appointment_service_type_id=pa1.appointment_service_type_id
-        AND pa1.patient_id = pa.patient_id
-        AND time(pa1.start_date_time)=pa.start_time)
-        THEN appointment_service_type_id ELSE NULL END))                                        as `Service`,
+    pa.service                                                                                  as `Service`,
     person_address.city_village                                                                 as `Area`,
     person_address.address1                                                                     as `Address (text)`,
     pa.comments                                                                                 as `Notes`,
@@ -66,19 +56,39 @@ FROM patient_identifier
               JOIN person_address ON person_address.person_id = patient_identifier.patient_id AND person_address.voided IS FALSE
               JOIN(select
                    MIN(start_time),
+                   patientApp.appointment_service_id,
+                   patientApp.appointment_service_type_id,
                    patientAppointment.comments,
                    patientApp.start_time,
                    patientApp.location_id,
                    patientAppointment.patient_id,
                    patientAppointment.voided,
+                   patientApp.service,
                    patientAppointment.start_date_time
                    from patient_appointment as patientAppointment
                    JOIN(select
                            patient_appointment.patient_appointment_id,
+                           patient_appointment.appointment_service_id,
+                           patient_appointment.appointment_service_type_id,
                            patient_appointment.comments,
                            patient_appointment.location_id,
-                           MIN(CAST(patient_appointment.start_date_time AS TIME)) as start_time
+                           MIN(CAST(patient_appointment.start_date_time AS TIME)) as start_time,
+                           appServiceName,
+                           appServiceTypeName,
+                           service
                            FROM patient_appointment
+                               LEFT JOIN(SELECT
+                               appService.appointment_service_id,
+                               appServiceType.appointment_service_type_id,
+                               appService.name as appServiceName,
+                               appServiceType.name as appServiceTypeName,
+                               CASE WHEN appService.name !='3D' and appService.name !='Session under sedation' THEN appServiceType.name ELSE NULL END as service
+                               from appointment_service as appService
+                                   LEFT JOIN appointment_service_type as appServiceType
+                                   on appService.appointment_service_id = appServiceType.appointment_service_id
+                                   WHERE appService.voided=0) as aps
+                                   ON  aps.appointment_service_id = patient_appointment.appointment_service_id
+                                   AND  aps.appointment_service_type_id = patient_appointment.appointment_service_type_id
                             where status NOT IN ('Cancelled')
                             and date(start_date_time) >= '#startDate#'
                             and date(end_date_time) <= '#endDate#'
@@ -127,5 +137,7 @@ FROM patient_identifier
                     AND numeric_concept.name IN('IMA, Number of passengers', 'PPN, Number of passengers')
                    ) as total_passengers
                     ON total_passengers.obs_datetime = latest_encounter.obs_datetime
+
+
 WHERE patient_identifier.identifier_type = (SELECT patient_identifier_type_id FROM patient_identifier_type WHERE name = 'Patient Identifier')
 ORDER BY l.name, person_address.state_province, person_address.city_village;
