@@ -8,21 +8,24 @@ SELECT DISTINCT
     total_passengers.passengers                                                                 as `Total passengers`,
     pa.start_time                                                                               as `Start time`,
     (CASE WHEN EXISTS (SELECT appointment_service_id FROM appointment_service as1
-        WHERE name = '3D'
+        WHERE name = '3D' and as1.voided = 0
         AND appointment_service_id IN (SELECT DISTINCT appointment_service_id
         FROM patient_appointment pa1
         WHERE as1.appointment_service_id=pa1.appointment_service_id
         AND pa1.patient_id = pa.patient_id
+        AND pa1.voided = 0
         AND date(pa1.start_date_time)=date(pa.start_date_time))) THEN 'Yes' ELSE NULL END)       as `3D`,
     (SELECT name FROM appointment_service_type ast
-        WHERE appointment_service_id IN(SELECT DISTINCT appointment_service_id
+        WHERE ast.voided = 0
+        and appointment_service_id IN(SELECT DISTINCT appointment_service_id
         FROM appointment_service as1
-        WHERE as1.name = 'Session under sedation')
+        WHERE as1.name = 'Session under sedation' AND as1.voided = 0)
         AND appointment_service_type_id IN (CASE WHEN EXISTS (SELECT appointment_service_type_id
         FROM patient_appointment pa1
         WHERE ast.appointment_service_id=pa1.appointment_service_id
         AND ast.appointment_service_type_id=pa1.appointment_service_type_id
         AND pa1.patient_id = pa.patient_id
+        AND pa1.voided = 0
         AND date(pa1.start_date_time)=date(pa.start_date_time))
         THEN appointment_service_type_id ELSE NULL END))                                        as `Sedation`,
     pa.service                                                                                  as `Service`,
@@ -86,6 +89,7 @@ FROM patient_identifier
                                from appointment_service as appService
                                    LEFT JOIN appointment_service_type as appServiceType
                                    on appService.appointment_service_id = appServiceType.appointment_service_id
+                                   and appServiceType.voided IS FALSE
                                    WHERE appService.voided=0) as aps
                                    ON  aps.appointment_service_id = patient_appointment.appointment_service_id
                                    AND  aps.appointment_service_type_id = patient_appointment.appointment_service_type_id
@@ -96,7 +100,7 @@ FROM patient_identifier
                             on patientApp.patient_appointment_id = patientAppointment.patient_appointment_id
                             group by patient_id, CAST(start_date_time AS DATE)
                              ) as pa
-                         ON pa.patient_id = patient_identifier.patient_id
+                         ON pa.patient_id = patient_identifier.patient_id and pa.voided IS FALSE
                     JOIN location l ON pa.location_id = l.location_id AND l.retired IS FALSE AND pa.voided IS FALSE
 
               JOIN obs o ON o.person_id = patient_identifier.patient_id
@@ -107,10 +111,10 @@ FROM patient_identifier
                     obs.concept_id,
                     obs.obs_datetime
                     FROM obs
-                    JOIN patient_program as pp ON obs.person_id = pp.patient_id
-                    JOIN encounter e ON obs.encounter_id = e.encounter_id AND obs.voided = FALSE AND e.voided = FALSE
+                    JOIN patient_program as pp ON obs.person_id = pp.patient_id and pp.voided IS FALSE
+                    JOIN encounter e ON obs.encounter_id = e.encounter_id AND obs.voided IS FALSE AND e.voided IS FALSE
                     JOIN concept_name obs_question on obs_question.concept_id = obs.concept_id
-                    AND obs_question.concept_name_type="FULLY_SPECIFIED" AND obs_question.voided = 0
+                    AND obs_question.concept_name_type="FULLY_SPECIFIED" AND obs_question.voided IS FALSE
                     JOIN concept_name as coded_concept ON coded_concept.concept_id = obs.value_coded
                     AND coded_concept.concept_name_type="FULLY_SPECIFIED" AND coded_concept.voided IS FALSE
                         WHERE obs.obs_datetime = (select max(encounter_datetime) from encounter where encounter.patient_id = obs.person_id)
@@ -129,7 +133,7 @@ FROM patient_identifier
                     obs.person_id,
                     obs.value_numeric as passengers
                     FROM obs
-                    JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE AND encounter.voided = FALSE
+                    JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE AND encounter.voided IS FALSE
                     JOIN concept_name numeric_concept ON numeric_concept.concept_id = obs.concept_id
                     AND numeric_concept.concept_name_type ="FULLY_SPECIFIED"
                     AND numeric_concept.voided IS FALSE
@@ -140,4 +144,5 @@ FROM patient_identifier
 
 
 WHERE patient_identifier.identifier_type = (SELECT patient_identifier_type_id FROM patient_identifier_type WHERE name = 'Patient Identifier')
+and patient_identifier.voided = 0
 ORDER BY l.name, person_address.state_province, person_address.city_village;
