@@ -7,9 +7,28 @@ SELECT DISTINCT
     pivoted_person_attributes.patient_phone_number_2                                            as `Phone number  2`,
     total_passengers.passengers                                                                 as `Total passengers`,
     pa.start_time                                                                               as `Start time`,
-    aps.service_3d                                                                              as `3D`,
-    aps.service_sedation                                                                        as `Sedation`,
-    aps.service                                                                                 as `Service`,
+    (CASE WHEN EXISTS (SELECT appointment_service_id FROM appointment_service as1
+        WHERE name = '3D' and as1.voided = 0
+        AND appointment_service_id IN (SELECT DISTINCT appointment_service_id
+        FROM patient_appointment pa1
+        WHERE as1.appointment_service_id=pa1.appointment_service_id
+        AND pa1.patient_id = pa.patient_id
+        AND pa1.voided = 0
+        AND date(pa1.start_date_time)=date(pa.start_date_time))) THEN 'Yes' ELSE NULL END)       as `3D`,
+    (SELECT name FROM appointment_service_type ast
+        WHERE ast.voided = 0
+        and appointment_service_id IN(SELECT DISTINCT appointment_service_id
+        FROM appointment_service as1
+        WHERE as1.name = 'Session under sedation' AND as1.voided = 0)
+        AND appointment_service_type_id IN (CASE WHEN EXISTS (SELECT appointment_service_type_id
+        FROM patient_appointment pa1
+        WHERE ast.appointment_service_id=pa1.appointment_service_id
+        AND ast.appointment_service_type_id=pa1.appointment_service_type_id
+        AND pa1.patient_id = pa.patient_id
+        AND pa1.voided = 0
+        AND date(pa1.start_date_time)=date(pa.start_date_time))
+        THEN appointment_service_type_id ELSE NULL END))                                        as `Sedation`,
+    pa.service                                                                                  as `Service`,
     person_address.city_village                                                                 as `Area`,
     person_address.address1                                                                     as `Address (text)`,
     pa.comments                                                                                 as `Notes`,
@@ -37,76 +56,93 @@ FROM patient_identifier
               )
               GROUP BY person_id) as pivoted_person_attributes
               ON pivoted_person_attributes.person_id = patient_identifier.patient_id
+              JOIN person_address ON person_address.person_id = patient_identifier.patient_id AND person_address.voided IS FALSE
+              JOIN(select
+                   MIN(start_time),
+                   patientApp.appointment_service_id,
+                   patientApp.appointment_service_type_id,
+                   patientAppointment.comments,
+                   patientApp.start_time,
+                   patientApp.location_id,
+                   patientAppointment.patient_id,
+                   patientAppointment.voided,
+                   patientApp.service,
+                   patientAppointment.start_date_time
+                   from patient_appointment as patientAppointment
+                   JOIN(select
+                           patient_appointment.patient_appointment_id,
+                           patient_appointment.appointment_service_id,
+                           patient_appointment.appointment_service_type_id,
+                           patient_appointment.comments,
+                           patient_appointment.location_id,
+                           MIN(CAST(patient_appointment.start_date_time AS TIME)) as start_time,
+                           appServiceName,
+                           appServiceTypeName,
+                           service
+                           FROM patient_appointment
+                               LEFT JOIN(SELECT
+                               appService.appointment_service_id,
+                               appServiceType.appointment_service_type_id,
+                               appService.name as appServiceName,
+                               appServiceType.name as appServiceTypeName,
+                               CASE WHEN appService.name !='3D' and appService.name !='Session under sedation' THEN appServiceType.name ELSE NULL END as service
+                               from appointment_service as appService
+                                   LEFT JOIN appointment_service_type as appServiceType
+                                   on appService.appointment_service_id = appServiceType.appointment_service_id
+                                   and appServiceType.voided IS FALSE
+                                   WHERE appService.voided=0) as aps
+                                   ON  aps.appointment_service_id = patient_appointment.appointment_service_id
+                                   AND  aps.appointment_service_type_id = patient_appointment.appointment_service_type_id
+                            where status NOT IN ('Cancelled')
+                            and date(start_date_time) >= '#startDate#'
+                            and date(end_date_time) <= '#endDate#'
+                            group by start_date_time, patient_id)as patientApp
+                            on patientApp.patient_appointment_id = patientAppointment.patient_appointment_id
+                            group by patient_id, CAST(start_date_time AS DATE)
+                             ) as pa
+                         ON pa.patient_id = patient_identifier.patient_id and pa.voided IS FALSE
+                    JOIN location l ON pa.location_id = l.location_id AND l.retired IS FALSE AND pa.voided IS FALSE
 
               JOIN obs o ON o.person_id = patient_identifier.patient_id
               JOIN encounter e ON o.encounter_id = e.encounter_id AND o.voided IS FALSE AND e.voided IS FALSE
               JOIN concept c ON o.concept_id = c.concept_id AND c.retired IS FALSE
               JOIN(
               SELECT obs.person_id,
-                    obs.encounter_id,
                     obs.concept_id,
-                    MAX(obs.encounter_id) as max_encounter_id
+                    obs.obs_datetime
                     FROM obs
-                    JOIN patient_program as pp ON obs.person_id = pp.patient_id
-                    JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE AND encounter.voided = FALSE
-                    JOIN(SELECT concept_name.concept_id,
-                            concept_name.name,
-                            concept_name.concept_name_type,
-                            concept_name.voided
-                         FROM concept_name
-                      ) as obs_question
-                    ON obs.concept_id = obs_question.concept_id
-                    AND obs_question.concept_name_type="FULLY_SPECIFIED" AND obs_question.voided = 0
+                    JOIN patient_program as pp ON obs.person_id = pp.patient_id and pp.voided IS FALSE
+                    JOIN encounter e ON obs.encounter_id = e.encounter_id AND obs.voided IS FALSE AND e.voided IS FALSE
+                    JOIN concept_name obs_question on obs_question.concept_id = obs.concept_id
+                    AND obs_question.concept_name_type="FULLY_SPECIFIED" AND obs_question.voided IS FALSE
                     JOIN concept_name as coded_concept ON coded_concept.concept_id = obs.value_coded
                     AND coded_concept.concept_name_type="FULLY_SPECIFIED" AND coded_concept.voided IS FALSE
-                        WHERE ((obs_question.name IN('IMA, Transportation need', 'PPN, Transportation need')
+                        WHERE obs.obs_datetime = (select max(encounter_datetime) from encounter where encounter.patient_id = obs.person_id)
+                        and (((obs_question.name IN('IMA, Transportation need', 'PPN, Transportation need')
                         AND (coded_concept.name = 'Ambulance' OR coded_concept.name = 'Car'))
                         AND pp.outcome_concept_id IS NULL)
                         OR ((obs_question.name = 'IMA, Transportation need' OR (obs_question.name = 'PPN, Transportation need' and obs_question.name = 'PPN, Type of visit'))
-                        and ((coded_concept.name = 'Ambulance' and (coded_concept.name != 'Discharge' OR pp.outcome_concept_id IS NULL))
-                        OR  (coded_concept.name = 'Car' and (coded_concept.name != 'Discharge' OR pp.outcome_concept_id IS NULL)))
-                    )
-
-              GROUP BY person_id) as latest_encounter
-                    ON latest_encounter.max_encounter_id = e.encounter_id
+                        and ((coded_concept.name = 'Ambulance' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL))
+                        OR  (coded_concept.name = 'Car' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL)))))
+              ) as latest_encounter
+                    ON latest_encounter.person_id = e.patient_id
             LEFT OUTER JOIN(
              SELECT
-                    obs.encounter_id,
+                    obs.obs_datetime,
                     obs.concept_id,
                     obs.person_id,
-                    SUM(obs.value_numeric) as passengers
+                    obs.value_numeric as passengers
                     FROM obs
-                    JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE AND encounter.voided = FALSE
+                    JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE AND encounter.voided IS FALSE
                     JOIN concept_name numeric_concept ON numeric_concept.concept_id = obs.concept_id
-                     AND numeric_concept.voided IS FALSE
-                     AND numeric_concept.name IN('IMA, Number of passengers', 'PPN, Number of passengers')
-                     AND numeric_concept.concept_name_type ="FULLY_SPECIFIED"
-                    GROUP BY person_id, encounter_id) as total_passengers
-                    ON latest_encounter.max_encounter_id = total_passengers.encounter_id
-                    JOIN(SELECT patient_id,
-                               comments,
-                               appointment_service_id,
-                               location_id,
-                               voided,
-                               MIN(CAST(start_date_time AS TIME)) as start_time
-                               FROM patient_appointment
-                               WHERE status NOT IN ('Cancelled')
-                               AND date(start_date_time) >= '#startDate#' and date(end_date_time) <= '#endDate#'
-                               GROUP BY patient_id, CAST(start_date_time as DATE)
-                               ) as pa
-                 ON pa.patient_id = latest_encounter.person_id
-                 JOIN(SELECT
-                         CASE WHEN appointment_service.name = '3D' THEN 'Yes' ELSE NULL END as service_3d,
-                         CASE WHEN appointment_service.name = 'Session under sedation' THEN appointment_service_type.name ELSE NULL END as service_sedation,
-                         CASE WHEN appointment_service.name !='3D' and appointment_service.name !='Session under sedation' THEN appointment_service.name ELSE NULL END as service,
-                         appointment_service.*
-                      FROM appointment_service
-                      JOIN appointment_service_type
-                      ON appointment_service.appointment_service_id = appointment_service_type.appointment_service_type_id
-                       ) as aps
-                      ON pa.appointment_service_id = aps.appointment_service_id
-                 LEFT JOIN location l ON l.location_id = pa.location_id AND l.retired IS FALSE AND pa.voided IS FALSE
-                  JOIN person_address ON person_address.person_id = pa.patient_id AND person_address.voided IS FALSE
+                    AND numeric_concept.concept_name_type ="FULLY_SPECIFIED"
+                    AND numeric_concept.voided IS FALSE
+                    WHERE obs.obs_datetime = (select max(encounter_datetime) from encounter where encounter.patient_id = obs.person_id)
+                    AND numeric_concept.name IN('IMA, Number of passengers', 'PPN, Number of passengers')
+                   ) as total_passengers
+                    ON total_passengers.obs_datetime = latest_encounter.obs_datetime
+
 
 WHERE patient_identifier.identifier_type = (SELECT patient_identifier_type_id FROM patient_identifier_type WHERE name = 'Patient Identifier')
+and patient_identifier.voided = 0
 ORDER BY l.name, person_address.state_province, person_address.city_village;
