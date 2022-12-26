@@ -171,7 +171,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("None", "First level pain reliever", "Second level pain reliever", "EMONO", "Sedation", "TENS", "Trigger Point")
+                ("None", "First level pain reliever", "Second level pain reliever", "Third level pain reliever", "Local analgesia", "EMONO", "Sedation", "TENS", "Trigger Point")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PPN, Pain management");
@@ -188,13 +188,17 @@
             set @child5_concept_id = 0;
             set @child6_concept_id = 0;
             set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="None" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="First level pain reliever" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Second level pain reliever" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="EMONO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Sedation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="TENS" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="Trigger Point" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Third level pain reliever" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Local analgesia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="EMONO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Sedation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="TENS" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Trigger Point" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -202,6 +206,8 @@
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
             call add_concept_answer(@concept_id, @child6_concept_id, 6);
             call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
         </sql>
     </changeSet>
 

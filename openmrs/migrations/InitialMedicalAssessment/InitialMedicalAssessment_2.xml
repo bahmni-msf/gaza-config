@@ -22,7 +22,7 @@
 
             select concept_id into @concept_id1 from concept_name where name = "IMA, Number of passengers" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
             INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-            VALUES (@concept_id1,NULL,NULL,NULL,-0.1,NULL,NULL,"",0,0);
+            VALUES (@concept_id1,3,NULL,NULL,1,NULL,NULL,"",0,0);
         </sql>
     </changeSet>
 

@@ -43,13 +43,14 @@ VALUES ((select concept_id from concept_name where name = "PPN, Visual analog sc
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PPN, DN4" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PPN, Number of passengers" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.1,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PPN, Number of passengers" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),3,NULL,NULL,1,NULL,NULL,"",0,0);
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PPN, Examination comments","Examination comments","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PPN, Treatment plan comment","Treatment plan comment","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PPN, Comment on process of care","Comment on process of care","Text","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PPN, Comment on process of discharge","Comment on process of discharge","Text","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PPN, Patient Complain","Patient Complain","Text","Question",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Clips removal","Clips removal","N/A","Misc",false);
@@ -71,6 +72,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Surgical proced
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"EMONO","EMONO","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"First level pain reliever","First level pain reliever","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Trigger Point","Trigger Point","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Third level pain reliever","Third level pain reliever","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Local analgesia","Local analgesia","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
