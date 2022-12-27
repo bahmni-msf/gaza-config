@@ -118,14 +118,13 @@ FROM patient_identifier
                     AND obs_question.concept_name_type="FULLY_SPECIFIED" AND obs_question.voided IS FALSE
                     JOIN concept_name as coded_concept ON coded_concept.concept_id = obs.value_coded
                     AND coded_concept.concept_name_type="FULLY_SPECIFIED" AND coded_concept.voided IS FALSE
-                        WHERE obs.obs_datetime = (select max(encounter_datetime) from encounter where encounter.patient_id = obs.person_id)
-                        and (((obs_question.name IN('IMA, Transportation need', 'PPN, Transportation need')
+                        WHERE (((obs_question.name IN('IMA, Transportation need', 'PPN, Transportation need')
                         AND (coded_concept.name = 'Ambulance' OR coded_concept.name = 'Car'))
                         AND pp.outcome_concept_id IS NULL)
                         OR ((obs_question.name = 'IMA, Transportation need' OR (obs_question.name = 'PPN, Transportation need' and obs_question.name = 'PPN, Type of visit'))
                         and ((coded_concept.name = 'Ambulance' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL))
                         OR  (coded_concept.name = 'Car' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL)))))
-              ) as latest_encounter
+              group by person_id) as latest_encounter
                     ON latest_encounter.person_id = e.patient_id
             LEFT OUTER JOIN(
              SELECT
