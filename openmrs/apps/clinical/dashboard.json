@@ -342,7 +342,7 @@
           "showListView": true,
           "showRoute": true,
           "showDrugForm": true,
-          "numberOfVisits": 6,
+          "numberOfVisits": 1,
           "showOtherActive": true,
           "showDetailsButton": false
         },

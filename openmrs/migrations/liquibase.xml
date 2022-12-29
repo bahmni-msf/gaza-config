@@ -217,4 +217,97 @@
 
     <include file="Medications/Medications.xml"/>
     <include file="PatientProgressNote/PatientProgressNote.xml"/>
+
+    <changeSet id="Gaza_CONFIG_20221226110901637" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from
+                concept_name where name IN
+                ("Drug-Drug Interaction", "Adverse effect", "Out of stock")
+                AND concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answer Concept for Stopped Order Reason </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drug-Drug Interaction","Drug-Drug Interaction","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Adverse effect","Adverse effect","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Out of stock","Out of stock","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20221226110901638" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Drug-Drug Interaction", "Adverse effect", "Out of stock","Others")
+                AND concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "Stopped Order Reason");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concept to Stopped Order Reason</comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="Stopped Order Reason" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Drug-Drug Interaction" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Adverse effect" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="Out of stock" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="Others" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,3,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID2,27,4,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID3,27,5,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID4,27,6,now(),uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20221227110901639" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "12">
+                select count(*) from concept_set cs
+                join
+                concept_name cn
+                on cs.concept_id=cn.concept_id
+                where cs.concept_id in (select concept_id from concept_name where name IN ('tablet(s)','capsule(s)','ml','mg','IU','Unit(s)')
+                AND concept_name_type = "FULLY_SPECIFIED")
+                AND cs.concept_set IN (select concept_id from concept_name where name = "Drug Routes");
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing the mappings of tablet(s), capsule(s), ml,mg,IU,Unit(s) from drug routes</comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="Drug Routes" AND concept_name_type="FULLY_SPECIFIED";
+
+            SELECT concept_id INTO @conceptID1 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="tablet(s)"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID2 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="capsule(s)"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID3 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="ml"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID4 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="mg"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID5 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="IU"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID6 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="Unit(s)"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            DELETE FROM concept_set WHERE concept_id=@conceptID1 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID2 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID3 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID4 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID5 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID6 and concept_set = @conceptcoded;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
