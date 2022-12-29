@@ -197,7 +197,7 @@
         </sql>
     </changeSet>
     <include file="freshdesk/freshdesk_1369.xml"/>
-    <include file="InitialMedicalAssessment/InitialMedicalAssessment_2.xml"/>
+    <include file="InitialMedicalAssessment/InitialMedicalAssessment_3.xml"/>
 
      <changeSet id="Gaza_CONFIG_20221115110901635" author="Kiruthiga">
         <comment>procedure add_new_concept to allow shortname as null</comment>
