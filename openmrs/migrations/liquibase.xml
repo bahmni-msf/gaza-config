@@ -310,4 +310,62 @@
             DELETE FROM concept_set WHERE concept_id=@conceptID6 and concept_set = @conceptcoded;
         </sql>
     </changeSet>
+    <changeSet id="Gaza_CONFIG_202212281241" author="venky, tarun">
+        <comment>Adding queue for patients with prescriptions made by provider within the last 8 hours or patients with any change to a prescription within the last 8 hours</comment>
+        <sqlFile path="programs/newModifiedPrescription.sql"/>
+    </changeSet>
+    <changeSet id="Gaza_CONFIG_202212281801" author="venky, tarun">
+        <comment>Adding queue for patients with any medications prescribed that a stop date has not been entered or that the end date for the prescription has not past</comment>
+        <sqlFile path="programs/openPrescription.sql"/>
+    </changeSet>
+    <changeSet id="Gaza_CONFIG_202212281459" author="venky, tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from privilege where privilege = 'app:pharmacy';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new app:pharmacy privilege</comment>
+        <sql>
+            INSERT INTO privilege(privilege, description, uuid) VALUES ('app:pharmacy', 'View Pharmacy module', uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Gaza_CONFIG_202212281519" author="venky, tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) from role where role = 'Pharmacy-App';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Pharmacy-App role</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("Pharmacy-App", "Role for Accessing Pharmacy Module", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Gaza_CONFIG_202212281527" author="venky, tarun">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "app:pharmacy";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Pharmacy-App" AND privilege = "app:pharmacy";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:pharmacy privilege to Pharmacy-App role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Pharmacy-App", "app:pharmacy");
+        </sql>
+    </changeSet>
+    <changeSet id="Gaza_CONFIG_202212291155" author="venky, tarun">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "app:pharmacy";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Privilege Level: Full" AND privilege = "app:pharmacy";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:pharmacy privilege to Privilege Level: Full role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Privilege Level: Full", "app:pharmacy");
+        </sql>
+    </changeSet>
 </databaseChangeLog>

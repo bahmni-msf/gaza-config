@@ -68,5 +68,15 @@
     "icon": "icon-bahmni-reports",
     "order": 7,
     "requiredPrivilege": "app:reports"
+  },
+  "Pharmacy": {
+    "id": "bahmni.pharmacy",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_PHARMACY_KEY",
+    "url": "../clinical/#/pharmacy/patient/search",
+    "icon": "fa-flask",
+    "order": 8,
+    "requiredPrivilege": "app:pharmacy"
   }
 }

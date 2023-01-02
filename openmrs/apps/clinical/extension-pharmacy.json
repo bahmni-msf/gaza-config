@@ -1,0 +1,30 @@
+{
+  "bahmniClinicalPatientsSearchPharmacyPatients": {
+    "id": "bahmni.clinical.patients.search.pharmacyPatients",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.newModifiedPrescription",
+      "translationKey": "MODULE_LABEL_NEWMODIFIED_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/dashboard/treatment?tabConfigName=allMedicationTabConfig",
+      "view": "tabular",
+      "searchColumns": ["identifier","Patient Name","Age","Speciality","Name of Surgeon","Bed Allocation","Prescriber","Medications","Start Date","Prescribed/Updated Time","Duration & Units"]
+    },
+    "order": 1,
+    "requiredPrivilege": "app:pharmacy"
+  },
+  "bahmniClinicalPatientsSearchPharmacyOpenPatients": {
+    "id": "bahmni.clinical.patients.search.pharmacyOpenPatients",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.openPrescription",
+      "translationKey": "MODULE_LABEL_OPENPRESCRIPTION_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/dashboard/treatment?tabConfigName=allMedicationTabConfig",
+      "view": "tabular",
+      "searchColumns": ["identifier","Patient Name","Age","Speciality","Name of Surgeon","Bed Allocation","Prescriber","Medications","Start Date","Prescribed/Updated Time","Duration & Units"]
+    },
+    "order": 2,
+    "requiredPrivilege": "app:pharmacy"
+  }
+}
