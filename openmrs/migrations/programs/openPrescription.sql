@@ -16,72 +16,78 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.openPrescription',
-    "SELECT
+    "SELECT distinct
   personData.identifier,
-  personData.name AS 'Patient Name',
+  personData.arabicName AS 'Patient Name in Arabic',
+  personData.name AS 'Patient Name in English',
   personData.age  AS 'Age',
-  latest_obs.Specialty AS 'Speciality',
-  latest_obs.`Name of Surgeon`,
-  bed.bed_allocation AS 'Bed Allocation',
+  (select l.name from location l where l.location_id = (select location_id from patient_appointment where patient_id = personData.person_id order by date_created DESC limit 1)) AS 'Clinic',
   medications.prescriber AS 'Prescriber',
-  medications.drugName AS 'Medications',
+  (select DATE_FORMAT(v.date_started, '%d/%m/%Y') from visit v where v.patient_id = personData.person_id and date(v.date_started) <= date(medications.updated_time) and (v.date_stopped is NULL or date(v.date_stopped) >= date(medications.updated_time)) limit 1) AS 'Visit Date',
   DATE_FORMAT(medications.date_activated,'%d/%m/%Y') AS 'Start Date',
-  DATE_FORMAT(medications.date_created, '%d/%m/%Y %r') AS 'Prescribed/Updated Time',
-  medications.durartion_units AS 'Duration & Units',
-  personData.uuid,
-  personData.programUuid,
-  personData.enrollment
+  medications.durartion_units AS 'Duration & Units'
 FROM
-  (SELECT
-     p.uuid                                                                                                     AS uuid,
-     prog.uuid                                                                                                  AS programUuid,
-     pp.uuid                                                                                                    AS enrollment,
-     pp.date_enrolled,
-     concat(pn.given_name, ' ', pn.family_name)                                                                 AS name,
-     floor(DATEDIFF(CURDATE(), p.birthdate) / 365)                                                              AS age,
-     pi.identifier                                                                                              AS identifier,
-     p.person_id                                                                                                AS person_id
-   FROM person p
-     JOIN patient_identifier pi ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
-     JOIN patient_program pp ON pp.patient_id = p.person_id AND pp.voided IS FALSE AND pp.date_completed IS NULL
-     JOIN program prog ON prog.program_id = pp.program_id  AND prog.retired IS FALSE
-     JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE
-   GROUP BY p.person_id) personData
-  LEFT JOIN (
+  (
+    SELECT
+      p.uuid AS uuid,
+      prog.uuid AS programUuid,
+      pp.uuid AS enrollment,
+      pp.date_enrolled,
+      concat_ws(
+        ' ',
+        pivoted_person_attributes.first_name,
+        pivoted_person_attributes.last_name
+      ) AS 'arabicName',
+      concat(pn.given_name, ' ', pn.family_name) AS name,
+      floor(DATEDIFF(CURDATE(), p.birthdate) / 365) AS age,
+      pi.identifier AS identifier,
+      p.person_id AS person_id
+    FROM
+      person p
+      JOIN patient_identifier pi ON p.person_id = pi.patient_id
+      AND p.voided IS FALSE
+      AND pi.voided IS FALSE
+      JOIN patient_program pp ON pp.patient_id = p.person_id
+      AND pp.voided IS FALSE
+      AND pp.date_completed IS NULL
+      JOIN program prog ON prog.program_id = pp.program_id
+      AND prog.retired IS FALSE
+      JOIN person_name pn ON p.person_id = pn.person_id
+      AND pn.voided IS FALSE
+      JOIN(
+        SELECT
+          person_id,
+          group_concat(first_name) as first_name,
+          group_concat(last_name) as last_name
+        FROM
+          (
+            (
               SELECT
-                obs.person_id,
-                GROUP_CONCAT(DISTINCT (IF(c_name = 'FV, Name (s) of Surgeon 1',
-                                          COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Name of Surgeon',
-                GROUP_CONCAT(DISTINCT (IF(c_name = 'FSTG, Specialty determined by MLO',
-                                          COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Specialty'
-              FROM (SELECT
-                      cn.name             AS c_name,
-                      o.person_id,
-                      max(e.encounter_datetime) AS latest_encounter_datetime,
-                      o.concept_id
-                    FROM obs o
-                      JOIN concept_name cn ON cn.name IN
-                                              ('FV, Name (s) of Surgeon 1',
-                                               'FSTG, Specialty determined by MLO')
-                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
-                                              o.voided IS FALSE
-                      JOIN encounter e ON e.encounter_id = o.encounter_id AND e.voided IS FALSE
-                    GROUP BY person_id, concept_id) result
-                JOIN encounter e ON e.encounter_datetime = result.latest_encounter_datetime AND result.person_id = e.patient_id AND e.voided IS FALSE
-                JOIN obs ON obs.concept_id = result.concept_id  AND result.person_id = obs.person_id AND e.encounter_id = obs.encounter_id AND
-                            obs.voided IS FALSE
-                LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
-                                                     AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
-                                                     AND coded_fscn.voided IS FALSE
-                LEFT JOIN concept_name coded_scn ON coded_scn.concept_id = obs.value_coded
-                                                    AND coded_fscn.concept_name_type = 'SHORT'
-                                                    AND coded_scn.voided IS FALSE
-              GROUP BY obs.person_id
-            ) latest_obs ON latest_obs.person_id = personData.person_id
+                person_attribute.person_id,
+                CASE
+                  WHEN person_attribute_type.name = 'givenNameLocal' THEN value
+                END as first_name,
+                CASE
+                  WHEN person_attribute_type.name = 'familyNameLocal' THEN value
+                END as last_name
+              FROM
+                person_attribute
+                JOIN person_attribute_type ON person_attribute.person_attribute_type_id = person_attribute_type.person_attribute_type_id
+              WHERE
+                voided = 0
+            ) as person_attributes_with_name
+          )
+        GROUP BY
+          person_id
+      ) as pivoted_person_attributes ON pivoted_person_attributes.person_id = p.person_id
+    GROUP BY
+      p.person_id
+  ) personData
   INNER JOIN (
                SELECT
                  p.patient_id,
                  CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
+                 COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
                  IF(drug_code.code IS NOT NULL, drug.name, drug_order.drug_non_coded)                         AS 'drugName',
                  orders.date_created,
                  orders.date_activated,
@@ -105,21 +111,6 @@ FROM
                  LEFT JOIN drug ON drug.concept_id = orders.concept_id
                  LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id and drug_code.concept_reference_source_name='MSF-INTERNAL' and drug_code.concept_map_type_name= 'SAME-AS'
              ) medications on medications.patient_id = personData.person_id
-  LEFT OUTER JOIN (
-                    SELECT
-                      p.patient_id,
-                      concat(location.name,'(',bed.bed_number,')') AS bed_allocation,
-                      bed.bed_number,
-                      location.name,
-                      bpam.date_created
-                    FROM patient p
-                      LEFT JOIN bed_patient_assignment_map bpam on bpam.patient_id = p.patient_id AND
-                                                                   bpam.date_stopped IS NULL
-                      INNER JOIN bed on bed.bed_id = bpam.bed_id
-                      INNER JOIN bed_location_map blm on blm.bed_id = bed.bed_id
-                      INNER JOIN location on location.location_id = blm.location_id
-                    GROUP BY bpam.patient_id
-                  ) bed on bed.patient_id = personData.person_id
 ORDER BY medications.date_created DESC;",
     'Open Prescriptions',
     @uuid

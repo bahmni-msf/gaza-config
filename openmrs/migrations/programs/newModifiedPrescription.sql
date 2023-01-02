@@ -16,7 +16,7 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.newModifiedPrescription',
-    "SELECT
+    "SELECT distinct
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
