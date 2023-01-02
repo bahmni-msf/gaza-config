@@ -16,7 +16,7 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.newModifiedPrescription',
-    "SELECT distinct
+    "Select newModPresData.* from (SELECT
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
@@ -100,16 +100,10 @@ FROM
       AND orders.order_action != 'DISCONTINUE'
       AND orders.date_created > date_sub(now(), INTERVAL 8 HOUR)
       AND orders.date_stopped IS NULL
+      AND NOT EXISTS (Select obs.order_id from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' ) AND obs.order_id = orders.order_id AND obs.voided IS FALSE)
       JOIN users on users.user_id = orders.creator
       JOIN person on person.person_id = users.person_id
       JOIN person_name pn on pn.person_id = person.person_id
-      LEFT JOIN obs ON obs.order_id = orders.order_id
-      AND obs.voided IS FALSE
-      AND obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' )
-      LEFT JOIN orders stopped_order ON stopped_order.patient_id = pp.patient_id
-      AND stopped_order.voided = 0
-      AND stopped_order.order_action = 'DISCONTINUE'
-      AND stopped_order.previous_order_id = orders.order_id
       JOIN concept c on c.concept_id = orders.concept_id
       AND c.retired IS FALSE
       LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
@@ -120,9 +114,7 @@ FROM
       LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id
       and drug_code.concept_reference_source_name = 'MSF-INTERNAL'
       and drug_code.concept_map_type_name = 'SAME-AS'
-  ) medications on medications.patient_id = personData.person_id
-ORDER BY
-  medications.updated_time DESC;",
+  ) medications on medications.patient_id = personData.person_id) newModPresData order by newModPresData.Clinic;",
     'New/Modified Prescriptions',
     @uuid
   );

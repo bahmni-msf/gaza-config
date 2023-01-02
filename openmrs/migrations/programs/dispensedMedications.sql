@@ -16,7 +16,7 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.openPrescription',
-    "SELECT distinct
+    "SELECT
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
@@ -98,6 +98,8 @@ FROM
                  JOIN orders ON orders.patient_id = pp.patient_id AND orders.encounter_id = e.encounter_id AND
                                 orders.voided IS FALSE AND orders.order_action != 'DISCONTINUE' AND (orders.auto_expire_date IS NULL or orders.auto_expire_date> now())
                                 AND orders.date_stopped IS NULL
+                                AND EXISTS (Select obs.order_id from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' ) AND obs.order_id = orders.order_id AND obs.voided IS FALSE)
+                                AND DATEDIFF((Select obs.date_created from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' ) AND obs.order_id = orders.order_id AND obs.voided IS FALSE), now())<=5
                  JOIN users on users.user_id = orders.creator
                  JOIN person on person.person_id = users.person_id
                  JOIN person_name pn on pn.person_id = person.person_id
@@ -112,6 +114,6 @@ FROM
                  LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id and drug_code.concept_reference_source_name='MSF-INTERNAL' and drug_code.concept_map_type_name= 'SAME-AS'
              ) medications on medications.patient_id = personData.person_id
 ORDER BY medications.date_created DESC;",
-    'Open Prescriptions',
+    'Dispensed Medications',
     @uuid
   );

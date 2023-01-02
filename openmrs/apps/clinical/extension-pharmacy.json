@@ -8,7 +8,7 @@
       "translationKey": "MODULE_LABEL_NEWMODIFIED_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/dashboard/treatment?tabConfigName=allMedicationTabConfig",
       "view": "tabular",
-      "searchColumns": ["identifier","Patient Name","Age","Speciality","Name of Surgeon","Bed Allocation","Prescriber","Medications","Start Date","Prescribed/Updated Time","Duration & Units"]
+      "searchColumns": ["identifier", "Patient Name in Arabic"]
     },
     "order": 1,
     "requiredPrivilege": "app:pharmacy"
@@ -19,10 +19,10 @@
     "type": "config",
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.openPrescription",
-      "translationKey": "MODULE_LABEL_OPENPRESCRIPTION_KEY",
+      "translationKey": "MODULE_LABEL_DISPENSED_MEDICATIONS_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/dashboard/treatment?tabConfigName=allMedicationTabConfig",
       "view": "tabular",
-      "searchColumns": ["identifier","Patient Name","Age","Speciality","Name of Surgeon","Bed Allocation","Prescriber","Medications","Start Date","Prescribed/Updated Time","Duration & Units"]
+      "searchColumns": ["identifier","Patient Name in Arabic"]
     },
     "order": 2,
     "requiredPrivilege": "app:pharmacy"

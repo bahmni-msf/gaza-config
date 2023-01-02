@@ -316,7 +316,7 @@
     </changeSet>
     <changeSet id="Gaza_CONFIG_202212281801" author="venky, tarun">
         <comment>Adding queue for patients with any medications prescribed that a stop date has not been entered or that the end date for the prescription has not past</comment>
-        <sqlFile path="programs/openPrescription.sql"/>
+        <sqlFile path="programs/dispensedMedications.sql"/>
     </changeSet>
     <changeSet id="Gaza_CONFIG_202212281459" author="venky, tarun">
         <preConditions onFail="MARK_RAN">
