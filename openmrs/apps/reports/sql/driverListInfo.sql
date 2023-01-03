@@ -15,7 +15,7 @@ SELECT DISTINCT
         AND pa1.patient_id = pa.patient_id
         AND pa1.voided = 0
         AND date(pa1.start_date_time)=date(pa.start_date_time))) THEN 'Yes' ELSE NULL END)       as `3D`,
-    (SELECT name FROM appointment_service_type ast
+    (SELECT group_concat(name) FROM appointment_service_type ast
         WHERE ast.voided = 0
         and appointment_service_id IN(SELECT DISTINCT appointment_service_id
         FROM appointment_service as1
@@ -109,7 +109,6 @@ FROM patient_identifier
               JOIN(
               SELECT obs.person_id,
                     obs.concept_id,
-                    obs.obs_datetime,
                     obs.encounter_id
                     FROM obs
                     JOIN patient_program as pp ON obs.person_id = pp.patient_id and pp.voided IS FALSE
@@ -118,31 +117,30 @@ FROM patient_identifier
                     AND obs_question.concept_name_type="FULLY_SPECIFIED" AND obs_question.voided IS FALSE
                     JOIN concept_name as coded_concept ON coded_concept.concept_id = obs.value_coded
                     AND coded_concept.concept_name_type="FULLY_SPECIFIED" AND coded_concept.voided IS FALSE
-                        WHERE (((obs_question.name IN('IMA, Transportation need', 'PPN, Transportation need')
+                        WHERE obs.encounter_id = (select max(encounter_id) from encounter where encounter.patient_id = obs.person_id)
+                        and (obs_question.name IN('IMA, Transportation need', 'PPN, Transportation need')
                         AND (coded_concept.name = 'Ambulance' OR coded_concept.name = 'Car'))
-                        AND pp.outcome_concept_id IS NULL)
-                        OR ((obs_question.name = 'IMA, Transportation need' OR (obs_question.name = 'PPN, Transportation need' and obs_question.name = 'PPN, Type of visit'))
-                        and ((coded_concept.name = 'Ambulance' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL))
-                        OR  (coded_concept.name = 'Car' and (coded_concept.name != 'Discharge' AND pp.outcome_concept_id IS NULL)))))
-              group by person_id) as latest_encounter
+                        AND pp.outcome_concept_id IS NULL
+                        AND NOT EXISTS (select obs1.concept_id from obs obs1 where obs1.encounter_id=obs.encounter_id
+                        AND obs1.concept_id=(select cn1.concept_id from concept_name cn1 where cn1.name='PPN, Type of visit' and cn1.concept_name_type="FULLY_SPECIFIED" and cn1.voided IS FALSE)
+                        AND obs1.value_coded=(select cn1.concept_id from concept_name cn1 where cn1.name='Discharge' and cn1.concept_name_type="FULLY_SPECIFIED" and cn1.voided IS FALSE))
+              ) as latest_encounter
                     ON latest_encounter.person_id = e.patient_id
             LEFT OUTER JOIN(
              SELECT
-                    obs.obs_datetime,
+                    obs.encounter_id,
                     obs.concept_id,
                     obs.person_id,
-                    obs.encounter_id,
                     obs.value_numeric as passengers
                     FROM obs
                     JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE AND encounter.voided IS FALSE
                     JOIN concept_name numeric_concept ON numeric_concept.concept_id = obs.concept_id
                     AND numeric_concept.concept_name_type ="FULLY_SPECIFIED"
                     AND numeric_concept.voided IS FALSE
+                    WHERE obs.encounter_id = (select max(encounter_id) from encounter where encounter.patient_id = obs.person_id)
                     AND numeric_concept.name IN('IMA, Number of passengers', 'PPN, Number of passengers')
                    ) as total_passengers
                     ON total_passengers.encounter_id = latest_encounter.encounter_id
-
-
 WHERE patient_identifier.identifier_type = (SELECT patient_identifier_type_id FROM patient_identifier_type WHERE name = 'Patient Identifier')
 and patient_identifier.voided = 0
 ORDER BY l.name, person_address.state_province, person_address.city_village;
