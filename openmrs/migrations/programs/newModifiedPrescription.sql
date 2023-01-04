@@ -16,14 +16,17 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.newModifiedPrescription',
-    "Select newModPresData.* from (SELECT
+    "Select newModPresData.* from (SELECT distinct
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
   personData.age AS 'Age',
   (select l.name from location l where l.location_id = (select location_id from patient_appointment where patient_id = personData.person_id order by date_created DESC limit 1)) AS 'Clinic',
   medications.prescriber AS 'Prescriber',
-  (select DATE_FORMAT(v.date_started, '%d/%m/%Y') from visit v where v.patient_id = personData.person_id and date(v.date_started) <= date(medications.updated_time) and (v.date_stopped is NULL or date(v.date_stopped) >= date(medications.updated_time)) limit 1) AS 'Visit Date'
+  (select DATE_FORMAT(v.date_started, '%d/%m/%Y') from visit v where v.patient_id = personData.person_id and date(v.date_started) <= date(medications.updated_time) and (v.date_stopped is NULL or date(v.date_stopped) >= date(medications.updated_time)) limit 1) AS 'Visit Date',
+  personData.uuid,
+  personData.programUuid,
+  personData.enrollment
 FROM
   (
     SELECT

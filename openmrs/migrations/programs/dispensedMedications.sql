@@ -16,7 +16,7 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.openPrescription',
-    "SELECT
+    "Select dispensedMedData.* from (SELECT
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
@@ -25,7 +25,10 @@ VALUES
   medications.prescriber AS 'Prescriber',
   (select DATE_FORMAT(v.date_started, '%d/%m/%Y') from visit v where v.patient_id = personData.person_id and date(v.date_started) <= date(medications.updated_time) and (v.date_stopped is NULL or date(v.date_stopped) >= date(medications.updated_time)) limit 1) AS 'Visit Date',
   DATE_FORMAT(medications.date_activated,'%d/%m/%Y') AS 'Start Date',
-  medications.durartion_units AS 'Duration & Units'
+  medications.durartion_units AS 'Duration & Units',
+  personData.uuid,
+  personData.programUuid,
+  personData.enrollment
 FROM
   (
     SELECT
@@ -112,8 +115,7 @@ FROM
                  LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
                  LEFT JOIN drug ON drug.concept_id = orders.concept_id
                  LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id and drug_code.concept_reference_source_name='MSF-INTERNAL' and drug_code.concept_map_type_name= 'SAME-AS'
-             ) medications on medications.patient_id = personData.person_id
-ORDER BY medications.date_created DESC;",
+             ) medications on medications.patient_id = personData.person_id) dispensedMedData order by dispensedMedData.Clinic, dispensedMedData.`Visit Date` desc;",
     'Dispensed Medications',
     @uuid
   );

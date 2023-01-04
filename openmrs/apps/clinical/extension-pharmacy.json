@@ -6,7 +6,7 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.newModifiedPrescription",
       "translationKey": "MODULE_LABEL_NEWMODIFIED_KEY",
-      "forwardUrl": "#/programs/patient/{{patientUuid}}/dashboard/treatment?tabConfigName=allMedicationTabConfig",
+      "forwardUrl": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
       "view": "tabular",
       "searchColumns": ["identifier", "Patient Name in Arabic"]
     },
@@ -20,7 +20,7 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.openPrescription",
       "translationKey": "MODULE_LABEL_DISPENSED_MEDICATIONS_KEY",
-      "forwardUrl": "#/programs/patient/{{patientUuid}}/dashboard/treatment?tabConfigName=allMedicationTabConfig",
+      "forwardUrl": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
       "view": "tabular",
       "searchColumns": ["identifier","Patient Name in Arabic"]
     },
