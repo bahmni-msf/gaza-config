@@ -311,7 +311,7 @@
         </sql>
     </changeSet>
     <changeSet id="Gaza_CONFIG_202212281241" author="venky, tarun">
-        <comment>Adding queue for patients with prescriptions made by provider within the last 8 hours or patients with any change to a prescription within the last 8 hours</comment>
+        <comment>Adding queue for patients with prescriptions made by provider</comment>
         <sqlFile path="programs/newModifiedPrescription.sql"/>
     </changeSet>
     <changeSet id="Gaza_CONFIG_202212281801" author="venky, tarun">
@@ -332,7 +332,7 @@
     <changeSet id="Gaza_CONFIG_202212281519" author="venky, tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT COUNT(*) from role where role = 'Pharmacy-App';
+                SELECT count(*) from role where role = 'Pharmacy-App';
             </sqlCheck>
         </preConditions>
         <comment>Adding Pharmacy-App role</comment>

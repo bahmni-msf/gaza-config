@@ -101,7 +101,6 @@ FROM
       AND orders.encounter_id = e.encounter_id
       AND orders.voided IS FALSE
       AND orders.order_action != 'DISCONTINUE'
-      AND orders.date_created > date_sub(now(), INTERVAL 8 HOUR)
       AND orders.date_stopped IS NULL
       AND NOT EXISTS (Select obs.order_id from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' ) AND obs.order_id = orders.order_id AND obs.voided IS FALSE)
       JOIN users on users.user_id = orders.creator
