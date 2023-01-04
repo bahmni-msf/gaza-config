@@ -6,7 +6,17 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.newModifiedPrescription",
       "translationKey": "MODULE_LABEL_NEWMODIFIED_KEY",
-      "forwardUrl": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+      "links": [
+        {
+            "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+            "linkColumn": "identifier",
+            "newTab": false
+        }, {
+            "url": "/bahmni/registration/#/patient/{{patientUuid}}",
+            "linkColumn": "Patient Name in Arabic",
+            "newTab": false
+        }
+    ],
       "view": "tabular",
       "searchColumns": ["identifier", "Patient Name in Arabic"]
     },
@@ -20,7 +30,17 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.openPrescription",
       "translationKey": "MODULE_LABEL_DISPENSED_MEDICATIONS_KEY",
-      "forwardUrl": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+      "links": [
+        {
+            "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+            "linkColumn": "identifier",
+            "newTab": false
+        }, {
+            "url": "/bahmni/registration/#/patient/{{patientUuid}}",
+            "linkColumn": "Patient Name in Arabic",
+            "newTab": false
+        }
+    ],
       "view": "tabular",
       "searchColumns": ["identifier","Patient Name in Arabic"]
     },
