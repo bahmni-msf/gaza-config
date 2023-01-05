@@ -28,7 +28,7 @@
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.openPrescription",
+      "searchHandler": "emrapi.sqlSearch.dispensedMedications",
       "translationKey": "MODULE_LABEL_DISPENSED_MEDICATIONS_KEY",
       "links": [
         {

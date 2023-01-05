@@ -46,6 +46,7 @@ FROM
     FROM
       person p
       JOIN patient_identifier pi ON p.person_id = pi.patient_id
+      AND pi.preferred=1
       AND p.voided IS FALSE
       AND pi.voided IS FALSE
       JOIN patient_program pp ON pp.patient_id = p.person_id

@@ -1,7 +1,7 @@
 DELETE FROM
   global_property
 where
-  property = 'emrapi.sqlSearch.openPrescription';
+  property = 'emrapi.sqlSearch.dispensedMedications';
 
 select
   uuid() into @uuid;
@@ -15,7 +15,7 @@ INSERT INTO
   )
 VALUES
   (
-    'emrapi.sqlSearch.openPrescription',
+    'emrapi.sqlSearch.dispensedMedications',
     "Select dispensedMedData.* from (SELECT
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
@@ -48,6 +48,7 @@ FROM
     FROM
       person p
       JOIN patient_identifier pi ON p.person_id = pi.patient_id
+      AND pi.preferred=1
       AND p.voided IS FALSE
       AND pi.voided IS FALSE
       JOIN patient_program pp ON pp.patient_id = p.person_id
