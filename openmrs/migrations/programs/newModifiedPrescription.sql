@@ -16,14 +16,14 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.newModifiedPrescription',
-    "Select newModPresData.* from (SELECT distinct
+    "Select newModPresData.* from (SELECT
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
   personData.age AS 'Age',
-  (select l.name from location l where l.location_id = (select location_id from patient_appointment where patient_id = personData.person_id order by date_created DESC limit 1)) AS 'Clinic',
+  (select l.name from location l where l.location_id = (select location_id from visit where patient_id = personData.person_id order by date_created DESC limit 1)) AS 'Clinic',
   medications.prescriber AS 'Prescriber',
-  (select DATE_FORMAT(v.date_started, '%d/%m/%Y') from visit v where v.patient_id = personData.person_id and date(v.date_started) <= date(medications.updated_time) and (v.date_stopped is NULL or date(v.date_stopped) >= date(medications.updated_time)) limit 1) AS 'Visit Date',
+  DATE_FORMAT(medications.updated_time, '%d/%m/%Y %r') AS 'Prescribed/Updated Time',
   personData.uuid,
   personData.programUuid,
   personData.enrollment
@@ -91,6 +91,7 @@ FROM
       CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
       COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
       orders.date_activated,
+      (select v.date_started from visit v where v.patient_id = p.patient_id and (v.date_started <= orders.date_activated and (v.date_stopped is null or v.date_stopped >= orders.date_activated)) limit 1) AS 'vist_date',
       CONCAT(drug_order.duration, ' ', durationUnitscn.name) AS 'durartion_units'
     FROM
       patient p
@@ -117,7 +118,9 @@ FROM
       LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id
       and drug_code.concept_reference_source_name = 'MSF-INTERNAL'
       and drug_code.concept_map_type_name = 'SAME-AS'
-  ) medications on medications.patient_id = personData.person_id) newModPresData order by newModPresData.Clinic;",
+  ) medications on medications.patient_id = personData.person_id
+  GROUP BY medications.vist_date
+  ) newModPresData order by newModPresData.Clinic, newModPresData.`Prescribed/Updated Time`;",
     'New/Modified Prescriptions',
     @uuid
   );
