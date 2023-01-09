@@ -123,7 +123,10 @@ FROM patient_identifier
                         AND pp.outcome_concept_id IS NULL
                         AND NOT EXISTS (select obs1.concept_id from obs obs1 where obs1.encounter_id=obs.encounter_id
                         AND obs1.concept_id=(select cn1.concept_id from concept_name cn1 where cn1.name='PPN, Type of visit' and cn1.concept_name_type="FULLY_SPECIFIED" and cn1.voided IS FALSE)
-                        AND obs1.value_coded=(select cn1.concept_id from concept_name cn1 where cn1.name='Discharge' and cn1.concept_name_type="FULLY_SPECIFIED" and cn1.voided IS FALSE))
+                        AND obs1.value_coded=(select cn1.concept_id from concept_name cn1 where cn1.name='Discharge' and cn1.concept_name_type="FULLY_SPECIFIED" and cn1.voided IS FALSE) and obs1.voided=0)
+                        OR ((obs_question.name = 'IMA, Transportation need' OR (obs_question.name = 'PPN, Transportation need' and obs_question.name = 'PPN, Type of visit'))
+                        and ((coded_concept.name = 'Ambulance' and (coded_concept.name = 'Follow-up' AND pp.outcome_concept_id IS NULL))
+                        OR  (coded_concept.name = 'Car' and (coded_concept.name = 'Follow-up' AND pp.outcome_concept_id IS NULL))))
               ) as latest_encounter
                     ON latest_encounter.person_id = e.patient_id
             LEFT OUTER JOIN(
