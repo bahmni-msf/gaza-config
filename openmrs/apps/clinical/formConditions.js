@@ -24,5 +24,13 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 disable: ["Posture"]
             }
         }
-    }
+    },
+    'Medication Stop Reason': function (drugOrder, conceptName) {
+        if(conceptName == "Stop Reason" || conceptName == "Refused To Take"){
+            drugOrder.orderReasonNotesEnabled = true;
+            return true;
+        }
+        else
+            return false;
+      }
 };
