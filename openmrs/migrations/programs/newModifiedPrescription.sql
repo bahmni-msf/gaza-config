@@ -91,6 +91,7 @@ FROM
       CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
       COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
       orders.date_activated,
+      (select v.date_started from visit v where v.patient_id = p.patient_id and (v.date_started <= orders.date_activated and (v.date_stopped is null or v.date_stopped >= orders.date_activated)) limit 1) AS 'vist_date',
       CONCAT(drug_order.duration, ' ', durationUnitscn.name) AS 'durartion_units'
     FROM
       patient p
@@ -117,7 +118,9 @@ FROM
       LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id
       and drug_code.concept_reference_source_name = 'MSF-INTERNAL'
       and drug_code.concept_map_type_name = 'SAME-AS'
-  ) medications on medications.patient_id = personData.person_id) newModPresData order by newModPresData.Clinic;",
+  ) medications on medications.patient_id = personData.person_id
+  GROUP BY medications.vist_date
+  ) newModPresData order by newModPresData.Clinic, newModPresData.`Prescribed/Updated Time`;",
     'New/Modified Prescriptions',
     @uuid
   );
