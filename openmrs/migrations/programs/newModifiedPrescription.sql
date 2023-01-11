@@ -119,7 +119,7 @@ FROM
       and drug_code.concept_reference_source_name = 'MSF-INTERNAL'
       and drug_code.concept_map_type_name = 'SAME-AS'
   ) medications on medications.patient_id = personData.person_id
-  GROUP BY medications.vist_date
+  GROUP BY personData.person_id, medications.vist_date
   ) newModPresData order by newModPresData.Clinic, newModPresData.`Prescribed/Updated Time`;",
     'New/Modified Prescriptions',
     @uuid

@@ -10,11 +10,11 @@
         {
             "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
             "linkColumn": "identifier",
-            "newTab": false
+            "newTab": true
         }, {
             "url": "/bahmni/registration/#/patient/{{patientUuid}}",
             "linkColumn": "Patient Name in Arabic",
-            "newTab": false
+            "newTab": true
         }
     ],
       "view": "tabular",
@@ -34,11 +34,11 @@
         {
             "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
             "linkColumn": "identifier",
-            "newTab": false
+            "newTab": true
         }, {
             "url": "/bahmni/registration/#/patient/{{patientUuid}}",
             "linkColumn": "Patient Name in Arabic",
-            "newTab": false
+            "newTab": true
         }
     ],
       "view": "tabular",

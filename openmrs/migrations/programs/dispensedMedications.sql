@@ -16,16 +16,14 @@ INSERT INTO
 VALUES
   (
     'emrapi.sqlSearch.dispensedMedications',
-    "Select dispensedMedData.* from (SELECT
+    "SELECT
   personData.identifier,
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
   personData.age  AS 'Age',
   (select l.name from location l where l.location_id = (select location_id from visit where patient_id = personData.person_id order by date_created DESC limit 1)) AS 'Clinic',
   medications.prescriber AS 'Prescriber',
-  (select DATE_FORMAT(v.date_started, '%d/%m/%Y %r') from visit v where v.patient_id = personData.person_id
-  and (v.date_started <= medications.date_activated and (v.date_stopped is null or v.date_stopped >= medications.date_activated))
-  limit 1) AS 'Visit Date',
+  DATE_FORMAT(medications.vist_date, '%d/%m/%Y') AS 'Visit Date',
   DATE_FORMAT(medications.date_activated,'%d/%m/%Y') AS 'Start Date',
   medications.durartion_units AS 'Duration & Units',
   personData.uuid,
@@ -97,6 +95,7 @@ FROM
                  IF(drug_code.code IS NOT NULL, drug.name, drug_order.drug_non_coded)                         AS 'drugName',
                  orders.date_created,
                  orders.date_activated,
+                 (select v.date_started from visit v where v.patient_id = p.patient_id and (v.date_started <= orders.date_activated and (v.date_stopped is null or v.date_stopped >= orders.date_activated)) limit 1) AS 'vist_date',
                  CONCAT(drug_order.duration,' ',durationUnitscn.name) AS 'durartion_units'
                FROM patient p
                  JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
@@ -118,7 +117,7 @@ FROM
                  LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
                  LEFT JOIN drug ON drug.concept_id = orders.concept_id
                  LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id and drug_code.concept_reference_source_name='MSF-INTERNAL' and drug_code.concept_map_type_name= 'SAME-AS'
-             ) medications on medications.patient_id = personData.person_id) dispensedMedData order by dispensedMedData.Clinic, dispensedMedData.`Visit Date` desc;",
+             ) medications on medications.patient_id = personData.person_id ORDER BY Clinic, medications.vist_date desc;",
     'Dispensed Medications',
     @uuid
   );
