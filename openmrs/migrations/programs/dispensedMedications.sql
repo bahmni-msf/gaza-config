@@ -21,6 +21,7 @@ VALUES
   personData.arabicName AS 'Patient Name in Arabic',
   personData.name AS 'Patient Name in English',
   personData.age  AS 'Age',
+  medications.drugName AS 'Drug Name',
   (select l.name from location l where l.location_id = (select location_id from visit where patient_id = personData.person_id order by date_created DESC limit 1)) AS 'Clinic',
   medications.prescriber AS 'Prescriber',
   DATE_FORMAT(medications.vist_date, '%d/%m/%Y') AS 'Visit Date',
@@ -92,7 +93,7 @@ FROM
                  p.patient_id,
                  CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
                  COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
-                 IF(drug_code.code IS NOT NULL, drug.name, drug_order.drug_non_coded)                         AS 'drugName',
+                 drug.name                         AS 'drugName',
                  orders.date_created,
                  orders.date_activated,
                  (select v.date_started from visit v where v.patient_id = p.patient_id and (v.date_started <= orders.date_activated and (v.date_stopped is null or v.date_stopped >= orders.date_activated)) limit 1) AS 'vist_date',
@@ -116,7 +117,6 @@ FROM
                  LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
                  LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
                  LEFT JOIN drug ON drug.concept_id = orders.concept_id
-                 LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id and drug_code.concept_reference_source_name='MSF-INTERNAL' and drug_code.concept_map_type_name= 'SAME-AS'
              ) medications on medications.patient_id = personData.person_id ORDER BY Clinic, medications.vist_date desc;",
     'Dispensed Medications',
     @uuid
