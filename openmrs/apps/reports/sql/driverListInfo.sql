@@ -85,7 +85,7 @@ FROM patient_identifier
                                appServiceType.appointment_service_type_id,
                                appService.name as appServiceName,
                                appServiceType.name as appServiceTypeName,
-                               CASE WHEN appService.name !='3D' and appService.name !='Session under sedation' THEN appServiceType.name ELSE NULL END as service
+                               CASE WHEN appService.name !='3D' and appService.name !='Session under sedation' THEN appService.name ELSE NULL END as service
                                from appointment_service as appService
                                    LEFT JOIN appointment_service_type as appServiceType
                                    on appService.appointment_service_id = appServiceType.appointment_service_id
