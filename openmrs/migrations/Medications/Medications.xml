@@ -315,4 +315,79 @@
             </sql>
     </changeSet>
 
+    <changeSet id="Gaza_CONFIG_20230601110901631" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="12">
+                SELECT count(*) FROM order_frequency WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("Twice a day","Thrice a day"," Four times a day","On alternate days",
+                "Once a week","Twice a week","Thrice a week","Every 2 weeks","Every 3 weeks","Once a month","Five times a day"," Four days a week",
+                "Five days a week","Six days a week") AND concept_name_type ="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Retire frequency from order_frequency</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = "Twice a day" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = "Thrice a day" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = "Four times a day" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = "On alternate days" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = "Once a week" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = "Twice a week" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id7 FROM concept_name WHERE name = "Thrice a week" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id8 FROM concept_name WHERE name = "Every 2 weeks" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id9 FROM concept_name WHERE name = "Every 3 weeks" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id10 FROM concept_name WHERE name = "Once a month" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id11 FROM concept_name WHERE name = "Five times a day" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id12 FROM concept_name WHERE name = "Four days a week" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id13 FROM concept_name WHERE name = "Five days a week" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id14 FROM concept_name WHERE name = "Six days a week" AND concept_name_type ="FULLY_SPECIFIED";
+
+            SELECT user_id INTO @user_id from users where username ='admin';
+
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id1;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id2;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id3;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id4;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id5;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id6;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id7;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id8;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id9;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id10;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id11;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id12;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id13;
+            UPDATE order_frequency set retired=1, retired_by = @user_id, date_retired = now() WHERE concept_id = @concept_id14;
+            
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20230602110901632" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM concept_name WHERE name IN ("Once a day") AND concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Update frequency from Once a day to Every 24 hours</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = "Once a day" AND concept_name_type ="FULLY_SPECIFIED";
+
+            UPDATE concept_name SET name ="Every 24 hours" WHERE concept_id = @concept_id1 AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
+
+    <changeSet id="Gaza_CONFIG_20230602110901633" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM order_frequency WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("Every 24 hours") AND concept_name_type ="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding frequency to Every 24 hours</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = "Every 24 hours" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT order_frequency_id INTO @frequency_id1 FROM order_frequency ORDER BY order_frequency_id DESC LIMIT 1;
+
+            UPDATE order_frequency set order_frequency_id =  @frequency_id1+1 where concept_id = @concept_id1 ;
+
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
