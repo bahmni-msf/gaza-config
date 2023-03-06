@@ -88,6 +88,7 @@
           "isEditable": true,
           "scope":"latest",
           "conceptNames": [
+            "IMA, Weight at admission",
             "IMA, Past medical history diagnosis",
             "IMA, Currently pregnant",
             "IMA, Currently breast-feeding",
@@ -100,6 +101,7 @@
         "expandedViewConfig": {
           "scope":"latest",
           "conceptNames": [
+            "IMA, Weight at admission",
             "IMA, Past medical history diagnosis",
             "IMA, Currently pregnant",
             "IMA, Currently breast-feeding",
