@@ -96,7 +96,7 @@ FROM
                  drug.name                         AS 'drugName',
                  orders.date_created,
                  orders.date_activated,
-                 (select v.date_started from visit v where v.patient_id = p.patient_id and (v.date_started <= orders.date_activated and (v.date_stopped is null or v.date_stopped >= orders.date_activated)) limit 1) AS 'vist_date',
+                 (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'vist_date',
                  CONCAT(drug_order.duration,' ',durationUnitscn.name) AS 'durartion_units'
                FROM patient p
                  JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
