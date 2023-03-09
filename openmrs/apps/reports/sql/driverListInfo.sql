@@ -14,6 +14,7 @@ SELECT DISTINCT
         WHERE as1.appointment_service_id=pa1.appointment_service_id
         AND pa1.patient_id = pa.patient_id
         AND pa1.voided = 0
+        AND pa1.status NOT IN ('Cancelled')
         AND date(pa1.start_date_time)=date(pa.start_date_time))) THEN 'Yes' ELSE NULL END)       as `3D`,
     (SELECT group_concat(name) FROM appointment_service_type ast
         WHERE ast.voided = 0
@@ -26,6 +27,7 @@ SELECT DISTINCT
         AND ast.appointment_service_type_id=pa1.appointment_service_type_id
         AND pa1.patient_id = pa.patient_id
         AND pa1.voided = 0
+        AND pa1.status NOT IN ('Cancelled')
         AND date(pa1.start_date_time)=date(pa.start_date_time))
         THEN appointment_service_type_id ELSE NULL END))                                        as `Sedation`,
     pa.service                                                                                  as `Service`,
@@ -92,7 +94,6 @@ FROM patient_identifier
                                    and appServiceType.voided IS FALSE
                                    WHERE appService.voided=0) as aps
                                    ON  aps.appointment_service_id = patient_appointment.appointment_service_id
-                                   AND  aps.appointment_service_type_id = patient_appointment.appointment_service_type_id
                             where status NOT IN ('Cancelled')
                             and date(start_date_time) >= '#startDate#'
                             and date(end_date_time) <= '#endDate#'
