@@ -93,7 +93,7 @@ FROM
                  p.patient_id,
                  CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
                  COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
-                 drug.name                         AS 'drugName',
+                 IF(drug.name IS NOT NULL, drug.name, drug_order.drug_non_coded)                         AS 'drugName',
                  orders.date_created,
                  orders.date_activated,
                  (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'vist_date',
