@@ -97,7 +97,8 @@ FROM
                  orders.date_created,
                  orders.date_activated,
                  (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'vist_date',
-                 CONCAT(drug_order.duration,' ',durationUnitscn.name) AS 'durartion_units'
+                 CONCAT(drug_order.duration,' ',durationUnitscn.name) AS 'durartion_units',
+                 pp.uuid AS 'pgmUuid'
                FROM patient p
                  JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
                  JOIN encounter e ON e.patient_id = p.patient_id AND e.voided IS FALSE
@@ -117,7 +118,7 @@ FROM
                  LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
                  LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
                  LEFT JOIN drug ON drug.concept_id = orders.concept_id
-             ) medications on medications.patient_id = personData.person_id ORDER BY Clinic, medications.vist_date desc;",
+             ) medications on medications.patient_id = personData.person_id and personData.enrollment = medications.pgmUuid ORDER BY Clinic, medications.vist_date desc;",
     'Dispensed Medications',
     @uuid
   );
