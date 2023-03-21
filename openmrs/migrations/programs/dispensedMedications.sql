@@ -24,9 +24,9 @@ VALUES
   medications.drugName AS 'Drug Name',
   (select l.name from location l where l.location_id = (select location_id from visit where patient_id = personData.person_id order by date_created DESC limit 1)) AS 'Clinic',
   medications.prescriber AS 'Prescriber',
-  DATE_FORMAT(medications.vist_date, '%d/%m/%Y') AS 'Visit Date',
+  DATE_FORMAT(medications.visit_date, '%d/%m/%Y') AS 'Visit Date',
   DATE_FORMAT(medications.date_activated,'%d/%m/%Y') AS 'Start Date',
-  medications.durartion_units AS 'Duration & Units',
+  medications.duration_units AS 'Duration & Units',
   personData.uuid,
   personData.programUuid,
   personData.enrollment
@@ -96,8 +96,8 @@ FROM
                  IF(drug.name IS NOT NULL, drug.name, drug_order.drug_non_coded)                         AS 'drugName',
                  orders.date_created,
                  orders.date_activated,
-                 (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'vist_date',
-                 CONCAT(drug_order.duration,' ',durationUnitscn.name) AS 'durartion_units',
+                 (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'visit_date',
+                 CONCAT(drug_order.duration,' ',durationUnitsConceptName.name) AS 'duration_units',
                  pp.uuid AS 'pgmUuid'
                FROM patient p
                  JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
@@ -106,7 +106,8 @@ FROM
                                 orders.voided IS FALSE AND orders.order_action != 'DISCONTINUE' AND (orders.auto_expire_date IS NULL or orders.auto_expire_date> now())
                                 AND orders.date_stopped IS NULL
                                 AND EXISTS (Select obs.order_id from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' ) AND obs.order_id = orders.order_id AND obs.voided IS FALSE)
-                                AND DATEDIFF((Select obs.date_created from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' ) AND obs.order_id = orders.order_id AND obs.voided IS FALSE), now())<=5
+                                AND DATEDIFF(now(),(Select obs.date_created from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' )
+                                AND obs.order_id = orders.order_id AND obs.voided IS FALSE)) <= 5
                  JOIN users on users.user_id = orders.creator
                  JOIN person on person.person_id = users.person_id
                  JOIN person_name pn on pn.person_id = person.person_id
@@ -116,9 +117,9 @@ FROM
                                                    stopped_order.previous_order_id = orders.order_id
                  JOIN concept c on c.concept_id = orders.concept_id AND c.retired IS FALSE
                  LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
-                 LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
+                 LEFT JOIN concept_name durationUnitsConceptName ON durationUnitsConceptName.concept_id = drug_order.duration_units AND durationUnitsConceptName.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitsConceptName.voided = 0
                  LEFT JOIN drug ON drug.concept_id = orders.concept_id
-             ) medications on medications.patient_id = personData.person_id and personData.enrollment = medications.pgmUuid ORDER BY Clinic, medications.vist_date desc;",
+             ) medications on medications.patient_id = personData.person_id and personData.enrollment = medications.pgmUuid ORDER BY Clinic, medications.visit_date desc;",
     'Dispensed Medications',
     @uuid
   );

@@ -91,7 +91,7 @@ FROM
       CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
       COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
       orders.date_activated,
-      (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'vist_date',
+      (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'visit_date',
       orders.auto_expire_date
     FROM
       patient p
@@ -111,15 +111,15 @@ FROM
       JOIN concept c on c.concept_id = orders.concept_id
       AND c.retired IS FALSE
       LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
-      LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units
-      AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED'
-      AND durationUnitscn.voided = 0
+      LEFT JOIN concept_name durationUnitsConceptName ON durationUnitsConceptName.concept_id = drug_order.duration_units
+      AND durationUnitsConceptName.concept_name_type = 'FULLY_SPECIFIED'
+      AND durationUnitsConceptName.voided = 0
       LEFT JOIN drug ON drug.concept_id = orders.concept_id
       LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id
       and drug_code.concept_reference_source_name = 'MSF-INTERNAL'
       and drug_code.concept_map_type_name = 'SAME-AS'
   ) medications on medications.patient_id = personData.person_id and DATE(medications.auto_expire_date)>CURDATE()
-  GROUP BY personData.person_id, medications.vist_date
+  GROUP BY personData.person_id, medications.visit_date
   ) newModPresData order by newModPresData.Clinic, newModPresData.`Prescribed/Updated Time` desc;",
     'New/Modified Prescriptions',
     @uuid
