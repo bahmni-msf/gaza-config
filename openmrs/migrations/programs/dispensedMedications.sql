@@ -106,8 +106,8 @@ FROM
                                 orders.voided IS FALSE AND orders.order_action != 'DISCONTINUE' AND (orders.auto_expire_date IS NULL or orders.auto_expire_date> now())
                                 AND orders.date_stopped IS NULL
                                 AND EXISTS (Select obs.order_id from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' ) AND obs.order_id = orders.order_id AND obs.voided IS FALSE)
-                                AND DATEDIFF(now(),((Select obs.date_created from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' )
-                                AND obs.order_id = orders.order_id AND obs.voided IS FALSE))) <= 5 
+                                AND DATEDIFF(now(),(Select obs.date_created from obs where obs.concept_id = ( SELECT concept_id FROM concept_name WHERE name = 'Dispensed' )
+                                AND obs.order_id = orders.order_id AND obs.voided IS FALSE)) <= 5
                  JOIN users on users.user_id = orders.creator
                  JOIN person on person.person_id = users.person_id
                  JOIN person_name pn on pn.person_id = person.person_id
@@ -117,7 +117,7 @@ FROM
                                                    stopped_order.previous_order_id = orders.order_id
                  JOIN concept c on c.concept_id = orders.concept_id AND c.retired IS FALSE
                  LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
-                 LEFT JOIN concept_name durationUnitsConceptName ON durationUnitsConceptName.concept_id = drug_order.duration_units AND durationUnitsConceptName.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
+                 LEFT JOIN concept_name durationUnitsConceptName ON durationUnitsConceptName.concept_id = drug_order.duration_units AND durationUnitsConceptName.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitsConceptName.voided = 0
                  LEFT JOIN drug ON drug.concept_id = orders.concept_id
              ) medications on medications.patient_id = personData.person_id and personData.enrollment = medications.pgmUuid ORDER BY Clinic, medications.visit_date desc;",
     'Dispensed Medications',
