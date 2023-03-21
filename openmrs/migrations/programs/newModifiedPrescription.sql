@@ -88,7 +88,7 @@ FROM
   INNER JOIN (
     SELECT
       p.patient_id,
-      CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
+      CONCAT_WS(' ', pn.given_name, pn.family_name) AS 'prescriber',
       COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
       orders.date_activated,
       (select v.date_started from visit v where visit_id=(select visit_id from encounter where encounter_id=orders.encounter_id) limit 1) AS 'visit_date',

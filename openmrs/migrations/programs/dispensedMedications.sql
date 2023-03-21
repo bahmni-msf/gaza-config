@@ -91,7 +91,7 @@ FROM
   INNER JOIN (
                SELECT
                  p.patient_id,
-                 CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
+                 CONCAT_WS(' ', pn.given_name, pn.family_name) AS 'prescriber',
                  COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
                  IF(drug.name IS NOT NULL, drug.name, drug_order.drug_non_coded)                         AS 'drugName',
                  orders.date_created,
