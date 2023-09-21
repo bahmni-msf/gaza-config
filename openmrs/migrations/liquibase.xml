@@ -380,6 +380,9 @@
         </sql>
     </changeSet>
     <changeSet id="Gaza_CONFIG_20230920092324487" author="Venky, Shyam">
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_WHO;
+        </sql>
         <sqlFile path="utils/createProcedureForWHO.sql" endDelimiter="#"/>
     </changeSet>
     <include file="WoundDressing/WoundDressing.xml"/>
