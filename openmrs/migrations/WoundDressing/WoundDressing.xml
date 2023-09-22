@@ -623,7 +623,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Irrigation NaCl 0", "9%", "Mechanically by NaCl 0.9 % and Gauze", "PVI 7", "5% soap", "PVI 4% soap diluted")
+                ("Irrigation NaCl 0.9%", "Mechanically by NaCl 0.9 % and Gauze", "PVI 7.5% soap", "PVI 4% soap diluted")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "WD, Wound cleansing");
@@ -637,20 +637,14 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            set @child6_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Irrigation NaCl 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="9%" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Mechanically by NaCl 0.9 % and Gauze" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="PVI 7" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="5% soap" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="PVI 4% soap diluted" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Irrigation NaCl 0.9%" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Mechanically by NaCl 0.9 % and Gauze" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="PVI 7.5% soap" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="PVI 4% soap diluted" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-            call add_concept_answer(@concept_id, @child6_concept_id, 6);
         </sql>
     </changeSet>
 

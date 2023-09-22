@@ -73,7 +73,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hypergranulatio
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Healed wound","Healed wound","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Silver dressing","Silver dressing","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Eczema","Eczema","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"5% soap","5% soap","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Epithelialization","Epithelialization","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Haemorrhagic","Haemorrhagic","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Macerated","Macerated","N/A","Misc",false);
@@ -81,9 +80,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Fucidin cream",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Normal","Normal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Not healing","Not healing","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Heavy","Heavy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Irrigation NaCl 0","Irrigation NaCl 0","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Irrigation NaCl 0.9%","Irrigation NaCl 0.9%","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Referred","Referred","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"9%","9%","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PVI 4% soap diluted","PVI 4% soap diluted","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Granulation","Granulation","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Undermined","Undermined","N/A","Misc",false);
@@ -102,7 +100,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dressing room",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Sterile gauzes","Sterile gauzes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Haemopurulent","Haemopurulent","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Seropurulent","Seropurulent","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PVI 7","PVI 7","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PVI 7.5% soap","PVI 7.5% soap","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Healing-not infected","Healing-not infected","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Crusts","Crusts","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PVI 10% gel","PVI 10% gel","N/A","Misc",false);
