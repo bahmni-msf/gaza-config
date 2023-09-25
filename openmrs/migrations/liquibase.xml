@@ -368,4 +368,22 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("Privilege Level: Full", "app:pharmacy");
         </sql>
     </changeSet>
+    <changeSet id="Gaza_CONFIG_20230920092324486" author="venky, Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_reference_source where name = 'WHO / ICD-11-WHO';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new source to concept_reference_source</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("WHO / ICD-11-WHO","WHO / ICD-11-WHO",NULL,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Gaza_CONFIG_20230920092324487" author="Venky, Shyam">
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_WHO;
+        </sql>
+        <sqlFile path="utils/createProcedureForWHO.sql" endDelimiter="#"/>
+    </changeSet>
+    <include file="WoundDressing/WoundDressing.xml"/>
 </databaseChangeLog>
