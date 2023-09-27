@@ -331,7 +331,8 @@
         "formGroup": [
           "First Consultation",
           "Initial Medical Assessment",
-          "Patient Progress Note"
+          "Patient Progress Note",
+          "Wound Dressing"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
