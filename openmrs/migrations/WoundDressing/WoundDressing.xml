@@ -1037,7 +1037,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("XA9NE6", "XA6599", "XA4983", "XA3RT8", "XA67V4", "XA2V14", "XA6AP4", "XA47V8", "XA8BE2", "XA1XM4", "XA4LC9", "XA7WB0", "XA3VA7", "XA5R12", "XA5R12", "XA3NY8", "XA8DJ6", "XA6TR8", "XA7MK8", "XA2C62", "XA01U5", "XA7D89", "XA86S4", "XA20Q1", "XA0JV9", "XA15W6", "XA8182", "XA3H13", "XA6CW5", "XA9K79", "XA7VQ4", "XA4TQ2", "XA9S09", "XA8KL5", "XA4DM3", "XA77E9", "XA3YG1", "XA33X4", "XA45A6", "XA4QS6", "XA2ZF0", "XA7AA6", "XA53N9", "XA3PZ3", "XA17J1", "XA2ND5", "XA34G7", "XA5S78", "XA98B3", "XA0183", "XA5D93", "XA6GV0", "XA12C1", "XA9ET2", "XA82W3", "XA14W3", "XA53X6", "XA3FR3", "XA10L7", "XA9FF8", "XA6809", "XA4BA8", "XA6AR5", "XA0SH5", "XA2J63")
+                ("XA9NE6", "XA6599", "XA4983", "XA3RT8", "XA67V4", "XA2V14", "XA6AP4", "XA47V8", "XA8BE2", "XA1XM4", "XA4LC9", "XA7WB0", "XA3VA7", "XA5R12", "XA3NY8", "XA8DJ6", "XA6TR8", "XA7MK8", "XA2C62", "XA01U5", "XA7D89", "XA86S4", "XA20Q1", "XA0JV9", "XA15W6", "XA8182", "XA3H13", "XA6CW5", "XA9K79", "XA7VQ4", "XA4TQ2", "XA9S09", "XA8KL5", "XA4DM3", "XA77E9", "XA3YG1", "XA33X4", "XA45A6", "XA4QS6", "XA2ZF0", "XA7AA6", "XA53N9", "XA3PZ3", "XA17J1", "XA2ND5", "XA34G7", "XA5S78", "XA98B3", "XA0183", "XA5D93", "XA6GV0", "XA12C1", "XA9ET2", "XA82W3", "XA14W3", "XA53X6", "XA3FR3", "XA10L7", "XA9FF8", "XA6809", "XA4BA8", "XA6AR5", "XA0SH5", "XA2J63")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "WHO / ICD-11-WHO"  and retired =0
@@ -1061,7 +1061,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"XA4LC9",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"XA7WB0",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"XA3VA7",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"XA5R12",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"XA5R12",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"XA3NY8",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"XA8DJ6",@source_id,uuid(),now());
