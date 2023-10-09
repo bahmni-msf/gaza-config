@@ -368,6 +368,20 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("Privilege Level: Full", "app:pharmacy");
         </sql>
     </changeSet>
+    <changeSet id="Gaza_CONFIG_20230920092324120" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from concept_reference_term where code = 166243;
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting a concept reference term map for duplicate ciel code</comment>
+        <sql>
+            set @concept_reference_term_id = 0;
+            select concept_reference_term_id INTO @concept_reference_term_id from concept_reference_term where code = 166243 limit 1;
+            DELETE FROM concept_reference_map WHERE concept_reference_term_id=@concept_reference_term_id;
+            DELETE FROM concept_reference_term where concept_reference_term_id=@concept_reference_term_id;
+        </sql>
+    </changeSet>
     <changeSet id="Gaza_CONFIG_20230920092324486" author="venky, Shyam">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
