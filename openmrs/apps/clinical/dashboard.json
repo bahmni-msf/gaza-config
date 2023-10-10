@@ -332,7 +332,8 @@
           "First Consultation",
           "Initial Medical Assessment",
           "Patient Progress Note",
-          "Wound Dressing"
+          "Wound Dressing",
+          "Physiotherapy SOAP Note"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
