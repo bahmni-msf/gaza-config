@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="gaza_CONFIG_20231010122014277" author="Shyam">
+        <comment>Adding Concepts for OccupationalTherapyAssessment Form</comment>
+        <sqlFile path="OccupationalTherapyAssessment/OccupationalTherapyAssessment.sql"/>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122017625" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Initial assessment", "Re-assessment", "Final assessment")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Consultation type");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Consultation type</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Consultation type" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Initial assessment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Re-assessment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Final assessment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122018854" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Obtaining and using toilet supplies");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Obtaining and using toilet supplies</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Obtaining and using toilet supplies" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122020185" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Managing clothes before and after toileting");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Managing clothes before and after toileting</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Managing clothes before and after toileting" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122021822" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Washing (including hair)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Washing (including hair)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Washing (including hair)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122022950" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Drying");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Drying</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Drying" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122024076" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Turning taps");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Turning taps</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Turning taps" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122025407" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Managing hair");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Managing hair</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Managing hair" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122026583" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Use nail clipper");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Use nail clipper</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Use nail clipper" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122028020" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Cleaning teeth");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Cleaning teeth</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Cleaning teeth" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122029300" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Perfuming");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Perfuming</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Perfuming" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122030527" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Washing hands");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Washing hands</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Washing hands" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122031961" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Shaving");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Shaving</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Shaving" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122033337" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Fastening buttons");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Fastening buttons</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Fastening buttons" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122034725" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Fastening zippers");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Fastening zippers</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Fastening zippers" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122036261" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Put on and remove pants");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Put on and remove pants</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Put on and remove pants" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122037695" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Put on and remove shirts");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Put on and remove shirts</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Put on and remove shirts" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122039333" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Fastening belts");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Fastening belts</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Fastening belts" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122041058" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Put on shoe and tie laces");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Put on shoe and tie laces</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Put on shoe and tie laces" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122042611" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Tie head scarf/cap");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Tie head scarf/cap</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Tie head scarf/cap" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122044146" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Holding cutlery");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Holding cutlery</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Holding cutlery" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122045478" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Kitchen tasks");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Kitchen tasks</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Kitchen tasks" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122046911" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Bread activity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Bread activity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Bread activity" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122048447" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Helping with household jobs");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Helping with household jobs</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Helping with household jobs" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122049880" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using work appliances");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Using work appliances</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Using work appliances" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122051519" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using door handle an electric tool");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Using door handle an electric tool</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Using door handle an electric tool" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122052854" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using writing tools");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Using writing tools</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Using writing tools" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122054079" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using keyboard and mouse");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Using keyboard and mouse</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Using keyboard and mouse" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122055718" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Driving");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Driving</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Driving" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122056985" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Play/leisure");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Play/leisure</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Play/leisure" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122058379" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Shopping and carry grocery bags");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Shopping and carry grocery bags</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Shopping and carry grocery bags" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122059039" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Left: Unilateral bilateral reach");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Left: Unilateral bilateral reach</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Left: Unilateral bilateral reach" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122059808" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Right: Unilateral bilateral reach");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Right: Unilateral bilateral reach</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Right: Unilateral bilateral reach" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122100428" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Left: Spherical grasp");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Left: Spherical grasp</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Left: Spherical grasp" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122101245" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Right: Spherical grasp");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Right: Spherical grasp</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Right: Spherical grasp" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122101964" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Left: Hook");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Left: Hook</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Left: Hook" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122102680" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Right: Hook");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Right: Hook</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Right: Hook" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122103397" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Left: Release");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Left: Release</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Left: Release" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122104011" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Right: Release");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Right: Release</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Right: Release" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122104728" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Left: Tripod prehension");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Left: Tripod prehension</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Left: Tripod prehension" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122105547" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Right: Lateral pinch prehension");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Right: Lateral pinch prehension</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Right: Lateral pinch prehension" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122106264" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Difficult")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Bilateral hand use");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Bilateral hand use</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Bilateral hand use" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Difficult" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122106879" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, Follow up needed");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, Follow up needed</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, Follow up needed" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122109029" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Full recovery / goals met", "Exit for no improvement since the last assessment", "Defaulter", "Left against medical advise (LAMA)", "Referred to external Facility", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTS, End of OCT treatment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTS, End of OCT treatment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTS, End of OCT treatment" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Full recovery / goals met" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Exit for no improvement since the last assessment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Defaulter" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Left against medical advise (LAMA)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Referred to external Facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122109041" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("1607","1611","1616","1627","1615","1619","1601","1624","1674","1675","1567","1565","1621","1622","1642","1605","1598","1684","1678","1628","1673","1608","1606","1671","1679","1614","1286","1603","1602","1604","1613","1677","932","1676","1612","1625","1643","1620","1680","1600","1681","1617","1873","1609","1599","1610","1309","1626","1682","1618","1672","1623")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1607",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1611",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1616",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1627",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1615",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1619",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1601",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1624",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1674",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1675",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1567",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1565",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1621",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1622",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1642",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1605",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1598",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1684",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1678",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1628",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1673",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1608",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1606",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1671",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1679",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1614",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1286",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1603",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1602",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1604",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1613",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1677",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"932",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1676",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1612",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1625",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1643",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1620",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1680",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1600",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1681",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1617",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1873",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1609",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1599",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1610",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1309",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1626",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1682",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1618",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1672",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1623",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Managing clothes before and after toileting","1604");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Play/leisure","1627");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Spherical grasp","1675");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Drying","1605");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Use nail clipper","1608");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Shopping and carry grocery bags","1628");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Managing hair","1607");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Washing hands","1611");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Using keyboard and mouse","1625");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Fastening zippers","1614");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Activity living task score","1643");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Spherical grasp","1674");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Bilateral hand use","1682");
+            call CREATE_REFERENCE_MAPPING_CEIL("Final assessment","1565");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, End of OCT treatment","1873");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Kitchen tasks","1620");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Shaving","1612");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Using work appliances","1623");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Perfuming","1610");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Unilateral bilateral reach","1673");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Date","1286");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Obtaining and using toilet supplies","1603");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Using door handle an electric tool","1624");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Hook","1676");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Cleaning teeth","1609");
+            call CREATE_REFERENCE_MAPPING_CEIL("Independent with mild difficulties","1600");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Unilateral bilateral reach","1672");
+            call CREATE_REFERENCE_MAPPING_CEIL("Difficult","1671");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Release","1678");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Fastening buttons","1613");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Tie head scarf/cap","1618");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Fastening belts","1616");
+            call CREATE_REFERENCE_MAPPING_CEIL("Normal","932");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Helping with household jobs","1622");
+            call CREATE_REFERENCE_MAPPING_CEIL("Initial assessment","1642");
+            call CREATE_REFERENCE_MAPPING_CEIL("Complete dependent/Unable to do","1602");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Put on shoe and tie laces","1617");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Treatment plan","1309");
+            call CREATE_REFERENCE_MAPPING_CEIL("Independent","1599");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Lateral pinch prehension","1681");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Holding cutlery","1619");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Release","1679");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Turning taps","1606");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Tripod prehension","1680");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Put on and remove shirts","1615");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Driving","1626");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Bread activity","1621");
+            call CREATE_REFERENCE_MAPPING_CEIL("Independent with severe difficulties","1601");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Consultation type","1567");
+            call CREATE_REFERENCE_MAPPING_CEIL("Independent with mild difficulties","1600");
+            call CREATE_REFERENCE_MAPPING_CEIL("Re-assessment","1598");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Hook","1677");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTS, Treatment goal","1684");
+        </sql>
+    </changeSet>
+
+    <changeSet id="gaza_CONFIG_20231010122109052" author="Shyam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSFOCP codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
