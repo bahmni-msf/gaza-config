@@ -73,14 +73,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left against me
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Referred to external Facility","Referred to external Facility","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Difficult","Difficult","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Initial assessment","Initial assessment","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No","No","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Independent with mild difficulties","Independent with mild difficulties","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Normal","Normal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Independent","Independent","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Re-assessment","Re-assessment","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Yes","Yes","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Defaulter","Defaulter","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Other","Other","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Final assessment","Final assessment","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Independent with mild difficulties","Independent with mild difficulties","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Full recovery / goals met","Full recovery / goals met","N/A","Misc",false);
