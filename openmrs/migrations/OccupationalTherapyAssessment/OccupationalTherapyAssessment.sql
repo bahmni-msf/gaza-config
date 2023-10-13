@@ -54,7 +54,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTS, Follow up 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTS, End of OCT treatment","End of OCT treatment","Coded","Misc",false);
 
 #Add Numeric Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTS, Activity living task score","Activity living task score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTS, Activity living task score","Activity living task score","Numeric","Computed",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -66,15 +66,15 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTS, Treatment 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTS, Outcome of service, other","Outcome of service, other","Text","Misc",false);
 
 #Add Child Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Complete dependent/Unable to do","Complete dependent/Unable to do","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Independent with severe difficulties","Independent with severe difficulties","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"4 = Complete dependent/Unable to do","4 = Complete dependent/Unable to do","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3 = Independent with severe difficulties","3 = Independent with severe difficulties","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Exit for no improvement since the last assessment","Exit for no improvement since the last assessment","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left against medical advise (LAMA)","Left against medical advise (LAMA)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Referred to external Facility","Referred to external Facility","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Difficult","Difficult","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Initial assessment","Initial assessment","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Independent with mild difficulties","Independent with mild difficulties","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Independent","Independent","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2 = Independent with mild difficulties","2 = Independent with mild difficulties","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1 = Independent","1 = Independent","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Re-assessment","Re-assessment","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Final assessment","Final assessment","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Full recovery / goals met","Full recovery / goals met","N/A","Misc",false);

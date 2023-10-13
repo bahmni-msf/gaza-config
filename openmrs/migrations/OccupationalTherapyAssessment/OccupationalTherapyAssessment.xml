@@ -50,7 +50,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Obtaining and using toilet supplies");
@@ -64,10 +64,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -83,7 +83,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Managing clothes before and after toileting");
@@ -97,10 +97,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -116,7 +116,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Washing (including hair)");
@@ -130,10 +130,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -149,7 +149,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Drying");
@@ -163,10 +163,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -182,7 +182,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Turning taps");
@@ -196,10 +196,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -215,7 +215,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Managing hair");
@@ -229,10 +229,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -248,7 +248,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Use nail clipper");
@@ -262,10 +262,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -281,7 +281,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Cleaning teeth");
@@ -295,10 +295,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -314,7 +314,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Perfuming");
@@ -328,10 +328,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -347,7 +347,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Washing hands");
@@ -361,10 +361,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -380,7 +380,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Shaving");
@@ -394,10 +394,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -413,7 +413,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Fastening buttons");
@@ -427,10 +427,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -446,7 +446,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Fastening zippers");
@@ -460,10 +460,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -479,7 +479,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Put on and remove pants");
@@ -493,10 +493,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -512,7 +512,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Put on and remove shirts");
@@ -526,10 +526,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -545,7 +545,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Fastening belts");
@@ -559,10 +559,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -578,7 +578,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Put on shoe and tie laces");
@@ -592,10 +592,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -611,7 +611,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Tie head scarf/cap");
@@ -625,10 +625,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -644,7 +644,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Holding cutlery");
@@ -658,10 +658,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -677,7 +677,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Kitchen tasks");
@@ -691,10 +691,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -710,7 +710,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Bread activity");
@@ -724,10 +724,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -743,7 +743,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Helping with household jobs");
@@ -757,10 +757,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -776,7 +776,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using work appliances");
@@ -790,10 +790,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -809,7 +809,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using door handle an electric tool");
@@ -823,10 +823,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -842,7 +842,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using writing tools");
@@ -856,10 +856,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -875,7 +875,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Using keyboard and mouse");
@@ -889,10 +889,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -908,7 +908,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Driving");
@@ -922,10 +922,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -941,7 +941,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Play/leisure");
@@ -955,10 +955,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -974,7 +974,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Independent", "Independent with mild difficulties", "Independent with severe difficulties", "Complete dependent/Unable to do")
+                ("1 = Independent", "2 = Independent with mild difficulties", "3 = Independent with severe difficulties", "4 = Complete dependent/Unable to do")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OTS, Shopping and carry grocery bags");
@@ -988,10 +988,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Independent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Independent with mild difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Independent with severe difficulties" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Complete dependent/Unable to do" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1453,7 +1453,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Using door handle an electric tool","1624");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Hook","1676");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Cleaning teeth","1609");
-            call CREATE_REFERENCE_MAPPING_CEIL("Independent with mild difficulties","1600");
+            call CREATE_REFERENCE_MAPPING_CEIL("2 = Independent with mild difficulties","1600");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Unilateral bilateral reach","1672");
             call CREATE_REFERENCE_MAPPING_CEIL("Difficult","1671");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Left: Release","1678");
@@ -1463,10 +1463,10 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Normal","932");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Helping with household jobs","1622");
             call CREATE_REFERENCE_MAPPING_CEIL("Initial assessment","1642");
-            call CREATE_REFERENCE_MAPPING_CEIL("Complete dependent/Unable to do","1602");
+            call CREATE_REFERENCE_MAPPING_CEIL("4 = Complete dependent/Unable to do","1602");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Put on shoe and tie laces","1617");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Treatment plan","1309");
-            call CREATE_REFERENCE_MAPPING_CEIL("Independent","1599");
+            call CREATE_REFERENCE_MAPPING_CEIL("1 = Independent","1599");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Lateral pinch prehension","1681");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Holding cutlery","1619");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Release","1679");
@@ -1475,9 +1475,8 @@
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Put on and remove shirts","1615");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Driving","1626");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Bread activity","1621");
-            call CREATE_REFERENCE_MAPPING_CEIL("Independent with severe difficulties","1601");
+            call CREATE_REFERENCE_MAPPING_CEIL("3 = Independent with severe difficulties","1601");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Consultation type","1567");
-            call CREATE_REFERENCE_MAPPING_CEIL("Independent with mild difficulties","1600");
             call CREATE_REFERENCE_MAPPING_CEIL("Re-assessment","1598");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Right: Hook","1677");
             call CREATE_REFERENCE_MAPPING_CEIL("OTS, Treatment goal","1684");
