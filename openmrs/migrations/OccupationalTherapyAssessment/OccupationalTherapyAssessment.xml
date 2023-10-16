@@ -1483,23 +1483,4 @@
         </sql>
     </changeSet>
 
-    <changeSet id="gaza_CONFIG_20231010122109052" author="Shyam">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_reference_term
-                where code in
-                ("")
-                and retired = 0
-                and concept_source_id = (
-                select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
-                );
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding MSFOCP codes to concepts</comment>
-        <sql>
-            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
-
-        </sql>
-    </changeSet>
-
 </databaseChangeLog>
