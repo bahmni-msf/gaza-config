@@ -333,7 +333,8 @@
           "Initial Medical Assessment",
           "Patient Progress Note",
           "Wound Dressing",
-          "Physiotherapy SOAP Note"
+          "Physiotherapy SOAP Note",
+          "Occupational Therapy Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },

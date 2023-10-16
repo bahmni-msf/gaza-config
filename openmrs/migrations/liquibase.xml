@@ -401,4 +401,5 @@
     </changeSet>
     <include file="WoundDressing/WoundDressing.xml"/>
     <include file="PhysiotherapySOAPNote/PhysiotherapySOAPNote.xml"/>
+    <include file="OccupationalTherapyAssessment/OccupationalTherapyAssessment.xml"/>
 </databaseChangeLog>
